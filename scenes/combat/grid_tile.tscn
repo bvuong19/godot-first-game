@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://ko307l8a87qk"]
+
+[ext_resource type="Script" path="res://scenes/combat/grid_tile.gd" id="1_0mbch"]
+[ext_resource type="Texture2D" uid="uid://dtijo5k74spyk" path="res://assets/gridtiles/selected1.png" id="1_6u1cu"]
+[ext_resource type="Texture2D" uid="uid://bcpblpdkotl2v" path="res://assets/gridtiles/selected2.png" id="2_31k54"]
+[ext_resource type="Texture2D" uid="uid://8d77qpbj1kmm" path="res://assets/gridtiles/confirm.png" id="2_yuw4m"]
+[ext_resource type="Texture2D" uid="uid://i4kd52p57syn" path="res://assets/gridtiles/selected3.png" id="3_7u541"]
+[ext_resource type="Texture2D" uid="uid://b0ty0ttqpnkd6" path="res://assets/gridtiles/selected4.png" id="4_yivho"]
+[ext_resource type="Texture2D" uid="uid://ighwp5kkow1w" path="res://assets/gridtiles/selected5.png" id="5_4qeq5"]
+[ext_resource type="Texture2D" uid="uid://1eajwbn7878c" path="res://assets/gridtiles/selected6.png" id="6_lr2qj"]
+[ext_resource type="Texture2D" uid="uid://bgnsyicm3xvni" path="res://assets/gridtiles/selected7.png" id="7_vcxwl"]
+[ext_resource type="Texture2D" uid="uid://e6hg7ox13r1s" path="res://assets/gridtiles/selected8.png" id="8_6frna"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_udd3k"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_yuw4m")
+}],
+"loop": true,
+"name": &"confirm",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6u1cu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_6u1cu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_31k54")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7u541")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yivho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4qeq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lr2qj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vcxwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_6frna")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_vcxwl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lr2qj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_4qeq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_yivho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7u541")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_31k54")
+}],
+"loop": true,
+"name": &"selected",
+"speed": 15.0
+}]
+
+[node name="gridTile" type="Node2D"]
+script = ExtResource("1_0mbch")
+
+[node name="marker" type="Marker2D" parent="."]
+position = Vector2(32, 32)
+
+[node name="Gridtile1" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(32, 32)
+sprite_frames = SubResource("SpriteFrames_udd3k")
+animation = &"confirm"
+autoplay = "default"

@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://c6c541veujqij"]
+
+[ext_resource type="Script" path="res://scenes/combat/entity_grid.gd" id="1_fgj8b"]
+[ext_resource type="Texture2D" uid="uid://mobdp1w8gl3j" path="res://assets/basicgrid.png" id="1_s1ods"]
+[ext_resource type="PackedScene" uid="uid://ko307l8a87qk" path="res://scenes/combat/grid_tile.tscn" id="3_elih0"]
+
+[node name="entityGrid" type="Node2D"]
+script = ExtResource("1_fgj8b")
+
+[node name="bg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(127, 95)
+rotation = 1.5708
+texture = ExtResource("1_s1ods")
+
+[node name="tiles" type="Node2D" parent="."]
+
+[node name="gridTile" parent="tiles" instance=ExtResource("3_elih0")]
+
+[node name="gridTile2" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(64, 0)
+
+[node name="gridTile3" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(128, 0)
+
+[node name="gridTile4" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(192, 0)
+
+[node name="gridTile5" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(256, 0)
+
+[node name="gridTile6" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(0, 64)
+
+[node name="gridTile7" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(64, 64)
+
+[node name="gridTile8" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(128, 64)
+
+[node name="gridTile9" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(192, 64)
+
+[node name="gridTile10" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(256, 64)
+
+[node name="gridTile11" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(0, 128)
+
+[node name="gridTile12" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(64, 128)
+
+[node name="gridTile13" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(128, 128)
+
+[node name="gridTile14" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(192, 128)
+
+[node name="gridTile15" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(256, 128)
+
+[node name="gridTile16" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(0, 192)
+
+[node name="gridTile17" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(64, 192)
+
+[node name="gridTile18" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(128, 192)
+
+[node name="gridTile19" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(192, 192)
+
+[node name="gridTile20" parent="tiles" instance=ExtResource("3_elih0")]
+position = Vector2(256, 192)

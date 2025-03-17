@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://ch0twm02cqdm1"]
+
+[ext_resource type="Script" path="res://scenes/combat/combat.gd" id="1_4yapm"]
+[ext_resource type="PackedScene" uid="uid://bk1np44yetrnc" path="res://scenes/combat/battlefield.tscn" id="2_jy3dx"]
+[ext_resource type="Script" path="res://scenes/combat/combat_ui.gd" id="3_460r7"]
+
+[node name="Combat" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_4yapm")
+
+[node name="players" type="Node" parent="."]
+
+[node name="enemies" type="Node" parent="."]
+
+[node name="battlefield" parent="." instance=ExtResource("2_jy3dx")]
+
+[node name="combatUI" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 652.0
+script = ExtResource("3_460r7")
