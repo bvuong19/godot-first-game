@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cx6uef7ihygob"]
+
+[ext_resource type="PackedScene" path="res://game.tscn" id="1_y508s"]
+
+[node name="game" instance=ExtResource("1_y508s")]
+
+[node name="ColorRect" parent="." index="1"]
+visible = true
+
+[editable path="Combat"]
+[editable path="Combat/enemies/enemy1"]
+[editable path="Combat/enemies/enemy2"]
+[editable path="Combat/enemies/enemy3"]
