@@ -1,4 +1,5 @@
 extends Node2D
+class_name EntityGrid
 
 const grid_size = 64
 const w = 5
@@ -21,6 +22,9 @@ func get_tile_pos(x: int, y: int) -> Vector2:
 	#var offset = Vector2(x * grid_size, y * grid_size)
 	#return Transform2D(0, Vector2(1,1), (get_skew()), Vector2(10,20)) * offset
 
+func reset() -> void:
+	for t in $tiles.get_children():
+		t._animate_unselect()
 
 func get_tile(x: int, y: int) -> GridTile:
 	return $tiles.get_children()[(y * 5) + x]

@@ -1,21 +1,19 @@
-[gd_scene load_steps=12 format=3 uid="uid://ko307l8a87qk"]
+[gd_scene load_steps=10 format=3 uid="uid://ko307l8a87qk"]
 
 [ext_resource type="Script" path="res://scenes/combat/grid_tile.gd" id="1_0mbch"]
-[ext_resource type="Texture2D" uid="uid://dtijo5k74spyk" path="res://assets/gridtiles/selected1.png" id="1_6u1cu"]
-[ext_resource type="Texture2D" uid="uid://bcpblpdkotl2v" path="res://assets/gridtiles/selected2.png" id="2_31k54"]
-[ext_resource type="Texture2D" uid="uid://8d77qpbj1kmm" path="res://assets/gridtiles/confirm.png" id="2_yuw4m"]
-[ext_resource type="Texture2D" uid="uid://i4kd52p57syn" path="res://assets/gridtiles/selected3.png" id="3_7u541"]
-[ext_resource type="Texture2D" uid="uid://b0ty0ttqpnkd6" path="res://assets/gridtiles/selected4.png" id="4_yivho"]
-[ext_resource type="Texture2D" uid="uid://ighwp5kkow1w" path="res://assets/gridtiles/selected5.png" id="5_4qeq5"]
-[ext_resource type="Texture2D" uid="uid://1eajwbn7878c" path="res://assets/gridtiles/selected6.png" id="6_lr2qj"]
-[ext_resource type="Texture2D" uid="uid://bgnsyicm3xvni" path="res://assets/gridtiles/selected7.png" id="7_vcxwl"]
-[ext_resource type="Texture2D" uid="uid://e6hg7ox13r1s" path="res://assets/gridtiles/selected8.png" id="8_6frna"]
+[ext_resource type="Texture2D" uid="uid://junp7xukluxv" path="res://assets/gridtiles/confirmbold1.png" id="2_5hk8t"]
+[ext_resource type="Texture2D" uid="uid://cpghtt6fd4d0u" path="res://assets/gridtiles/selectedbold0.png" id="3_jttsh"]
+[ext_resource type="Texture2D" uid="uid://cgbmmsrjxrt1r" path="res://assets/gridtiles/selectedbold1.png" id="4_l3p6p"]
+[ext_resource type="Texture2D" uid="uid://d18c7behr7h4a" path="res://assets/gridtiles/selectedbold2.png" id="5_qqo52"]
+[ext_resource type="Texture2D" uid="uid://cpwdlb6ykiku8" path="res://assets/gridtiles/selectedbold3.png" id="6_esnyp"]
+[ext_resource type="Texture2D" uid="uid://cfrmjwcf81k41" path="res://assets/gridtiles/selectedbold4.png" id="7_j8nt5"]
+[ext_resource type="Texture2D" uid="uid://bhtre4uywmmgh" path="res://assets/gridtiles/selectedbold5.png" id="8_sanjg"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_udd3k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_yuw4m")
+"texture": ExtResource("2_5hk8t")
 }],
 "loop": true,
 "name": &"confirm",
@@ -23,7 +21,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_6u1cu")
+"texture": ExtResource("3_jttsh")
 }],
 "loop": true,
 "name": &"default",
@@ -31,46 +29,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_6u1cu")
+"texture": ExtResource("4_l3p6p")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_31k54")
+"texture": ExtResource("5_qqo52")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_7u541")
+"texture": ExtResource("6_esnyp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_yivho")
+"texture": ExtResource("7_j8nt5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_4qeq5")
+"texture": ExtResource("8_sanjg")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_lr2qj")
+"texture": ExtResource("7_j8nt5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_vcxwl")
+"texture": ExtResource("6_esnyp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_6frna")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_vcxwl")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_lr2qj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_4qeq5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_yivho")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_7u541")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_31k54")
+"texture": ExtResource("5_qqo52")
 }],
 "loop": true,
 "name": &"selected",
@@ -87,5 +67,5 @@ position = Vector2(32, 32)
 texture_filter = 1
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_udd3k")
-animation = &"confirm"
+animation = &"selected"
 autoplay = "default"

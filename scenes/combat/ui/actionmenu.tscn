@@ -1,0 +1,104 @@
+[gd_scene load_steps=5 format=3 uid="uid://b27vm76qgpnyc"]
+
+[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/actionmenu.tres" id="1_tcxv3"]
+[ext_resource type="Script" path="res://scenes/combat/ui/actionmenu.gd" id="2_8en5j"]
+[ext_resource type="PackedScene" uid="uid://capcbr314ldqa" path="res://scenes/combat/ui/actionmenubuttonitem.tscn" id="2_c5ckw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o18y"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[node name="actionmenu" type="MarginContainer"]
+custom_minimum_size = Vector2(200, 150)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.0559692
+offset_top = -0.127991
+offset_right = 0.456055
+offset_bottom = -0.0479736
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_tcxv3")
+script = ExtResource("2_8en5j")
+
+[node name="hbox" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ATTACK" parent="hbox/VBoxContainer" instance=ExtResource("2_c5ckw")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="SKILL" parent="hbox/VBoxContainer" instance=ExtResource("2_c5ckw")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_right = NodePath("../../MarginContainer/VBoxContainer2/ITEM")
+focus_mode = 0
+disabled = true
+text = "Skill"
+
+[node name="DEFEND" parent="hbox/VBoxContainer" instance=ExtResource("2_c5ckw")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Defend"
+
+[node name="MarginContainer" type="MarginContainer" parent="hbox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="hbox/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MOVE" parent="hbox/MarginContainer/VBoxContainer2" instance=ExtResource("2_c5ckw")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../VBoxContainer/ATTACK")
+text = "Move"
+
+[node name="ITEM" parent="hbox/MarginContainer/VBoxContainer2" instance=ExtResource("2_c5ckw")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_neighbor_left = NodePath("../../../VBoxContainer/SKILL")
+text = "Item"
+
+[node name="FLEE" parent="hbox/MarginContainer/VBoxContainer2" instance=ExtResource("2_c5ckw")]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Flee"
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 2
+theme = ExtResource("1_tcxv3")
+theme_override_styles/panel = SubResource("StyleBoxFlat_0o18y")
+
+[node name="submenu" type="MenuBar" parent="PanelContainer"]
+layout_mode = 2
+theme = ExtResource("1_tcxv3")
+
+[node name="MenuButton" type="MenuButton" parent="PanelContainer/submenu"]
+layout_mode = 2
+offset_right = 1152.0
+offset_bottom = 21.0
+text = "skill1"
+alignment = 0
+
+[node name="MenuButton2" type="MenuButton" parent="PanelContainer/submenu"]
+layout_mode = 2
+offset_top = 25.0
+offset_right = 1152.0
+offset_bottom = 46.0
+text = "skill2"
+alignment = 0
+
+[connection signal="pressed" from="hbox/VBoxContainer/ATTACK" to="." method="_on_attack_pressed"]
+[connection signal="pressed" from="hbox/VBoxContainer/SKILL" to="." method="_on_skill_pressed"]
+[connection signal="pressed" from="hbox/VBoxContainer/DEFEND" to="." method="_on_defend_pressed"]
+[connection signal="pressed" from="hbox/MarginContainer/VBoxContainer2/MOVE" to="." method="_on_move_pressed"]
+[connection signal="pressed" from="hbox/MarginContainer/VBoxContainer2/ITEM" to="." method="_on_item_pressed"]
+[connection signal="pressed" from="hbox/MarginContainer/VBoxContainer2/FLEE" to="." method="_on_flee_pressed"]
