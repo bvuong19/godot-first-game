@@ -85,33 +85,6 @@ offset_bottom = -12.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="Panel" type="Panel" parent="combatUI"]
-visible = false
-custom_minimum_size = Vector2(600, 64)
-layout_mode = 2
-offset_left = 276.0
-offset_right = 876.0
-offset_bottom = 64.0
-size_flags_horizontal = 0
-
-[node name="turnqueuecontainer" type="PanelContainer" parent="combatUI"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 300.0
-offset_bottom = 64.0
-grow_horizontal = 2
-
-[node name="turnqueue" type="HBoxContainer" parent="combatUI/turnqueuecontainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 64)
-layout_direction = 2
-layout_mode = 2
-size_flags_vertical = 0
-
 [connection signal="pressed" from="combatUI/actionmenu/hbox/VBoxContainer/ATTACK" to="combatUI" method="_on_attack_pressed"]
 [connection signal="pressed" from="combatUI/actionmenu/hbox/VBoxContainer/DEFEND" to="combatUI" method="_on_defend_pressed"]
 [connection signal="pressed" from="combatUI/actionmenu/hbox/MarginContainer/VBoxContainer2/MOVE" to="combatUI" method="_on_move_pressed"]

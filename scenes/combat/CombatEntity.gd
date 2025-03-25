@@ -13,8 +13,11 @@ class_name CombatEntity
 @export var atk = 0
 @export var def = 0
 @export var hp = 0
+@export var spd = 0
 
 @export var current_hp = 0
+@export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
+
 
 # other
 signal damage_taken(Node2D, float)
@@ -32,15 +35,13 @@ func apply_damage(dmg: float) -> void:
 	
 	if (current_hp <= 0):
 		print(name + " has been defeated!")
-		#queue_free()
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	damage_taken.connect(get_parent().get_parent()._on_damage_taken)
+	position = Vector2(300,300)
 	current_hp = hp 
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
-	pass # Replace with function body.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

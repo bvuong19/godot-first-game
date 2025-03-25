@@ -9,7 +9,7 @@ signal onSelect(x: int, y: int, isEnemy: bool)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	onSelect.connect(get_parent()._on_grid_selected)
+	#onSelect.connect(get_parent()._on_grid_selected)
 	pass # Replace with function body.
 
 
@@ -64,3 +64,28 @@ func refresh_entity_position(entity: CombatEntity, is_enemy : bool) -> void:
 
 func set_active(active : bool) -> void:
 	is_active = active
+
+func animate_entity_attack(entity : CombatEntity, target : CombatEntity, callback) -> void:
+	var entity_pos  = Vector2(entity.position[0], entity.position[1]) #index into array to avoid copying array reference
+	var target_pos = Vector2(target.position[0], target.position[1])
+	var tween = entity.create_tween()
+	tween.tween_property(entity, "position", target_pos, 1).set_trans(Tween.TRANS_CUBIC)
+	tween.chain().tween_property(entity, "position", entity_pos, 0.6)
+	tween.tween_callback(callback)
+	
+func animate_entity_move(entity : CombatEntity, x : int, y : int, callback) -> void:
+	var entity_pos  = Vector2(entity.position[0], entity.position[1]) #index into array to avoid copying array reference
+	var grid = $playergrid
+	var target_pos = grid.get_tile_pos(entity.x, entity.y)
+	var tween = entity.create_tween()
+	tween.tween_property(entity, "position", target_pos, 0.5).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_callback(callback)
+
+func animate_entity_hop(entity : CombatEntity, callback) -> void:
+	var pos = Vector2(entity.position[0], entity.position[1])
+	var target_pos = Vector2(pos[0], pos[1] - 40)
+	var tween = entity.create_tween()
+	tween.tween_property(entity, "position", target_pos, 0.1).set_ease(Tween.EASE_OUT)
+	tween.chain().tween_property(entity, "position", pos, 0.15).set_trans(Tween.TRANS_QUAD)
+	tween.tween_callback(callback)
+	
