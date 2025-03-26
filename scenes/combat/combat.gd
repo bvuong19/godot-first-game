@@ -78,9 +78,10 @@ func _process(delta: float) -> void:
 # callback for when battle animation is complete
 func _on_battle_anim_complete() -> void:
 	animation_locked = false
-	turn_queue.pop_front()
-	$combatUI.next_turn_queue()
-	process_turn_queue()
+	if not event_queue:
+		turn_queue.pop_front()
+		$combatUI.next_turn_queue()
+		process_turn_queue()
 
 
 func process_event(event : Dictionary) -> void:
@@ -171,7 +172,6 @@ func handleControlFlowChange():
 				$combatUI.reset()
 				$combatUI.release_focus()
 				$battlefield.release_focus()
-				
 		is_phase_change = false
 
 func getEntityAtPosition(x: int, y: int, isEnemy: bool) -> CombatEntity:
