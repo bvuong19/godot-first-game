@@ -21,7 +21,9 @@ func initialize_turn_queue(turn_queue : Array[CombatEntity]) -> void:
 		turnqueuechild.size = Vector2(40,40)
 		turnqueuechild.texture = e.headSprite
 		%turnqueue.add_child(turnqueuechild)
-	
+
+func next_turn_queue() -> void:
+	%turnqueue.remove_child(%turnqueue.get_child(0))
 
 func add_entity(entity : CombatEntity, isEnemy: bool) -> void:
 	if not isEnemy:

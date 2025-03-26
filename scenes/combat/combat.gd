@@ -17,11 +17,12 @@ var debug = true
 var dmgText = preload("res://scenes/combat/damage_text.tscn")
 
 var planning = true
-var grid_selected_entity = null
+
 var current_phase = BATTLING
 var is_phase_change = true
 var eventBuilder = {}
 var animation_locked = false
+
 var guh = 5
 
 func add_event(entity: CombatEntity, type: int, target: CombatEntity) -> void:
@@ -31,34 +32,19 @@ func process_turn_queue() -> void:
 	if not turn_queue:
 		reset_turn_queue()
 	eventBuilder = {}
-	var e = turn_queue.pop_front()
+	var e = turn_queue[0]
 	if e.isEnemy:
 		updateEventBuilder({'entity': e, 'type': Combat_Action.ATTACK, 'targetEntity': get_players().front()})
+		current_phase = BATTLING
 	else:
 		updateEventBuilder({'entity': e})
-
+		current_phase = TURNSTART
+	is_phase_change = true
+	
 func process_event_queue() -> void:
-	print("GUH!")
 	if event_queue:
-		process_event(event_queue[0])
+		process_event(event_queue.pop_front())
 		
-func process_event(event : Dictionary) -> void:
-	print("bruh!")
-	match event.type:
-		Combat_Action.ATTACK:
-			# TODO: add animation callbcaks
-			print(event.entity.name + " attacks " + event.targetEntity.name + " with an ATK of " + str(event.entity.atk) + "!")
-			$battlefield.animate_entity_attack(event.entity, event.targetEntity, _on_battle_anim_complete)
-			event.targetEntity.apply_damage(event.entity.atk)	
-		Combat_Action.DEFEND:
-			print(event.entity.name + " defends, raising their defense to " + str(event.entity.atk * 2) + "!")
-			$battlefield.animate_entity_hop(event.entity, _on_battle_anim_complete)
-		Combat_Action.MOVE:
-			print(event.entity.name + " moves!")
-			event.entity.x = event.target[0]
-			event.entity.y = event.target[1]
-			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
-			#$battlefield.refresh_entity_position(event.entity, event.target[2])
 			
 func debug_add_events() -> void:
 	for e in get_enemies():			
@@ -80,28 +66,38 @@ func sort_entity_priority(a : CombatEntity, b: CombatEntity) -> bool:
 	return a.spd > b.spd
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	
+func _process(delta: float) -> void:	
 	handleControlFlowChange()
-	
-	match current_phase:
-		TURNSTART:
-			pass #tbd
-		TARGET:
-			pass
-		BATTLING:
-			if not (eventBuilder or eventBuilder.has('entity')):
-				process_turn_queue()
-				return
-			if not animation_locked:
-				$battlefield.refresh_selections()
-				process_event_queue()
-				animation_locked = true
-				
+	if current_phase == BATTLING:
+		if not animation_locked and event_queue:
+			eventBuilder = {}
+			$battlefield.refresh_selections()
+			process_event_queue()
+			animation_locked = true
+
 # callback for when battle animation is complete
 func _on_battle_anim_complete() -> void:
 	animation_locked = false
+	turn_queue.pop_front()
+	$combatUI.next_turn_queue()
+	process_turn_queue()
 
+
+func process_event(event : Dictionary) -> void:
+	match event.type:
+		Combat_Action.ATTACK:
+			# TODO: add animation callbcaks
+			print(event.entity.name + " attacks " + event.targetEntity.name + " with an ATK of " + str(event.entity.atk) + "!")
+			$battlefield.animate_entity_attack(event.entity, event.targetEntity, _on_battle_anim_complete)
+			event.targetEntity.apply_damage(event.entity.atk)	
+		Combat_Action.DEFEND:
+			print(event.entity.name + " defends, raising their defense to " + str(event.entity.atk * 2) + "!")
+			$battlefield.animate_entity_hop(event.entity, _on_battle_anim_complete)
+		Combat_Action.MOVE:
+			print(event.entity.name + " moves!")
+			event.entity.x = event.target[0]
+			event.entity.y = event.target[1]
+			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
 
 func _on_grid_selected(x : int, y: int, isEnemy: bool) -> void:
 	if current_phase == PLANNING:
@@ -129,7 +125,6 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				current_phase = BATTLING
 				is_phase_change = true
 				event_queue.append(eventBuilder)
-				eventBuilder = {}
 			else:
 				current_phase = TARGET
 				$battlefield.is_select_enemy = true
@@ -146,7 +141,6 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				if not getEntityAtPosition(eventBuilder['target'][0], eventBuilder['target'][1], eventBuilder['target'][2]):
 					current_phase = BATTLING
 					event_queue.append(eventBuilder)
-					eventBuilder = {}
 					is_phase_change = true
 					return
 				# invalid location
@@ -221,6 +215,7 @@ func _ready() -> void:
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
 		$battlefield.add_entity(entity, true)
 		$combatUI.add_entity(entity, true)
+	process_turn_queue()
 	
 func _on_damage_taken(entity : CombatEntity, dmg : int) -> void:
 	$combatUI.update_party_bar()
