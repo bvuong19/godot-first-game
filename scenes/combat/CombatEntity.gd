@@ -17,7 +17,7 @@ class_name CombatEntity
 
 @export var current_hp = 0
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
-
+@export var isEnemy = true
 
 # other
 signal damage_taken(Node2D, float)
