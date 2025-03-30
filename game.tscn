@@ -73,12 +73,7 @@ headSprite = ExtResource("4_s1twx")
 [node name="sprite" parent="Combat/combatants/enemy3/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
 
-[connection signal="pressed" from="Combat/combatUI/actionmenu/hbox/VBoxContainer/ATTACK" to="Combat/combatUI" method="_on_attack_pressed"]
-[connection signal="pressed" from="Combat/combatUI/actionmenu/hbox/VBoxContainer/DEFEND" to="Combat/combatUI" method="_on_defend_pressed"]
-[connection signal="pressed" from="Combat/combatUI/actionmenu/hbox/MarginContainer/VBoxContainer2/MOVE" to="Combat/combatUI" method="_on_move_pressed"]
-
 [editable path="Combat"]
 [editable path="Combat/combatants/enemy1"]
 [editable path="Combat/combatants/enemy2"]
 [editable path="Combat/combatants/enemy3"]
-[editable path="Combat/combatUI/actionmenu"]

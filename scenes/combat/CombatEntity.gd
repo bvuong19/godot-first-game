@@ -21,7 +21,7 @@ class_name CombatEntity
 
 # other
 signal damage_taken(Node2D, float)
-
+signal entity_death(CombatEntity)
 
 # apply incoming damage 
 func apply_damage(dmg: float) -> void:
@@ -35,7 +35,7 @@ func apply_damage(dmg: float) -> void:
 	
 	if (current_hp <= 0):
 		print(name + " has been defeated!")
-
+		entity_death.emit(self)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -46,7 +46,6 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
-
 
 func damage_number(dmg : int) -> void:
 	var textDmg = Label.new()

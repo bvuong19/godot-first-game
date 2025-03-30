@@ -5,17 +5,23 @@ var selected_tile = []
 @export var is_select_enemy = false
 var is_active = false
 
-signal onSelect(x: int, y: int, isEnemy: bool)
+var fire_fx = preload("res://scenes/combat/fire_spell_effect.tscn")
 
+signal onSelect(x: int, y: int, isEnemy: bool)
+signal onCancel()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#onSelect.connect(get_parent()._on_grid_selected)
 	pass # Replace with function body.
 
+#TODO: add new forms of targeting.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if has_focus():
+		if Input.is_action_just_pressed("ui_cancel"):
+			onCancel.emit()
+			return
+		
 		var selected_grid = $enemygrid if is_select_enemy else $playergrid
 		var new_tile = []
 		
@@ -32,6 +38,8 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("confirm"):
 			selected_grid.confirm_tile(selected_tile[0], selected_tile[1])
 			onSelect.emit(selected_tile[0], selected_tile[1], is_select_enemy)
+	
+
 
 func refresh_selections() -> void:
 	$enemygrid.reset()
@@ -89,3 +97,12 @@ func animate_entity_hop(entity : CombatEntity, callback) -> void:
 	tween.chain().tween_property(entity, "position", pos, 0.15).set_trans(Tween.TRANS_QUAD)
 	tween.tween_callback(callback)
 	
+func animate_entity_spell(x : int, y : int, callback : Callable) -> void:
+	var pos = $enemygrid.get_tile_pos(x, y)
+	var fire = fire_fx.instantiate()
+	var callback_free = func():
+		fire.queue_free()
+		callback.call()
+	fire.position = pos
+	fire.animation_finished.connect(callback_free)
+	add_child(fire)

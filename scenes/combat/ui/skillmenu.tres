@@ -1,30 +1,22 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://6ex88g4ggcq"]
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://drub0g3xif2y5"]
 
-[ext_resource type="FontFile" uid="uid://c4und8ixek2t5" path="res://assets/Aptos.ttf" id="1_u67xp"]
+[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/Aptos-Bold.ttf" id="1_oxrhg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuqy3"]
 content_margin_left = 12.0
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
-skew = Vector2(0.01, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5a0f"]
 bg_color = Color(0.878431, 0.878431, 0.878431, 1)
-skew = Vector2(-0.02, 0.02)
-border_width_left = 3
-border_width_top = 3
-border_width_right = 3
-border_width_bottom = 3
 border_color = Color(0.117647, 0.117647, 0.117647, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot54i"]
 content_margin_left = 12.0
 bg_color = Color(0.357071, 0.34658, 0.762068, 0.917647)
-skew = Vector2(0.02, 0)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvw1s"]
 content_margin_left = 12.0
-bg_color = Color(0.0847185, 0.0776135, 0.325371, 1)
-skew = Vector2(0.02, 0.02)
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtwey"]
 content_margin_left = 12.0
@@ -35,11 +27,13 @@ bg_color = Color(0.110829, 0.118523, 0.405301, 1)
 
 [resource]
 Button/colors/font_focus_color = Color(0.0862745, 0.0784314, 0.32549, 1)
+Button/colors/font_hover_color = Color(0.0862745, 0.0784314, 0.32549, 1)
 Button/colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
-Button/fonts/font = ExtResource("1_u67xp")
+Button/fonts/font = ExtResource("1_oxrhg")
 Button/styles/disabled = SubResource("StyleBoxFlat_nuqy3")
 Button/styles/focus = SubResource("StyleBoxFlat_p5a0f")
 Button/styles/hover = SubResource("StyleBoxFlat_ot54i")
 Button/styles/normal = SubResource("StyleBoxFlat_cvw1s")
 Button/styles/pressed = SubResource("StyleBoxFlat_vtwey")
+Label/fonts/font = ExtResource("1_oxrhg")
 Panel/styles/panel = SubResource("StyleBoxFlat_p3otd")

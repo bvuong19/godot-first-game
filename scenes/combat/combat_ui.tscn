@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2jbsrvrww10m"]
+
+[ext_resource type="Script" path="res://scenes/combat/combat_ui.gd" id="1_fb66i"]
+[ext_resource type="PackedScene" uid="uid://b27vm76qgpnyc" path="res://scenes/combat/ui/actionmenu.tscn" id="2_n48y7"]
+
+[node name="combatUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_fb66i")
+
+[node name="partybarcontainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 140.0
+offset_bottom = 78.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+
+[node name="partybar" type="VBoxContainer" parent="partybarcontainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+offset_left = 276.0
+offset_right = 876.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+
+[node name="actionmenu" parent="." instance=ExtResource("2_n48y7")]
+layout_mode = 1
+
+[node name="turnqueuecontainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 64.0
+grow_horizontal = 2
+
+[node name="turnqueue" type="HBoxContainer" parent="turnqueuecontainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 64)
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 0

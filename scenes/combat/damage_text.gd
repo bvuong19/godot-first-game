@@ -2,15 +2,19 @@ extends Node2D
 
 class_name DamageText
 
-static func new(dmg: float) -> DamageText:
-	var instance = DamageText.new()
-	instance.label.text = "-" + str(dmg) + "!"
-	return instance
-
+func set_damage(dmg: float) -> void:
+	%label.text = "-" + str(dmg) + "!"
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 
+
+func animate() -> void:
+	var target_pos = Vector2(position.x, position.y - 30)
+	var tween = create_tween()
+	tween.tween_property($".", "position", target_pos, 0.1).set_ease(Tween.EASE_OUT)
+	tween.tween_callback(func() -> void: $".".queue_free())
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://ch0twm02cqdm1"]
+[gd_scene load_steps=5 format=3 uid="uid://ch0twm02cqdm1"]
 
 [ext_resource type="Script" path="res://scenes/combat/combat.gd" id="1_4yapm"]
 [ext_resource type="PackedScene" uid="uid://bk1np44yetrnc" path="res://scenes/combat/battlefield.tscn" id="2_jy3dx"]
-[ext_resource type="Script" path="res://scenes/combat/combat_ui.gd" id="3_460r7"]
-[ext_resource type="PackedScene" uid="uid://b27vm76qgpnyc" path="res://scenes/combat/ui/actionmenu.tscn" id="4_63gni"]
+[ext_resource type="PackedScene" uid="uid://b2jbsrvrww10m" path="res://scenes/combat/combat_ui.tscn" id="4_gdqca"]
 [ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/grass.png" id="5_4q124"]
 
 [node name="Combat" type="Control"]
@@ -49,69 +48,5 @@ texture = ExtResource("5_4q124")
 layout_mode = 1
 focus_mode = 2
 
-[node name="combatUI" type="Control" parent="."]
+[node name="combatUI" parent="." instance=ExtResource("4_gdqca")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-focus_mode = 2
-script = ExtResource("3_460r7")
-
-[node name="partybarcontainer" type="MarginContainer" parent="combatUI"]
-layout_mode = 1
-offset_right = 140.0
-offset_bottom = 78.0
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_top = 20
-
-[node name="partybar" type="VBoxContainer" parent="combatUI/partybarcontainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-
-[node name="actionmenu" parent="combatUI" instance=ExtResource("4_63gni")]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 1.0
-anchor_top = 1.0
-offset_left = -302.0
-offset_top = -212.0
-offset_right = -12.0
-offset_bottom = -12.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="Panel" type="Panel" parent="combatUI"]
-visible = false
-custom_minimum_size = Vector2(600, 64)
-layout_mode = 2
-offset_left = 276.0
-offset_right = 876.0
-offset_bottom = 64.0
-size_flags_horizontal = 0
-
-[node name="turnqueuecontainer" type="PanelContainer" parent="combatUI"]
-custom_minimum_size = Vector2(600, 0)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -300.0
-offset_right = 300.0
-offset_bottom = 64.0
-grow_horizontal = 2
-
-[node name="turnqueue" type="HBoxContainer" parent="combatUI/turnqueuecontainer"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(600, 64)
-layout_direction = 2
-layout_mode = 2
-size_flags_vertical = 0
-
-[connection signal="pressed" from="combatUI/actionmenu/hbox/VBoxContainer/ATTACK" to="combatUI" method="_on_attack_pressed"]
-[connection signal="pressed" from="combatUI/actionmenu/hbox/VBoxContainer/DEFEND" to="combatUI" method="_on_defend_pressed"]
-[connection signal="pressed" from="combatUI/actionmenu/hbox/MarginContainer/VBoxContainer2/MOVE" to="combatUI" method="_on_move_pressed"]
-
-[editable path="combatUI/actionmenu"]

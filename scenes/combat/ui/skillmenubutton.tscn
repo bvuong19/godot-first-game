@@ -1,0 +1,82 @@
+[gd_scene load_steps=14 format=3 uid="uid://dkbj4ntwr528w"]
+
+[ext_resource type="Theme" uid="uid://drub0g3xif2y5" path="res://scenes/combat/ui/skillmenu.tres" id="1_b0hn0"]
+[ext_resource type="Script" path="res://scenes/combat/ui/skillmenubutton.gd" id="2_ntrh7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lr5h8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_akq3w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dihwg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhefh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rmyrx"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g5vp8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hhud8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ticru"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jwruf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3234v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_blump"]
+
+[node name="Skillmenubutton" type="Button"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -841.0
+offset_bottom = -617.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_b0hn0")
+toggle_mode = true
+text = "text"
+alignment = 0
+text_direction = 1
+script = ExtResource("2_ntrh7")
+
+[node name="skillcost" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -46.0
+offset_top = -9.5
+offset_right = -6.0
+offset_bottom = 20.5
+grow_horizontal = 0
+grow_vertical = 2
+theme = ExtResource("1_b0hn0")
+text = "0 MP"
+horizontal_alignment = 2
+
+[node name="skillcost2" type="Button" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lr5h8")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_akq3w")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dihwg")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_dhefh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_rmyrx")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_g5vp8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hhud8")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_ticru")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jwruf")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_3234v")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_blump")
+text = "0 MP"
+alignment = 2
