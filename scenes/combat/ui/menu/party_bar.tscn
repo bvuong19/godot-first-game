@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://h185cdodyqnj"]
 
-[ext_resource type="Script" path="res://scenes/combat/ui/partybar.gd" id="1_eutng"]
-[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/actionmenu.tres" id="2_8u0j2"]
-[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="4_xrew7"]
-[ext_resource type="Theme" uid="uid://dwljlovjlh6hv" path="res://scenes/combat/ui/partybar.tres" id="5_jhawl"]
+[ext_resource type="Script" path="res://scenes/combat/ui/menu/party_bar.gd" id="1_7vqyn"]
+[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/menu/action_menu.tres" id="2_h17vj"]
+[ext_resource type="Theme" uid="uid://dwljlovjlh6hv" path="res://scenes/combat/ui/menu/party_bar.tres" id="3_ucbi0"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="4_fr6s5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxvuv"]
 bg_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -16,13 +16,13 @@ offset_right = 100.0
 offset_bottom = 40.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
-script = ExtResource("1_eutng")
+script = ExtResource("1_7vqyn")
 
 [node name="Panel2" type="Panel" parent="."]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 50.0
-theme = ExtResource("2_8u0j2")
+theme = ExtResource("2_h17vj")
 
 [node name="hplabel" type="Label" parent="Panel2"]
 unique_name_in_owner = true
@@ -31,7 +31,7 @@ offset_left = 8.0
 offset_top = 29.0
 offset_right = 50.0
 offset_bottom = 43.0
-theme = ExtResource("5_jhawl")
+theme = ExtResource("3_ucbi0")
 theme_override_font_sizes/font_size = 10
 text = "x/x"
 
@@ -42,7 +42,7 @@ offset_left = 8.0
 offset_top = 10.0
 offset_right = 50.0
 offset_bottom = 24.0
-theme = ExtResource("5_jhawl")
+theme = ExtResource("3_ucbi0")
 text = "name"
 
 [node name="hpbar" type="ProgressBar" parent="Panel2"]
@@ -52,7 +52,7 @@ offset_left = 6.0
 offset_top = 22.0
 offset_right = 66.0
 offset_bottom = 30.0
-theme = ExtResource("5_jhawl")
+theme = ExtResource("3_ucbi0")
 fill_mode = 1
 show_percentage = false
 
@@ -68,4 +68,4 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_wxvuv")
 unique_name_in_owner = true
 position = Vector2(99, 24)
 scale = Vector2(0.3, 0.3)
-texture = ExtResource("4_xrew7")
+texture = ExtResource("4_fr6s5")

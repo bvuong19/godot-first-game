@@ -3,8 +3,8 @@ extends Control
 var activeCombatEntity = null
 signal userInput(Dictionary)
 
-var damagetext = preload('res://scenes/combat/damage_text.tscn')
-var partyBarItem = preload('res://scenes/combat/ui/partybar.tscn')
+var damagetext = preload('res://scenes/combat/ui/damage_text.tscn')
+var partyBarItem = preload('res://scenes/combat/ui/menu/party_bar.tscn')
 var buttons = ['%ATTACK', '%SKILL', '%DEFEND', '%MOVE', '%ITEM', '%FLEE']
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

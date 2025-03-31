@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bk1np44yetrnc"]
 
 [ext_resource type="Script" path="res://scenes/combat/battlefield.gd" id="1_u0c8w"]
-[ext_resource type="PackedScene" uid="uid://c6c541veujqij" path="res://scenes/combat/EntityGrid.tscn" id="2_lrb30"]
+[ext_resource type="PackedScene" uid="uid://c6c541veujqij" path="res://scenes/combat/entity_grid.tscn" id="2_lrb30"]
 
 [node name="battlefield" type="Control"]
 layout_mode = 3

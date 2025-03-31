@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://dkbj4ntwr528w"]
 
-[ext_resource type="Theme" uid="uid://drub0g3xif2y5" path="res://scenes/combat/ui/skillmenu.tres" id="1_b0hn0"]
-[ext_resource type="Script" path="res://scenes/combat/ui/skillmenubutton.gd" id="2_ntrh7"]
+[ext_resource type="Theme" uid="uid://drub0g3xif2y5" path="res://scenes/combat/ui/menu/skill_menu.tres" id="1_8tkh8"]
+[ext_resource type="Script" path="res://scenes/combat/ui/menu/skill_menu_button.gd" id="2_b3epq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lr5h8"]
 
@@ -33,12 +33,12 @@ offset_right = -841.0
 offset_bottom = -617.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_b0hn0")
+theme = ExtResource("1_8tkh8")
 toggle_mode = true
 text = "text"
 alignment = 0
 text_direction = 1
-script = ExtResource("2_ntrh7")
+script = ExtResource("2_b3epq")
 
 [node name="skillcost" type="Label" parent="."]
 visible = false
@@ -54,7 +54,7 @@ offset_right = -6.0
 offset_bottom = 20.5
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("1_b0hn0")
+theme = ExtResource("1_8tkh8")
 text = "0 MP"
 horizontal_alignment = 2
 

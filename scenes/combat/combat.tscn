@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scenes/combat/combat.gd" id="1_4yapm"]
 [ext_resource type="PackedScene" uid="uid://bk1np44yetrnc" path="res://scenes/combat/battlefield.tscn" id="2_jy3dx"]
-[ext_resource type="PackedScene" uid="uid://b2jbsrvrww10m" path="res://scenes/combat/combat_ui.tscn" id="4_gdqca"]
+[ext_resource type="PackedScene" uid="uid://b2jbsrvrww10m" path="res://scenes/combat/ui/combat_ui.tscn" id="4_gdqca"]
 [ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/grass.png" id="5_4q124"]
 
 [node name="Combat" type="Control"]

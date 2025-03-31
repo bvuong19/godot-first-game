@@ -7,7 +7,7 @@ var entity : CombatEntity
 var partyItems : Dictionary = {}
 var action_buttons : Array[Button] = []
 var active_menu : int
-var skillmenuitem = preload('res://scenes/combat/ui/skillmenubutton.tscn')
+var skillmenuitem = preload('res://scenes/combat/ui/menu/skill_menu_button.tscn')
 
 enum {
 	ACTION,
@@ -15,8 +15,8 @@ enum {
 	ITEM
 }
 
-var skillCallBack = func():
-	userInput.emit({'entity': entity, 'type' : Combat_Action.SKILL})
+var skillCallBack = func(skill : CombatSkill):
+	userInput.emit({'entity': entity, 'type' : Combat_Action.SKILL, 'skillDetail' : skill})
 
 
 func initialize_menu(entity : CombatEntity):
@@ -26,10 +26,12 @@ func initialize_menu(entity : CombatEntity):
 	%itemmenucontainer.hide()
 	entity = entity
 	#TODO: add entity skills to the container
-	var skillbutton = skillmenuitem.instantiate()
-	skillbutton.text = "skill"
-	skillbutton.pressed.connect(skillCallBack)
-	%skillmenucontainer/skillmenu.add_child(skillbutton)
+	for skill in entity.skills:
+		var skillbutton = skillmenuitem.instantiate()
+		skillbutton.text = skill.skillName
+		skillbutton.skill = skill
+		skillbutton.pressed.connect(skillCallBack.bind(skillbutton.skill))
+		%skillmenucontainer/skillmenu.add_child(skillbutton)
 	reactivate_action_select()
 
 func deactivate_action_select():

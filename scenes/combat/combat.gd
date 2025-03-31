@@ -13,7 +13,7 @@ var turn_queue: Array[CombatEntity] = []
 var debug = true
 
 
-var dmgText = preload("res://scenes/combat/damage_text.tscn")
+var dmgText = preload("res://scenes/combat/ui/damage_text.tscn")
 
 var current_phase = BATTLING
 var is_phase_change = true
@@ -80,9 +80,12 @@ func process_event(event : Dictionary) -> void:
 			event.entity.y = event.target[1]
 			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
 		Combat_Action.SKILL:
-			print(event.entity.name + " casts a fire spell!")
-			$battlefield.animate_entity_spell(event.target[0], event.target[1], _on_battle_anim_complete)
-			event.targetEntity.apply_damage(event.entity.atk*2)
+			print(event.entity.name + " casts the %s skill!" % event['skillDetail'].skillName)
+			#func animate_entity_spell(entity : CombatEntity, skillName : String, callback : Callable) -> void:
+			$battlefield.animate_entity_spell(event['targetEntity'], event['skillDetail'].skillName, _on_battle_anim_complete)
+			#event.targetEntity.apply_damage(event.entity.atk*2)
+			event['skillDetail'].apply_effect.call(event.entity, event.targetEntity)
+			
 func _on_grid_selected(x : int, y: int, isEnemy: bool) -> void:
 	updateEventBuilder({'target': [x,y, isEnemy], 'targetEntity': getEntityAtPosition(x,y,isEnemy)})
 
@@ -112,11 +115,23 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				change_phase(TARGET)
 		Combat_Action.SKILL:
 			# should check targeting type.
-			if eventBuilder.has('targetEntity') and eventBuilder['targetEntity']:
+			# 1: does not need targeting
+			var skillDetail : CombatSkill = eventBuilder['skillDetail']
+			if (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.NONE, CombatSkillDetail.TARGET_TYPE.SELF, CombatSkillDetail.TARGET_TYPE.GLOBAL]):
 				event_queue.append(eventBuilder)
 				change_phase(BATTLING)
+			# 2: has target
+			# 2a: targets a unit
+			elif (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ALLY, CombatSkillDetail.TARGET_TYPE.ENEMY]) and eventBuilder.has('targetEntity') and eventBuilder['targetEntity']:
+				event_queue.append(eventBuilder)
+				change_phase(BATTLING)
+			# 2b: targets an area
+			elif (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ALLY_RANGE, CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE]) and eventBuilder.has('target') and eventBuilder['target']:
+				event_queue.append(eventBuilder)
+				change_phase(BATTLING)
+			# 3: needs target
 			else:
-				$battlefield.is_select_enemy = true
+				$battlefield.is_select_enemy = skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ENEMY, CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE]
 				change_phase(TARGET)
 				
 		Combat_Action.DEFEND:
@@ -200,6 +215,9 @@ func _ready() -> void:
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
 		$battlefield.add_entity(entity, false)
 		$combatUI.add_entity(entity, false)
+		entity.skills.append(SKILLS.Heal)
+		entity.skills.append(SKILLS.Fire)
+		
 	print("...and enemy characters: ")
 	for entity in get_enemies():
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")

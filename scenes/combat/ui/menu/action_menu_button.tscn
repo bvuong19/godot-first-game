@@ -1,13 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://capcbr314ldqa"]
 
-[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/actionmenu.tres" id="1_26syr"]
+[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/menu/action_menu.tres" id="1_cnbay"]
 
 [node name="btn" type="Button"]
 custom_minimum_size = Vector2(0, 50)
 offset_right = 100.0
 offset_bottom = 50.0
 pivot_offset = Vector2(60, 0)
-theme = ExtResource("1_26syr")
+theme = ExtResource("1_cnbay")
 theme_override_font_sizes/font_size = 24
 toggle_mode = true
 text = "Attack"

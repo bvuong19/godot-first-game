@@ -3,7 +3,7 @@ extends Node2D
 class_name DamageText
 
 func set_damage(dmg: float) -> void:
-	%label.text = "-" + str(dmg) + "!"
+	%label.text = "-" + str(dmg) + "!" if dmg >= 0 else "+" + str(dmg * -1)
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

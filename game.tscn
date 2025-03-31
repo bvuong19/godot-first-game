@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game.gd" id="1_d4whd"]
 [ext_resource type="PackedScene" uid="uid://ch0twm02cqdm1" path="res://scenes/combat/combat.tscn" id="2_jl2p3"]
-[ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/CombatEntity.tscn" id="3_3e8fj"]
+[ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/combat_entity.tscn" id="3_3e8fj"]
 [ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/copyrightinfringement-portrait.jpg" id="4_s1twx"]
 [ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="4_tyfko"]
 

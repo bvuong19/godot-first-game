@@ -2,9 +2,7 @@ extends Node2D
 
 class_name CombatEntity
 
-
-
-# unit's position on grid
+# unit's grid position
 @export var x = 0
 @export var y = 0
 
@@ -18,6 +16,8 @@ class_name CombatEntity
 @export var current_hp = 0
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
 @export var isEnemy = true
+
+var skills : Array[CombatSkill] = []
 
 # other
 signal damage_taken(Node2D, float)
@@ -37,13 +37,24 @@ func apply_damage(dmg: float) -> void:
 		print(name + " has been defeated!")
 		entity_death.emit(self)
 
-# Called when the node enters the scene tree for the first time.
+func apply_heal(dmg: float) -> void:
+	var amount_healed = min(dmg, hp - current_hp)
+	current_hp = min(hp, current_hp + dmg)
+	print("%s was healed for %d damage, now has %d HP" % [name, amount_healed, current_hp])
+	damage_taken.emit(self, amount_healed * -1)
+	damage_number(amount_healed * -1)
+	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
+
+
+# on turn pass, tick down the effects.
+func on_turn_pass() -> void:
+	pass
+
 func _ready() -> void:
 	position = Vector2(300,300)
 	current_hp = hp 
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 

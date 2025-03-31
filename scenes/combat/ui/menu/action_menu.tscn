@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://b27vm76qgpnyc"]
 
-[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/actionmenu.tres" id="1_tcxv3"]
-[ext_resource type="Script" path="res://scenes/combat/ui/actionmenu.gd" id="2_8en5j"]
-[ext_resource type="PackedScene" uid="uid://capcbr314ldqa" path="res://scenes/combat/ui/actionmenubuttonitem.tscn" id="2_c5ckw"]
-[ext_resource type="PackedScene" uid="uid://dkbj4ntwr528w" path="res://scenes/combat/ui/skillmenubutton.tscn" id="4_bpxil"]
+[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/menu/action_menu.tres" id="1_fmdcl"]
+[ext_resource type="Script" path="res://scenes/combat/ui/menu/action_menu.gd" id="2_ypep0"]
+[ext_resource type="PackedScene" uid="uid://capcbr314ldqa" path="res://scenes/combat/ui/menu/action_menu_button.tscn" id="3_twkav"]
+[ext_resource type="PackedScene" uid="uid://dkbj4ntwr528w" path="res://scenes/combat/ui/menu/skill_menu_button.tscn" id="4_w756a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o18y"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -18,8 +18,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
-theme = ExtResource("1_tcxv3")
-script = ExtResource("2_8en5j")
+theme = ExtResource("1_fmdcl")
+script = ExtResource("2_ypep0")
 
 [node name="actionselectcontainer" type="MarginContainer" parent="."]
 unique_name_in_owner = true
@@ -47,13 +47,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ATTACK" parent="actionselectcontainer/hbox/VBoxContainer" instance=ExtResource("2_c5ckw")]
+[node name="ATTACK" parent="actionselectcontainer/hbox/VBoxContainer" instance=ExtResource("3_twkav")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_right = NodePath("../../MarginContainer/VBoxContainer2/MOVE")
 focus_neighbor_bottom = NodePath("../SKILL")
 
-[node name="SKILL" parent="actionselectcontainer/hbox/VBoxContainer" instance=ExtResource("2_c5ckw")]
+[node name="SKILL" parent="actionselectcontainer/hbox/VBoxContainer" instance=ExtResource("3_twkav")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../ATTACK")
@@ -61,7 +61,7 @@ focus_neighbor_right = NodePath("../../MarginContainer/VBoxContainer2/ITEM")
 focus_neighbor_bottom = NodePath("../DEFEND")
 text = "Skill"
 
-[node name="DEFEND" parent="actionselectcontainer/hbox/VBoxContainer" instance=ExtResource("2_c5ckw")]
+[node name="DEFEND" parent="actionselectcontainer/hbox/VBoxContainer" instance=ExtResource("3_twkav")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_top = NodePath("../SKILL")
@@ -76,19 +76,19 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MOVE" parent="actionselectcontainer/hbox/MarginContainer/VBoxContainer2" instance=ExtResource("2_c5ckw")]
+[node name="MOVE" parent="actionselectcontainer/hbox/MarginContainer/VBoxContainer2" instance=ExtResource("3_twkav")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../VBoxContainer/ATTACK")
 text = "Move"
 
-[node name="ITEM" parent="actionselectcontainer/hbox/MarginContainer/VBoxContainer2" instance=ExtResource("2_c5ckw")]
+[node name="ITEM" parent="actionselectcontainer/hbox/MarginContainer/VBoxContainer2" instance=ExtResource("3_twkav")]
 unique_name_in_owner = true
 layout_mode = 2
 focus_neighbor_left = NodePath("../../../VBoxContainer/SKILL")
 text = "Item"
 
-[node name="FLEE" parent="actionselectcontainer/hbox/MarginContainer/VBoxContainer2" instance=ExtResource("2_c5ckw")]
+[node name="FLEE" parent="actionselectcontainer/hbox/MarginContainer/VBoxContainer2" instance=ExtResource("3_twkav")]
 unique_name_in_owner = true
 layout_mode = 2
 text = "Flee"
@@ -108,7 +108,7 @@ offset_bottom = 98.0
 grow_horizontal = 0
 grow_vertical = 2
 focus_mode = 2
-theme = ExtResource("1_tcxv3")
+theme = ExtResource("1_fmdcl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_0o18y")
 
 [node name="skillmenu" type="VBoxContainer" parent="skillmenucontainer"]
@@ -122,7 +122,7 @@ layout_mode = 2
 text = "skill1"
 alignment = 0
 
-[node name="Skillmenubutton" parent="skillmenucontainer/skillmenu" instance=ExtResource("4_bpxil")]
+[node name="Skillmenubutton" parent="skillmenucontainer/skillmenu" instance=ExtResource("4_w756a")]
 layout_mode = 2
 
 [node name="itemmenucontainer" type="ScrollContainer" parent="."]
@@ -140,7 +140,7 @@ offset_bottom = 98.0
 grow_horizontal = 0
 grow_vertical = 2
 focus_mode = 2
-theme = ExtResource("1_tcxv3")
+theme = ExtResource("1_fmdcl")
 theme_override_styles/panel = SubResource("StyleBoxFlat_0o18y")
 
 [node name="itemmenu" type="VBoxContainer" parent="itemmenucontainer"]
