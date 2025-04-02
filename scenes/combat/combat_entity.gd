@@ -17,7 +17,7 @@ class_name CombatEntity
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
 @export var isEnemy = true
 
-var skills : Array[CombatSkill] = []
+var skills : Array[CombatSkill] = [SKILLS.Heal, SKILLS.Fire]
 
 # other
 signal damage_taken(Node2D, float)
@@ -30,7 +30,6 @@ func apply_damage(dmg: float) -> void:
 		current_hp -= post_mit_dmg
 	print(name + " took " + str(post_mit_dmg) + ", now has " + str(current_hp) + " HP")
 	damage_taken.emit(self, post_mit_dmg)
-	damage_number(post_mit_dmg)
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 	
 	if (current_hp <= 0):
@@ -42,9 +41,7 @@ func apply_heal(dmg: float) -> void:
 	current_hp = min(hp, current_hp + dmg)
 	print("%s was healed for %d damage, now has %d HP" % [name, amount_healed, current_hp])
 	damage_taken.emit(self, amount_healed * -1)
-	damage_number(amount_healed * -1)
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
-
 
 # on turn pass, tick down the effects.
 func on_turn_pass() -> void:
@@ -57,9 +54,3 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
-
-func damage_number(dmg : int) -> void:
-	var textDmg = Label.new()
-	textDmg.text = "-" + str(dmg) + "!"
-	textDmg.add_theme_color_override("", Color.BLACK)
-	$battlefieldSprite.add_child(textDmg)
