@@ -1,3 +1,4 @@
+extends Resource
 class_name CombatSkill
 
 # what do combat skills need?
@@ -9,7 +10,7 @@ var targetType : CombatSkillDetail.TARGET_TYPE
 
 # targeting range
 # assumes ally_range or enemy_range type. create a bitmask array to represent the range
-var targetRange : Array
+var targetRange : Array #SkillRange
 
 # effect type
 # instant, lingering, delayed, other

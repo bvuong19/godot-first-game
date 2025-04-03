@@ -18,58 +18,58 @@ texture = ExtResource("2_uli5m")
 [node name="gridTile" parent="tiles" instance=ExtResource("3_okttp")]
 
 [node name="gridTile2" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(64, 0)
+position = Vector2(63, 0)
 
 [node name="gridTile3" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(128, 0)
+position = Vector2(126, 0)
 
 [node name="gridTile4" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(192, 0)
+position = Vector2(189, 0)
 
 [node name="gridTile5" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(256, 0)
+position = Vector2(252, 0)
 
 [node name="gridTile6" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(0, 64)
+position = Vector2(0, 63)
 
 [node name="gridTile7" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(64, 64)
+position = Vector2(63, 63)
 
 [node name="gridTile8" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(128, 64)
+position = Vector2(126, 63)
 
 [node name="gridTile9" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(192, 64)
+position = Vector2(189, 63)
 
 [node name="gridTile10" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(256, 64)
+position = Vector2(252, 63)
 
 [node name="gridTile11" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(0, 128)
+position = Vector2(0, 126)
 
 [node name="gridTile12" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(64, 128)
+position = Vector2(63, 126)
 
 [node name="gridTile13" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(128, 128)
+position = Vector2(126, 126)
 
 [node name="gridTile14" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(192, 128)
+position = Vector2(189, 126)
 
 [node name="gridTile15" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(256, 128)
+position = Vector2(252, 126)
 
 [node name="gridTile16" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(0, 192)
+position = Vector2(0, 189)
 
 [node name="gridTile17" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(64, 192)
+position = Vector2(63, 189)
 
 [node name="gridTile18" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(128, 192)
+position = Vector2(126, 189)
 
 [node name="gridTile19" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(192, 192)
+position = Vector2(189, 189)
 
 [node name="gridTile20" parent="tiles" instance=ExtResource("3_okttp")]
-position = Vector2(256, 192)
+position = Vector2(252, 189)

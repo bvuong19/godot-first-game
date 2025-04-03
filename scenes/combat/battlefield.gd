@@ -13,6 +13,8 @@ signal onCancel()
 func _ready() -> void:
 	pass # Replace with function body.
 
+
+var mask = [[0,1,0],[1,1,1],[0,1,0]]
 #TODO: add new forms of targeting.
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,7 +24,7 @@ func _process(delta: float) -> void:
 			onCancel.emit()
 			return
 		
-		var selected_grid = $enemygrid if is_select_enemy else $playergrid
+		var selected_grid : EntityGrid = $enemygrid if is_select_enemy else $playergrid
 		var new_tile = []
 		
 		if not selected_tile:
@@ -31,10 +33,18 @@ func _process(delta: float) -> void:
 		else:
 			new_tile = handleUserTargetingInput(selected_tile, selected_grid)
 		if new_tile:
-			selected_grid.unselect_tile(selected_tile[0], selected_tile[1])
+			selected_grid.reset()
 			selected_tile = new_tile
-			selected_grid.select_tile(new_tile[0], new_tile[1])
-		
+			#selected_grid.select_tile(new_tile[0], new_tile[1])
+
+			var tiles = selected_grid.get_tiles_from_mask(selected_tile[0],selected_tile[1], mask,1,1)
+			for tile in tiles:
+				if tile:
+					tile._animate_select()
+			
+			#selected_grid.unselect_tile(selected_tile[0], selected_tile[1])
+			#selected_tile = new_tile
+			#selected_grid.select_tile(new_tile[0], new_tile[1])
 		if Input.is_action_just_pressed("confirm"):
 			selected_grid.confirm_tile(selected_tile[0], selected_tile[1])
 			onSelect.emit(selected_tile[0], selected_tile[1], is_select_enemy)
