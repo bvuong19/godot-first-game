@@ -73,18 +73,7 @@ headSprite = ExtResource("4_s1twx")
 [node name="sprite" parent="Combat/combatants/enemy3/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
 
-[node name="enemy4" parent="Combat/combatants" index="5" instance=ExtResource("3_3e8fj")]
-y = 1
-atk = 20
-def = 20
-hp = 40
-headSprite = ExtResource("4_s1twx")
-
-[node name="sprite" parent="Combat/combatants/enemy4/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
-
 [editable path="Combat"]
 [editable path="Combat/combatants/enemy1"]
 [editable path="Combat/combatants/enemy2"]
 [editable path="Combat/combatants/enemy3"]
-[editable path="Combat/combatants/enemy4"]

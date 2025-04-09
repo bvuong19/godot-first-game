@@ -15,6 +15,7 @@ var debug = true
 
 var dmgText = preload("res://scenes/combat/ui/damage_text.tscn")
 
+
 var current_phase = BATTLING
 var is_phase_change = true
 var eventBuilder = {}
@@ -65,6 +66,7 @@ func _on_battle_anim_complete() -> void:
 		process_turn_queue()
 
 func process_event(event : Dictionary) -> void:
+	event['battlefield'] = $battlefield
 	match event.type:
 		Combat_Action.ATTACK:
 			# TODO: add animation callbcaks
@@ -76,19 +78,38 @@ func process_event(event : Dictionary) -> void:
 			$battlefield.animate_entity_hop(event.entity, _on_battle_anim_complete)
 		Combat_Action.MOVE:
 			print(event.entity.name + " moves!")
-			event.entity.x = event.target[0]
-			event.entity.y = event.target[1]
+			event.entity.x = event.targetPosition[0]
+			event.entity.y = event.targetPosition[1]
 			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
 		Combat_Action.SKILL:
 			print(event.entity.name + " casts the %s skill!" % event['skillDetail'].skillName)
-			#func animate_entity_spell(entity : CombatEntity, skillName : String, callback : Callable) -> void:
-			$battlefield.animate_entity_spell(event['targetEntity'], event['skillDetail'].skillName, _on_battle_anim_complete)
-			#event.targetEntity.apply_damage(event.entity.atk*2)
-			event['skillDetail'].apply_effect.call(event.entity, event.targetEntity)
+			event.callback = _on_battle_anim_complete
+			#var invocationDetails = { 'entity' : event.entity, 'target' : event.targetEntity, 'callback': _on_battle_anim_complete }
+			event['skillDetail'].play_skill(event)
 			
-func _on_grid_selected(x : int, y: int, isEnemy: bool) -> void:
-	updateEventBuilder({'target': [x,y, isEnemy], 'targetEntity': getEntityAtPosition(x,y,isEnemy)})
-
+			
+# Called when grid selected. Provides the eventBuilder with the following fields:
+# targetPosition: the targeted position selected explicitly by the player cursor
+# targetTiles: targeted tiles covered by an AoE, if the player was targeting an AoE skill.
+# targetGridTiles: targeted tiles covered by an AoE, if the player was targeting an AoE skill.
+# isEnemy
+func _on_grid_selected(targetPosition : Vector2, targetTiles : Array[Vector2i], isEnemy : bool) -> void:
+	var properties = {'targetGridTiles': [], 'targetEntities' : [], 'targetPosition' : targetPosition, 'targetTiles': targetTiles}
+	
+	for tile in targetTiles:
+		var tileEntity = getEntityAtPosition(tile.x, tile.y, isEnemy)	
+		if tileEntity: 
+			properties.targetEntities.append(tileEntity)
+		properties.targetGridTiles.append($battlefield.get_tile(tile.x,tile.y, isEnemy))
+	
+	print("getting enemy at %s" % targetPosition)
+	var cursorEntity = getEntityAtPosition(targetPosition[0], targetPosition[1], isEnemy)
+	print("found %s" % cursorEntity)
+	if cursorEntity:
+		properties['targetEntity'] = cursorEntity
+		
+	updateEventBuilder(properties)
+	
 func _on_grid_cancel() -> void:
 	eventBuilder = { 'entity': eventBuilder.entity }
 	$battlefield.refresh_selections()
@@ -97,14 +118,24 @@ func _on_grid_cancel() -> void:
 func _on_user_input_selected(properties: Dictionary) -> void:
 	updateEventBuilder(properties)
 
+# The eventBuilder contains the action that the user is planning.
+# entity: the CombatEntity making the move
+# type: the type of action that the user is taking.
+# targetEntity: for single-target actions, a targeted entity
+# targetPosition: a targeted tile
+# targetTiles: targeted tiles covered by an AoE, if the player was targeting an AoE skill.
+# targetEntities: all entities within targetTiles, if the player was targeting an AoE skill.
+# skillDetail: details for the skill. Refer to combat_skill.gd for more info
 func updateEventBuilder(properties: Dictionary) -> void:
 	eventBuilder.merge(properties)
 	#TODO: need more logic on how to confirm
 	if not eventBuilder.has('entity'):
 		return
+	$battlefield.highlight_entity(eventBuilder['entity'])
 	if not eventBuilder.has('type'):
 		change_phase(TURNSTART)
 		return
+		
 	match eventBuilder['type']:
 		Combat_Action.ATTACK:
 			if eventBuilder.has('targetEntity') and eventBuilder['targetEntity']:
@@ -126,12 +157,15 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				event_queue.append(eventBuilder)
 				change_phase(BATTLING)
 			# 2b: targets an area
-			elif (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ALLY_RANGE, CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE]) and eventBuilder.has('target') and eventBuilder['target']:
+			elif (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ALLY_RANGE, CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE]) and eventBuilder.has('targetTiles') and eventBuilder['targetTiles']:
+				$battlefield.targetRange = null
 				event_queue.append(eventBuilder)
 				change_phase(BATTLING)
 			# 3: needs target
 			else:
 				$battlefield.is_select_enemy = skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ENEMY, CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE]
+				if skillDetail.targetRange:
+					$battlefield.targetRange = skillDetail.targetRange
 				change_phase(TARGET)
 				
 		Combat_Action.DEFEND:
@@ -141,14 +175,14 @@ func updateEventBuilder(properties: Dictionary) -> void:
 			change_phase(BATTLING)
 			event_queue.append(eventBuilder)
 		Combat_Action.MOVE:
-			if eventBuilder.has('target') and eventBuilder['target']:
+			if eventBuilder.has('targetPosition') and eventBuilder['targetPosition']:
 				# check valid location
-				if not getEntityAtPosition(eventBuilder['target'][0], eventBuilder['target'][1], eventBuilder['target'][2]):
+				if not getEntityAtPosition(eventBuilder['targetPosition'].x, eventBuilder['targetPosition'].y, eventBuilder['entity'].isEnemy):
 					event_queue.append(eventBuilder)
 					change_phase(BATTLING)
 				# invalid location
 				else:
-					eventBuilder.erase('target')
+					eventBuilder.erase('targetPosition')
 			else:
 				$battlefield.is_select_enemy = false
 				change_phase(TARGET)
@@ -215,8 +249,10 @@ func _ready() -> void:
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
 		$battlefield.add_entity(entity, false)
 		$combatUI.add_entity(entity, false)
-		entity.skills.append(SKILLS.Heal)
-		entity.skills.append(SKILLS.Fire)
+		entity.skills.append(load("res://scenes/combat/skills/skills_list/heal.tres"))
+		entity.skills.append(load("res://scenes/combat/skills/skills_list/fire_t1.tres"))
+		entity.skills.append(load("res://scenes/combat/skills/skills_list/fire_t2.tres"))
+		#entity.skills.append(SKILLS.Fire)
 		
 	print("...and enemy characters: ")
 	for entity in get_enemies():
@@ -231,7 +267,9 @@ func _on_damage_taken(entity : CombatEntity, dmg : int) -> void:
 	$combatUI.dmg_text(entity, dmg)
 	
 func _on_entity_death(entity : CombatEntity) -> void:
+	#$combatUI.turn_queue_remove(entity)
 	turn_queue.erase(entity)
 	entity.queue_free()
-	$combatants.remove_child(entity)
+	$combatUI.initialize_turn_queue(turn_queue)
+	
 	

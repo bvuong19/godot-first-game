@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=3 format=3 uid="uid://csqaupl5fw4y2"]
+
+[ext_resource type="Script" path="res://scenes/combat/skills/combat_skill.gd" id="1_bsl1y"]
+[ext_resource type="Script" path="res://scenes/combat/skills/skills_list/fire_t1.gd" id="2_jyam3"]
+
+[resource]
+script = ExtResource("1_bsl1y")
+skillName = "Fire"
+targetType = 3
+effectType = 0
+skillScript = ExtResource("2_jyam3")

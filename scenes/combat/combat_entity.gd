@@ -17,7 +17,7 @@ class_name CombatEntity
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
 @export var isEnemy = true
 
-var skills : Array[CombatSkill] = [SKILLS.Heal, SKILLS.Fire]
+var skills : Array[CombatSkill] = []# [SKILLS.Heal, SKILLS.Fire]
 
 # other
 signal damage_taken(Node2D, float)

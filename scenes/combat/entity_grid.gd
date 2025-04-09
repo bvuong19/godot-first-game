@@ -38,18 +38,37 @@ func unselect_tile(x: int, y: int) -> void:
 
 func confirm_tile(x: int, y: int) -> void:
 	$tiles.get_children()[(y * 5) + x]._animate_confirm()
-	
 
-	
-func get_tiles_from_mask(x : int, y : int, mask: Array, orig_x : int, orig_y : int) -> Array[GridTile]:
+
+
+func get_tiles_from_range(x : int, y : int, range: SkillRange) -> Array[GridTile]:
 	if is_invalid_coordinate(x, y):
 		return []
+	elif not range:
+		return [get_tile(x,y)]
 	else:
 		var tiles : Array[GridTile] = []
+		var mask = range.aoe
+		var orig_x = range.origin[0]
+		var orig_y = range.origin[1]
 		for i in range(len(mask)):
 			for j in range(len(mask[0])):
 				if mask[i][j] and not is_invalid_coordinate(x+j-orig_x,y+i-orig_y):
 					tiles.append(get_tile(x+j-orig_x,y+i-orig_y))
+		return tiles
+		
+func get_tile_coords_from_range(x : int, y : int, range: SkillRange) -> Array[Vector2i]:
+	if is_invalid_coordinate(x, y) or not range:
+		return []
+	else:
+		var tiles : Array[Vector2i] = []
+		var mask = range.aoe
+		var orig_x = range.origin[0]
+		var orig_y = range.origin[1]
+		for i in range(len(mask)):
+			for j in range(len(mask[0])):
+				if mask[i][j] and not is_invalid_coordinate(x+j-orig_x,y+i-orig_y):
+					tiles.append(Vector2i(x+j-orig_x,y+i-orig_y))
 		return tiles
 		
 func is_invalid_coordinate(x : int, y : int):

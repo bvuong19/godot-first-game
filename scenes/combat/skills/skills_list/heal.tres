@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CombatSkill" load_steps=3 format=3 uid="uid://ckq14mxg5jls6"]
+
+[ext_resource type="Script" path="res://scenes/combat/skills/combat_skill.gd" id="1_yoil5"]
+[ext_resource type="Script" path="res://scenes/combat/skills/skills_list/heal.gd" id="2_l68g1"]
+
+[resource]
+script = ExtResource("1_yoil5")
+skillName = "Cure"
+targetType = 2
+effectType = 0
+skillScript = ExtResource("2_l68g1")

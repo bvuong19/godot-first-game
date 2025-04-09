@@ -15,6 +15,9 @@ func _process(delta: float) -> void:
 	pass
 		
 func initialize_turn_queue(turn_queue : Array[CombatEntity]) -> void:
+	for c in %turnqueue.get_children():
+		%turnqueue.remove_child(c)
+		c.queue_free()
 	for e in turn_queue:
 		var turnqueuechild = TextureRect.new()
 		turnqueuechild.expand_mode = TextureRect.EXPAND_FIT_WIDTH
@@ -24,6 +27,10 @@ func initialize_turn_queue(turn_queue : Array[CombatEntity]) -> void:
 
 func next_turn_queue() -> void:
 	%turnqueue.remove_child(%turnqueue.get_child(0))
+	
+func turn_queue_remove(entity) -> void:
+	pass
+	#$turnqueue.remove_child(entity)
 
 func add_entity(entity : CombatEntity, isEnemy: bool) -> void:
 	if not isEnemy:
