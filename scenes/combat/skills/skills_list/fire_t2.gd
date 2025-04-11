@@ -1,8 +1,8 @@
-extends Script
+extends CombatSkill
 
-static var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.tscn")
+var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.tscn")
 
-static func play_skill(details : Dictionary) -> void:
+func play_skill(details : Dictionary) -> void:
 	var tiles = details.targetGridTiles
 	print(tiles)
 	#TODO: replace this copy pasted code you dung beetle
@@ -23,10 +23,16 @@ static func play_skill(details : Dictionary) -> void:
 
 
 
-static func apply_effect(details: Dictionary) -> void:
+func apply_effect(details: Dictionary) -> void:
 	var callback : Callable = details.callback
 	var entity : CombatEntity = details.entity
 	var targets = details.targetEntities
 	for target in targets:
 		target.apply_damage(entity.atk * 1.5, Combat_Detail.DAMAGE_TYPE.MAGIC)
 	callback.call()
+
+func _init() -> void:
+	skillName = "Fira"
+	targetType = CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE
+	targetRange = preload("res://scenes/combat/skills/range/small_plus.tres")
+	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT

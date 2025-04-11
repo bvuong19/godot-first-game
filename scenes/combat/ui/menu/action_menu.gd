@@ -21,6 +21,7 @@ var skillCallBack = func(skill : CombatSkill):
 
 
 func initialize_menu(entity : CombatEntity):
+	self.entity = entity
 	for b in %skillmenucontainer/skillmenu.get_children():
 		b.queue_free()
 	%skillmenucontainer.hide()

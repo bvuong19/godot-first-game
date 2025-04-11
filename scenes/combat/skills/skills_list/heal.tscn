@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://c7h6flew8n6gc"]
+[gd_scene load_steps=2 format=3 uid="uid://glbpr8jl35sr"]
 
 [ext_resource type="Script" path="res://scenes/combat/skills/skills_list/heal.gd" id="1_wk8mu"]
 

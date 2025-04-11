@@ -17,7 +17,8 @@ class_name CombatSkill
 # instant, lingering, delayed, other
 @export var effectType : CombatSkillDetail.EFFECT_TYPE
 
-@export var skillScript : Script
-
 func play_skill(details : Dictionary) -> void:
-	skillScript.play_skill(details)
+	pass
+
+func apply_effect(details : Dictionary) -> void:
+	pass

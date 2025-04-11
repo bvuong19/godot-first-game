@@ -238,5 +238,5 @@ texture_filter = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_n6p6r")
 animation = &"Silence"
-frame_progress = 0.711683
+frame_progress = 0.343993
 offset = Vector2(0, -8)

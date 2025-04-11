@@ -59,6 +59,7 @@ show_percentage = false
 
 [node name="profilePanelActive" type="Panel" parent="partybarpanel"]
 unique_name_in_owner = true
+layout_mode = 0
 offset_left = 106.0
 offset_right = 141.6
 offset_bottom = 35.6
