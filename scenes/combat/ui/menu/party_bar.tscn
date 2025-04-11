@@ -18,13 +18,14 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 script = ExtResource("1_7vqyn")
 
-[node name="Panel2" type="Panel" parent="."]
+[node name="partybarpanel" type="Panel" parent="."]
+unique_name_in_owner = true
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 50.0
 theme = ExtResource("2_h17vj")
 
-[node name="hplabel" type="Label" parent="Panel2"]
+[node name="hplabel" type="Label" parent="partybarpanel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 8.0
@@ -35,7 +36,7 @@ theme = ExtResource("3_ucbi0")
 theme_override_font_sizes/font_size = 10
 text = "x/x"
 
-[node name="namelabel" type="Label" parent="Panel2"]
+[node name="namelabel" type="Label" parent="partybarpanel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 8.0
@@ -45,7 +46,7 @@ offset_bottom = 24.0
 theme = ExtResource("3_ucbi0")
 text = "name"
 
-[node name="hpbar" type="ProgressBar" parent="Panel2"]
+[node name="hpbar" type="ProgressBar" parent="partybarpanel"]
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 6.0
@@ -56,7 +57,15 @@ theme = ExtResource("3_ucbi0")
 fill_mode = 1
 show_percentage = false
 
-[node name="profilepanel" type="Panel" parent="Panel2"]
+[node name="profilePanelActive" type="Panel" parent="partybarpanel"]
+unique_name_in_owner = true
+offset_left = 106.0
+offset_right = 141.6
+offset_bottom = 35.6
+rotation = 0.785398
+theme = ExtResource("3_ucbi0")
+
+[node name="profilepanel" type="Panel" parent="partybarpanel"]
 layout_mode = 0
 offset_left = 100.0
 offset_right = 135.6
@@ -64,7 +73,7 @@ offset_bottom = 35.6
 rotation = 0.785398
 theme_override_styles/panel = SubResource("StyleBoxFlat_wxvuv")
 
-[node name="sprite" type="Sprite2D" parent="Panel2"]
+[node name="sprite" type="Sprite2D" parent="partybarpanel"]
 unique_name_in_owner = true
 position = Vector2(99, 24)
 scale = Vector2(0.3, 0.3)

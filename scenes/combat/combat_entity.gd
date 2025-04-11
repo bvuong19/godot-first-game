@@ -9,32 +9,59 @@ class_name CombatEntity
 # unit's base stats.
 # TODO: add other stats that we think would be cool and poggers.
 @export var atk = 0
-@export var def = 0
-@export var hp = 0
+@export var matk = 0
+@export var luc = 0
 @export var spd = 0
+@export var def = 0
+@export var mdef = 0
+@export var hp = 0
+@export var mp = 0
 
 @export var current_hp = 0
+@export var current_mp = 0
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
+@export var battlefieldSprite : Texture2D = preload("res://assets/defaultplayer.png")
 @export var isEnemy = true
+@export var actions = [Combat_Action.ATTACK,Combat_Action.FLEE,Combat_Action.ITEM,Combat_Action.MOVE,Combat_Action.DEFEND,Combat_Action.SKILL]
 
-var skills : Array[CombatSkill] = []# [SKILLS.Heal, SKILLS.Fire]
+var effective_stats : Dictionary = {}
+var skills : Array[CombatSkill] = []
+var effects : Array[CombatStatusEffect] = []
 
 # other
 signal damage_taken(Node2D, float)
 signal entity_death(CombatEntity)
 
-# apply incoming damage 
-func apply_damage(dmg: float) -> void:
-	var post_mit_dmg = dmg - def
-	if (post_mit_dmg > 0):
-		current_hp -= post_mit_dmg
-	print(name + " took " + str(post_mit_dmg) + ", now has " + str(current_hp) + " HP")
-	damage_taken.emit(self, post_mit_dmg)
-	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
+func apply_damage(dmg: float, dmg_type : Combat_Detail.DAMAGE_TYPE) -> void:
+	var post_mit_dmg : float
 	
+	# determine post-mitigation dmg
+	if dmg_type == Combat_Detail.DAMAGE_TYPE.PHYSICAL:
+		post_mit_dmg = dmg - effective_stats.get('def', def)
+	elif dmg_type == Combat_Detail.DAMAGE_TYPE.MAGIC:
+		post_mit_dmg = dmg * (1 - (effective_stats.get('mdef', mdef)/100))
+	else:
+		post_mit_dmg = dmg
+	if post_mit_dmg > 0:
+		current_hp -= post_mit_dmg
+	damage_taken.emit(self, post_mit_dmg)
+	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]	
 	if (current_hp <= 0):
 		print(name + " has been defeated!")
 		entity_death.emit(self)
+
+func apply_status(statusEffect : CombatStatusEffect, duration : int):
+	effects.append(statusEffect)
+	statusEffect.duration = duration
+	var buffbaritem = TextureRect.new()
+	buffbaritem.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+	buffbaritem.size = Vector2(32,32)
+	buffbaritem.texture = statusEffect.hud_icon
+	buffbaritem.show()
+	print(buffbaritem)
+	print(statusEffect.status_name)
+	print(buffbaritem.texture)
+	%buffbar.add_child(buffbaritem)
 
 func apply_heal(dmg: float) -> void:
 	var amount_healed = min(dmg, hp - current_hp)
@@ -43,12 +70,27 @@ func apply_heal(dmg: float) -> void:
 	damage_taken.emit(self, amount_healed * -1)
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 
-# on turn pass, tick down the effects.
-func on_turn_pass() -> void:
-	pass
+# when the unit's turn starts, apply lingering effects and tick them down
+func on_turn_start() -> void:
+	effective_stats = {}
+	for child in %buffbar.get_children():
+		%buffbar.remove_child(child)
+		child.queue_free()
+	for effect : CombatStatusEffect in effects:
+		effect.duration -= 1
+		if effect.duration <= 0:
+			effects.erase(effect)
+		else:
+			var buffbaritem = TextureRect.new()
+			buffbaritem.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+			buffbaritem.size = Vector2(40,40)
+			buffbaritem.texture = effect.hud_icon
+			%buffbar.add_child(buffbaritem)
+			effect.apply_effect(self)
 
 func _ready() -> void:
 	position = Vector2(300,300)
+	$battlefieldSprite/sprite.texture = battlefieldSprite
 	current_hp = hp 
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 

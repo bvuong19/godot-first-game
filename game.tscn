@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://casgft4ymkw8m"]
+[gd_scene load_steps=7 format=3 uid="uid://casgft4ymkw8m"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_d4whd"]
 [ext_resource type="PackedScene" uid="uid://ch0twm02cqdm1" path="res://scenes/combat/combat.tscn" id="2_jl2p3"]
 [ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/combat_entity.tscn" id="3_3e8fj"]
+[ext_resource type="Texture2D" uid="uid://drw71hbw73gkc" path="res://assets/stolen-potato.webp" id="4_32isv"]
 [ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/copyrightinfringement-portrait.jpg" id="4_s1twx"]
 [ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="4_tyfko"]
 
@@ -29,31 +30,42 @@ layout_mode = 1
 
 [node name="player1" parent="Combat/combatants" index="0" instance=ExtResource("3_3e8fj")]
 atk = 40
+spd = 10
 def = 10
 hp = 100
-spd = 10
 isEnemy = false
 
 [node name="player2" parent="Combat/combatants" index="1" instance=ExtResource("3_3e8fj")]
 x = 3
 atk = 40
-hp = 100
 spd = 5
+hp = 100
 isEnemy = false
 
-[node name="enemy1" parent="Combat/combatants" index="2" instance=ExtResource("3_3e8fj")]
+[node name="potato" parent="Combat/combatants" index="2" instance=ExtResource("3_3e8fj")]
+x = 4
+y = 2
+atk = 40
+spd = 5
+hp = 400
+headSprite = ExtResource("4_32isv")
+battlefieldSprite = ExtResource("4_32isv")
+isEnemy = false
+actions = [0, 5, 1, 3]
+
+[node name="enemy1" parent="Combat/combatants" index="3" instance=ExtResource("3_3e8fj")]
 x = 3
 y = 3
 atk = 20
+spd = 11
 def = 20
 hp = 40
-spd = 11
 headSprite = ExtResource("4_s1twx")
 
 [node name="sprite" parent="Combat/combatants/enemy1/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
 
-[node name="enemy2" parent="Combat/combatants" index="3" instance=ExtResource("3_3e8fj")]
+[node name="enemy2" parent="Combat/combatants" index="4" instance=ExtResource("3_3e8fj")]
 atk = 20
 def = 20
 hp = 40
@@ -62,7 +74,7 @@ headSprite = ExtResource("4_s1twx")
 [node name="sprite" parent="Combat/combatants/enemy2/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
 
-[node name="enemy3" parent="Combat/combatants" index="4" instance=ExtResource("3_3e8fj")]
+[node name="enemy3" parent="Combat/combatants" index="5" instance=ExtResource("3_3e8fj")]
 x = 2
 y = 1
 atk = 20
@@ -73,7 +85,7 @@ headSprite = ExtResource("4_s1twx")
 [node name="sprite" parent="Combat/combatants/enemy3/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
 
-[node name="enemy4" parent="Combat/combatants" index="5" instance=ExtResource("3_3e8fj")]
+[node name="enemy4" parent="Combat/combatants" index="6" instance=ExtResource("3_3e8fj")]
 y = 1
 atk = 20
 def = 20

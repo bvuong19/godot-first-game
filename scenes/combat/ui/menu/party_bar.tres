@@ -16,5 +16,7 @@ skew = Vector2(0.1, 0)
 [resource]
 Label/font_sizes/font_size = 12
 Label/fonts/font = SubResource("SystemFont_msusc")
+Label_active/base_type = &"Label"
+Label_active/colors/font_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_lifvo")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_q4qgy")

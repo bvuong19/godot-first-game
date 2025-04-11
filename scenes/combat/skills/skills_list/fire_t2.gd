@@ -28,5 +28,5 @@ static func apply_effect(details: Dictionary) -> void:
 	var entity : CombatEntity = details.entity
 	var targets = details.targetEntities
 	for target in targets:
-		target.apply_damage(entity.atk * 1.5)
+		target.apply_damage(entity.atk * 1.5, Combat_Detail.DAMAGE_TYPE.MAGIC)
 	callback.call()

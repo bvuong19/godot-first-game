@@ -10,6 +10,7 @@ enum {
 
 var event_queue: Array = []
 var turn_queue: Array[CombatEntity] = []
+signal turn_queue_updated(Array)
 var debug = true
 
 
@@ -28,7 +29,9 @@ func process_turn_queue() -> void:
 	if not turn_queue:
 		reset_turn_queue()
 	eventBuilder = {}
-	var e = turn_queue[0]
+	var e : CombatEntity = turn_queue[0]
+	e.on_turn_start()
+	turn_queue_updated.emit(turn_queue)
 	if e.isEnemy:
 		# TODO: more support for enemy actions. Currently we just let them attack.
 		event_queue.append({'entity': e, 'type': Combat_Action.ATTACK, 'targetEntity': get_players().front()})
@@ -42,7 +45,6 @@ func reset_turn_queue() -> void:
 	for c in $combatants.get_children():
 		turn_queue.append(c)
 	turn_queue.sort_custom(sort_entity_priority)
-	$combatUI.initialize_turn_queue(turn_queue)
 	
 func sort_entity_priority(a : CombatEntity, b: CombatEntity) -> bool:
 	return a.spd > b.spd
@@ -62,7 +64,6 @@ func _on_battle_anim_complete() -> void:
 	animation_locked = false
 	if not event_queue:
 		turn_queue.pop_front()
-		$combatUI.next_turn_queue()
 		process_turn_queue()
 
 func process_event(event : Dictionary) -> void:
@@ -72,10 +73,15 @@ func process_event(event : Dictionary) -> void:
 			# TODO: add animation callbcaks
 			print(event.entity.name + " attacks " + event.targetEntity.name + " with an ATK of " + str(event.entity.atk) + "!")
 			$battlefield.animate_entity_attack(event.entity, event.targetEntity, _on_battle_anim_complete)
-			event.targetEntity.apply_damage(event.entity.atk)	
+			event.targetEntity.apply_damage(event.entity.atk, Combat_Detail.DAMAGE_TYPE.PHYSICAL)
 		Combat_Action.DEFEND:
-			print(event.entity.name + " defends, raising their defense to " + str(event.entity.atk * 2) + "!")
+			var entity : CombatEntity = event.entity
+			var guard_status = preload('res://scenes/combat/status/status_list/status_guarding.gd').new()
+			print(guard_status)
+			entity.apply_status(guard_status, 1)
+			guard_status.apply_effect(entity)
 			$battlefield.animate_entity_hop(event.entity, _on_battle_anim_complete)
+			print(event.entity.name + " defends, raising their defense to " + str(entity.effective_stats.get('def', entity.def)) + "!")
 		Combat_Action.MOVE:
 			print(event.entity.name + " moves!")
 			event.entity.x = event.targetPosition[0]
@@ -84,9 +90,7 @@ func process_event(event : Dictionary) -> void:
 		Combat_Action.SKILL:
 			print(event.entity.name + " casts the %s skill!" % event['skillDetail'].skillName)
 			event.callback = _on_battle_anim_complete
-			#var invocationDetails = { 'entity' : event.entity, 'target' : event.targetEntity, 'callback': _on_battle_anim_complete }
 			event['skillDetail'].play_skill(event)
-			
 			
 # Called when grid selected. Provides the eventBuilder with the following fields:
 # targetPosition: the targeted position selected explicitly by the player cursor
@@ -240,6 +244,7 @@ func _ready() -> void:
 	$battlefield.onSelect.connect(_on_grid_selected)
 	$battlefield.onCancel.connect(_on_grid_cancel)
 	$combatUI/actionmenu.userInput.connect(_on_user_input_selected)
+	turn_queue_updated.connect($combatUI.on_turn_queue_change)
 
 	for entity in $combatants.get_children():
 		entity.damage_taken.connect(_on_damage_taken)
@@ -270,6 +275,6 @@ func _on_entity_death(entity : CombatEntity) -> void:
 	#$combatUI.turn_queue_remove(entity)
 	turn_queue.erase(entity)
 	entity.queue_free()
-	$combatUI.initialize_turn_queue(turn_queue)
+	turn_queue_updated.emit(turn_queue)
 	
 	

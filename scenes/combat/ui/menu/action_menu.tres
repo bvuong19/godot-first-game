@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=8 format=3 uid="uid://6ex88g4ggcq"]
+[gd_resource type="Theme" load_steps=9 format=3 uid="uid://6ex88g4ggcq"]
 
 [ext_resource type="FontFile" uid="uid://c4und8ixek2t5" path="res://assets/Aptos.ttf" id="1_u67xp"]
 
@@ -33,6 +33,9 @@ bg_color = Color(0.74978, 0.74978, 0.74978, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3otd"]
 bg_color = Color(0.110829, 0.118523, 0.405301, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwjsa"]
+bg_color = Color(0.878431, 0.878431, 0.878431, 1)
+
 [resource]
 Button/colors/font_focus_color = Color(0.0862745, 0.0784314, 0.32549, 1)
 Button/colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -43,3 +46,5 @@ Button/styles/hover = SubResource("StyleBoxFlat_ot54i")
 Button/styles/normal = SubResource("StyleBoxFlat_cvw1s")
 Button/styles/pressed = SubResource("StyleBoxFlat_vtwey")
 Panel/styles/panel = SubResource("StyleBoxFlat_p3otd")
+Panel_active/base_type = &"Control"
+Panel_active/styles/panel = SubResource("StyleBoxFlat_qwjsa")

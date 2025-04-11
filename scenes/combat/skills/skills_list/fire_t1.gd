@@ -18,5 +18,5 @@ static func apply_effect(details: Dictionary) -> void:
 	var callback : Callable = details.callback
 	var entity : CombatEntity = details.entity
 	var target : CombatEntity = details.targetEntity
-	target.apply_damage(entity.atk * 1.5)
+	target.apply_damage(entity.atk * 1.5, Combat_Detail.DAMAGE_TYPE.MAGIC)
 	callback.call()

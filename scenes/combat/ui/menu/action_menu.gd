@@ -5,7 +5,8 @@ signal userInput(Dictionary)
 
 var entity : CombatEntity
 var partyItems : Dictionary = {}
-var action_buttons : Array[Button] = []
+#var action_buttons : Array[Button] = []
+var action_buttons : Dictionary = {}
 var active_menu : int
 var skillmenuitem = preload('res://scenes/combat/ui/menu/skill_menu_button.tscn')
 
@@ -24,7 +25,12 @@ func initialize_menu(entity : CombatEntity):
 		b.queue_free()
 	%skillmenucontainer.hide()
 	%itemmenucontainer.hide()
-	entity = entity
+
+	for button in action_buttons.values():
+		button.disabled = true
+	for actionType in entity.effective_stats.get('actions', entity.actions):
+		action_buttons[actionType].disabled = false
+		
 	#TODO: add entity skills to the container
 	for skill in entity.skills:
 		var skillbutton = skillmenuitem.instantiate()
@@ -37,14 +43,14 @@ func initialize_menu(entity : CombatEntity):
 func deactivate_action_select():
 	%actionselectcontainer.focus_mode = FOCUS_NONE
 	%actionselectcontainer.release_focus()
-	for b in action_buttons:
+	for b in action_buttons.values():
 		b.mouse_filter = MOUSE_FILTER_IGNORE
 		b.focus_mode = FOCUS_NONE
 
 func reactivate_action_select(selectedButton : Button = %ATTACK):
 	%actionselectcontainer.focus_mode = FOCUS_ALL
 	%actionselectcontainer.grab_focus()
-	for b in action_buttons:
+	for b in action_buttons.values():
 		b.mouse_filter = MOUSE_FILTER_PASS
 		b.focus_mode = FOCUS_ALL
 		b.button_pressed = false
@@ -52,7 +58,13 @@ func reactivate_action_select(selectedButton : Button = %ATTACK):
 
 func _ready() -> void:
 	active_menu = ACTION
-	action_buttons = [%ATTACK, %SKILL, %DEFEND, %MOVE, %ITEM, %FLEE]
+	action_buttons[Combat_Action.ATTACK] = %ATTACK
+	action_buttons[Combat_Action.SKILL] = %SKILL
+	action_buttons[Combat_Action.DEFEND] = %DEFEND
+	action_buttons[Combat_Action.MOVE] = %MOVE
+	action_buttons[Combat_Action.ITEM] = %ITEM
+	action_buttons[Combat_Action.FLEE] = %FLEE
+	#action_buttons = [%ATTACK, %SKILL, %DEFEND, %MOVE, %ITEM, %FLEE]
 	reactivate_action_select()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

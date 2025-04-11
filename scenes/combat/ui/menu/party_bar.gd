@@ -6,7 +6,7 @@ var entity : CombatEntity
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(get_children())
+	set_active(false)
 	pass # Replace with function body.
 
 
@@ -18,6 +18,7 @@ func setEntity(x : CombatEntity) -> void:
 	entity = x
 	if entity:
 		%namelabel.text = entity.name
+	%sprite.texture = entity.headSprite
 	updateHP()
 
 func updateHP() -> void:
@@ -25,3 +26,15 @@ func updateHP() -> void:
 		%hplabel.text = "%d / %d" % [entity.current_hp, entity.hp]
 		%hpbar.value = entity.current_hp
 		%hpbar.max_value = entity.hp
+
+func set_active(active : bool) -> void:
+	if active:
+		%partybarpanel.theme_type_variation = 'Panel_active'
+		%namelabel.theme_type_variation = 'Label_active'
+		%hplabel.theme_type_variation = 'Label_active'
+		%profilePanelActive.show()
+	else:
+		%partybarpanel.theme_type_variation = ''
+		%namelabel.theme_type_variation = ''
+		%hplabel.theme_type_variation = ''
+		%profilePanelActive.hide()

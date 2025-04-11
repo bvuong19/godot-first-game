@@ -62,9 +62,9 @@ flip_h = true
 [node name="HPLabel" type="Label" parent="battlefieldSprite"]
 z_index = 2
 offset_left = 32.0
-offset_top = -67.0
+offset_top = -80.0
 offset_right = 117.0
-offset_bottom = -27.0
+offset_bottom = -39.0
 theme_override_colors/font_outline_color = Color(0.117647, 0.117647, 0.117647, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = SubResource("SystemFont_wf0wx")
@@ -89,3 +89,17 @@ unique_name_in_owner = true
 libraries = {
 "": SubResource("AnimationLibrary_kkn1o")
 }
+
+[node name="PanelContainer" type="PanelContainer" parent="battlefieldSprite"]
+offset_left = 29.0
+offset_top = -40.0
+offset_right = 29.0
+offset_bottom = -8.0
+size_flags_horizontal = 0
+
+[node name="buffbar" type="HBoxContainer" parent="battlefieldSprite/PanelContainer"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true

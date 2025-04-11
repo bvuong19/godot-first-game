@@ -14,7 +14,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 		
-func initialize_turn_queue(turn_queue : Array[CombatEntity]) -> void:
+func initialize_turn_queue_bar(turn_queue : Array[CombatEntity]) -> void:
 	for c in %turnqueue.get_children():
 		%turnqueue.remove_child(c)
 		c.queue_free()
@@ -25,12 +25,13 @@ func initialize_turn_queue(turn_queue : Array[CombatEntity]) -> void:
 		turnqueuechild.texture = e.headSprite
 		%turnqueue.add_child(turnqueuechild)
 
-func next_turn_queue() -> void:
-	%turnqueue.remove_child(%turnqueue.get_child(0))
-	
-func turn_queue_remove(entity) -> void:
-	pass
-	#$turnqueue.remove_child(entity)
+func on_turn_queue_change(turn_queue : Array[CombatEntity]) -> void:
+	initialize_turn_queue_bar(turn_queue)
+	for party : PartyBarItem in $partybarcontainer/partybar.get_children():
+		if turn_queue[0] == party.entity:
+			party.set_active(true)
+		else:
+			party.set_active(false)
 
 func add_entity(entity : CombatEntity, isEnemy: bool) -> void:
 	if not isEnemy:
