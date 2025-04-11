@@ -61,6 +61,7 @@ spd = 11
 def = 20
 hp = 40
 headSprite = ExtResource("4_s1twx")
+battlefieldSprite = ExtResource("4_tyfko")
 
 [node name="sprite" parent="Combat/combatants/enemy1/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
@@ -70,6 +71,7 @@ atk = 20
 def = 20
 hp = 40
 headSprite = ExtResource("4_s1twx")
+battlefieldSprite = ExtResource("4_tyfko")
 
 [node name="sprite" parent="Combat/combatants/enemy2/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
@@ -81,6 +83,7 @@ atk = 20
 def = 20
 hp = 40
 headSprite = ExtResource("4_s1twx")
+battlefieldSprite = ExtResource("4_tyfko")
 
 [node name="sprite" parent="Combat/combatants/enemy3/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
@@ -91,6 +94,7 @@ atk = 20
 def = 20
 hp = 40
 headSprite = ExtResource("4_s1twx")
+battlefieldSprite = ExtResource("4_tyfko")
 
 [node name="sprite" parent="Combat/combatants/enemy4/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")

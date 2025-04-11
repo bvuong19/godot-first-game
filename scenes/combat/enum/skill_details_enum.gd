@@ -1,6 +1,5 @@
 class_name CombatSkillDetail
 
-
 # targeting type
 # none, self, ally, enemy, any, ally_range, enemy_range, global
 enum TARGET_TYPE {

@@ -21,8 +21,6 @@ func play_skill(details : Dictionary) -> void:
 		spell.apply_scale(Vector2(0.3,0.3))
 		details.battlefield.add_child(spell)
 
-
-
 func apply_effect(details: Dictionary) -> void:
 	var callback : Callable = details.callback
 	var entity : CombatEntity = details.entity

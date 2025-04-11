@@ -94,7 +94,6 @@ libraries = {
 offset_left = 29.0
 offset_top = -40.0
 offset_right = 29.0
-offset_bottom = -8.0
 size_flags_horizontal = 0
 
 [node name="buffbar" type="HBoxContainer" parent="battlefieldSprite/PanelContainer"]

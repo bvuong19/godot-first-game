@@ -227,9 +227,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_agn86")
 }],
-"loop": true,
+"loop": false,
 "name": &"Silence",
-"speed": 11.0
+"speed": 15.0
 }]
 
 [node name="sprite" type="AnimatedSprite2D"]
@@ -238,5 +238,6 @@ texture_filter = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_n6p6r")
 animation = &"Silence"
-frame_progress = 0.343993
+frame = 10
+frame_progress = 1.0
 offset = Vector2(0, -8)

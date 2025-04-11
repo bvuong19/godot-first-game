@@ -9,18 +9,21 @@ func play_skill(details : Dictionary) -> void:
 	var callback_free = func():
 		apply_effect(details)
 		spell.queue_free()		
-	spell.play('Fire')
+	spell.play('Silence')
 	spell.animation_finished.connect(callback_free)
 	entity.add_child(spell)
+
 
 func apply_effect(details: Dictionary) -> void:
 	var callback : Callable = details.callback
 	var entity : CombatEntity = details.entity
 	var target : CombatEntity = details.targetEntity
-	target.apply_damage(entity.atk * 1.5, Combat_Detail.DAMAGE_TYPE.MAGIC)
+	var silenced_status = preload("res://scenes/combat/status/status_list/status_debuff_silenced.gd").new()
+	target.apply_status(silenced_status, 3)
+	silenced_status.apply_effect(target)
 	callback.call()
 
 func _init() -> void:
-	skillName = "Fire"
+	skillName = "Silence"
 	targetType = CombatSkillDetail.TARGET_TYPE.ENEMY
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT
