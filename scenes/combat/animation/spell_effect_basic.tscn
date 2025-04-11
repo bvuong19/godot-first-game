@@ -1,7 +1,8 @@
-[gd_scene load_steps=23 format=3 uid="uid://due5uoqbj6lkm"]
+[gd_scene load_steps=35 format=3 uid="uid://due5uoqbj6lkm"]
 
 [ext_resource type="Texture2D" uid="uid://c6j2w0cpxbrtn" path="res://assets/flame_spritesheet.png" id="1_5xuvy"]
 [ext_resource type="Texture2D" uid="uid://bjr78lhhksc5f" path="res://assets/heal_spritesheet.png" id="2_3f6oe"]
+[ext_resource type="Texture2D" uid="uid://bmjw0x4pihk2v" path="res://assets/silence_spritesheet.png" id="3_pygcn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dj6d8"]
 atlas = ExtResource("1_5xuvy")
@@ -79,6 +80,50 @@ region = Rect2(32, 64, 32, 32)
 atlas = ExtResource("2_3f6oe")
 region = Rect2(64, 64, 32, 32)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jyke"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_spy8v"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3htsr"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unfqj"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cqnq1"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ysxgt"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iftuv"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rok47"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jense"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pjrq1"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_agn86"]
+atlas = ExtResource("3_pygcn")
+region = Rect2(32, 96, 32, 32)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_n6p6r"]
 animations = [{
 "frames": [{
@@ -147,6 +192,44 @@ animations = [{
 "loop": false,
 "name": &"Heal",
 "speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jyke")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_spy8v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3htsr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unfqj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cqnq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ysxgt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iftuv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rok47")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jense")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pjrq1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_agn86")
+}],
+"loop": true,
+"name": &"Silence",
+"speed": 11.0
 }]
 
 [node name="sprite" type="AnimatedSprite2D"]
@@ -154,5 +237,6 @@ z_index = 3
 texture_filter = 1
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_n6p6r")
-animation = &"Fire"
+animation = &"Silence"
+frame_progress = 0.711683
 offset = Vector2(0, -8)
