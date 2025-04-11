@@ -34,7 +34,6 @@ signal entity_death(CombatEntity)
 
 func apply_damage(dmg: float, dmg_type : Combat_Detail.DAMAGE_TYPE) -> void:
 	var post_mit_dmg : float
-	
 	# determine post-mitigation dmg
 	if dmg_type == Combat_Detail.DAMAGE_TYPE.PHYSICAL:
 		post_mit_dmg = dmg - effective_stats.get('def', def)
@@ -58,9 +57,6 @@ func apply_status(statusEffect : CombatStatusEffect, duration : int):
 	buffbaritem.size = Vector2(32,32)
 	buffbaritem.texture = statusEffect.hud_icon
 	buffbaritem.show()
-	print(buffbaritem)
-	print(statusEffect.status_name)
-	print(buffbaritem.texture)
 	%buffbar.add_child(buffbaritem)
 
 func apply_heal(dmg: float) -> void:

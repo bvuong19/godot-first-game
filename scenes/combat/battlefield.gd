@@ -17,10 +17,8 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_cancel"):
 			onCancel.emit()
 			return
-		
 		var selected_grid : EntityGrid = $enemygrid if is_select_enemy else $playergrid
 		var new_tile = []
-		
 		if cursor_tile:
 			new_tile = handleUserTargetingInput(cursor_tile, selected_grid)
 		else:

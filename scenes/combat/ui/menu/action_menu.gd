@@ -78,10 +78,8 @@ func _process(delta: float) -> void:
 				%itemmenucontainer.hide()
 				reactivate_action_select(%ITEM)
 
-
 func _on_attack_pressed() -> void:
 	userInput.emit({'entity': entity, 'type': Combat_Action.ATTACK})
-
 
 func _on_skill_pressed() -> void:
 	deactivate_action_select()

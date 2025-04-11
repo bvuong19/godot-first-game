@@ -13,10 +13,6 @@ var turn_queue: Array[CombatEntity] = []
 signal turn_queue_updated(Array)
 var debug = true
 
-
-var dmgText = preload("res://scenes/combat/ui/damage_text.tscn")
-
-
 var current_phase = BATTLING
 var is_phase_change = true
 var eventBuilder = {}
@@ -257,7 +253,6 @@ func _ready() -> void:
 		entity.skills.append(load("res://scenes/combat/skills/skills_list/heal.tres"))
 		entity.skills.append(load("res://scenes/combat/skills/skills_list/fire_t1.tres"))
 		entity.skills.append(load("res://scenes/combat/skills/skills_list/fire_t2.tres"))
-		#entity.skills.append(SKILLS.Fire)
 		
 	print("...and enemy characters: ")
 	for entity in get_enemies():
@@ -272,9 +267,6 @@ func _on_damage_taken(entity : CombatEntity, dmg : int) -> void:
 	$combatUI.dmg_text(entity, dmg)
 	
 func _on_entity_death(entity : CombatEntity) -> void:
-	#$combatUI.turn_queue_remove(entity)
 	turn_queue.erase(entity)
 	entity.queue_free()
 	turn_queue_updated.emit(turn_queue)
-	
-	
