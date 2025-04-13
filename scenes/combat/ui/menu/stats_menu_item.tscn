@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck4y7hicen77p"]
+
+[ext_resource type="Theme" uid="uid://c3qax2qsij4qv" path="res://scenes/combat/ui/menu/entity_menu.tres" id="1_h5kgx"]
+
+[node name="statsmenuitem" type="MarginContainer"]
+theme = ExtResource("1_h5kgx")
+theme_override_constants/margin_top = 1
+theme_override_constants/margin_bottom = 1
+
+[node name="statNameLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+text = "ATK"
+
+[node name="statValueLabel" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+text = "100"
+horizontal_alignment = 2

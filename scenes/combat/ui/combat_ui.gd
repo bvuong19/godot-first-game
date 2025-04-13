@@ -46,10 +46,13 @@ func make_active(entity : CombatEntity) -> void:
 	$actionmenu.get_node('%ATTACK').grab_focus()
 	activeCombatEntity = entity
 	$actionmenu.initialize_menu(entity)
+	$EntityMenu.add_entity(entity)
+	$EntityMenu.show()
 
 func make_inactive() -> void:
 	$actionmenu.release_focus()
 	$actionmenu.hide()
+	$EntityMenu.hide()
 	
 func reset() -> void:
 	for b in buttons:

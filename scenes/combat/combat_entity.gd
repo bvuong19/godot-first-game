@@ -52,12 +52,8 @@ func apply_damage(dmg: float, dmg_type : Combat_Detail.DAMAGE_TYPE) -> void:
 func apply_status(statusEffect : CombatStatusEffect, duration : int):
 	effects.append(statusEffect)
 	statusEffect.duration = duration
-	var buffbaritem = TextureRect.new()
-	buffbaritem.expand_mode = TextureRect.EXPAND_FIT_WIDTH
-	buffbaritem.size = Vector2(32,32)
-	buffbaritem.texture = statusEffect.hud_icon
-	buffbaritem.show()
-	%buffbar.add_child(buffbaritem)
+	add_buff_bar(statusEffect)
+
 
 func apply_heal(dmg: float) -> void:
 	var amount_healed = min(dmg, hp - current_hp)
@@ -72,17 +68,24 @@ func on_turn_start() -> void:
 	for child in %buffbar.get_children():
 		%buffbar.remove_child(child)
 		child.queue_free()
+	var expired = []
 	for effect : CombatStatusEffect in effects:
 		effect.duration -= 1
 		if effect.duration <= 0:
-			effects.erase(effect)
+			expired.append(effect)
 		else:
-			var buffbaritem = TextureRect.new()
-			buffbaritem.expand_mode = TextureRect.EXPAND_FIT_WIDTH
-			buffbaritem.size = Vector2(40,40)
-			buffbaritem.texture = effect.hud_icon
-			%buffbar.add_child(buffbaritem)
+			add_buff_bar(effect)
 			effect.apply_effect(self)
+	for effect in expired:
+		effects.erase(effect)
+
+func add_buff_bar(effect : CombatStatusEffect) -> void:
+	var buffbaritem = TextureRect.new()
+	buffbaritem.expand_mode = TextureRect.EXPAND_FIT_WIDTH
+	buffbaritem.size = Vector2(40,40)
+	buffbaritem.texture = effect.hud_icon
+	buffbaritem.show()
+	%buffbar.add_child(buffbaritem)
 
 func _ready() -> void:
 	position = Vector2(300,300)

@@ -8,4 +8,4 @@ func apply_effect(entity : CombatEntity) -> void:
 
 func _init() -> void:
 	status_name = "Silenced"
-	hud_icon = load('res://assets/silence_icon.png')
+	hud_icon = load('res://assets/dotdotdot.png')

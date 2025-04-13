@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://h185cdodyqnj"]
+[gd_scene load_steps=7 format=3 uid="uid://h185cdodyqnj"]
 
 [ext_resource type="Script" path="res://scenes/combat/ui/menu/party_bar.gd" id="1_7vqyn"]
 [ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/menu/action_menu.tres" id="2_h17vj"]
 [ext_resource type="Theme" uid="uid://dwljlovjlh6hv" path="res://scenes/combat/ui/menu/party_bar.tres" id="3_ucbi0"]
 [ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="4_fr6s5"]
+[ext_resource type="PackedScene" uid="uid://dqjps5gydl56l" path="res://scenes/combat/ui/menu/resourcebar.tscn" id="4_o6ui1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxvuv"]
 bg_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -46,16 +47,12 @@ offset_bottom = 24.0
 theme = ExtResource("3_ucbi0")
 text = "name"
 
-[node name="hpbar" type="ProgressBar" parent="partybarpanel"]
+[node name="hpbar" parent="partybarpanel" instance=ExtResource("4_o6ui1")]
 unique_name_in_owner = true
 layout_mode = 0
-offset_left = 6.0
+offset_left = 8.0
 offset_top = 22.0
-offset_right = 66.0
-offset_bottom = 30.0
-theme = ExtResource("3_ucbi0")
-fill_mode = 1
-show_percentage = false
+offset_bottom = 29.0
 
 [node name="profilePanelActive" type="Panel" parent="partybarpanel"]
 unique_name_in_owner = true

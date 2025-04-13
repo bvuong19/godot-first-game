@@ -18,6 +18,7 @@ var is_phase_change = true
 var eventBuilder = {}
 var animation_locked = false
 
+var debug_add_event = true
 func add_event(entity: CombatEntity, type: int, target: CombatEntity) -> void:
 	event_queue.append({entity=entity, type=type, target=target})
 
@@ -29,8 +30,12 @@ func process_turn_queue() -> void:
 	e.on_turn_start()
 	turn_queue_updated.emit(turn_queue)
 	if e.isEnemy:
+		if debug_add_event:
+			debug_add_event = false
+			event_queue.append({'entity': e, 'type': Combat_Action.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
 		# TODO: more support for enemy actions. Currently we just let them attack.
-		event_queue.append({'entity': e, 'type': Combat_Action.ATTACK, 'targetEntity': get_players().front()})
+		else:
+			event_queue.append({'entity': e, 'type': Combat_Action.ATTACK, 'targetEntity': get_players().front()})
 		change_phase(BATTLING)
 	else:
 		# start player turn
@@ -74,7 +79,7 @@ func process_event(event : Dictionary) -> void:
 			var entity : CombatEntity = event.entity
 			var guard_status = preload('res://scenes/combat/status/status_list/status_guarding.gd').new()
 			print(guard_status)
-			entity.apply_status(guard_status, 1)
+			entity.apply_status(guard_status, 2)
 			guard_status.apply_effect(entity)
 			$battlefield.animate_entity_hop(event.entity, _on_battle_anim_complete)
 			print(event.entity.name + " defends, raising their defense to " + str(entity.effective_stats.get('def', entity.def)) + "!")

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2jbsrvrww10m"]
+[gd_scene load_steps=4 format=3 uid="uid://b2jbsrvrww10m"]
 
 [ext_resource type="Script" path="res://scenes/combat/ui/combat_ui.gd" id="1_fb66i"]
 [ext_resource type="PackedScene" uid="uid://b27vm76qgpnyc" path="res://scenes/combat/ui/menu/action_menu.tscn" id="2_n48y7"]
+[ext_resource type="PackedScene" uid="uid://s4fty7w8raad" path="res://scenes/combat/ui/menu/entity_menu.tscn" id="3_fsf0j"]
 
 [node name="combatUI" type="Control"]
 layout_mode = 3
@@ -54,3 +55,11 @@ custom_minimum_size = Vector2(600, 64)
 layout_direction = 2
 layout_mode = 2
 size_flags_vertical = 0
+
+[node name="EntityMenu" parent="." instance=ExtResource("3_fsf0j")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00260417
+anchor_top = 0.993827
+anchor_right = 0.00260417
+anchor_bottom = 0.993827
