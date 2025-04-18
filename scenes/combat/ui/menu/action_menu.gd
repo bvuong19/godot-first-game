@@ -38,7 +38,9 @@ func initialize_menu(entity : CombatEntity):
 		skillbutton.text = skill.skillName
 		skillbutton.skill = skill
 		skillbutton.pressed.connect(skillCallBack.bind(skillbutton.skill))
+		skillbutton.get_node('%skillcost').text = '%s %s' % [skill.skillCost, CombatSkillDetail.COST_TYPE.keys()[skill.skillCostType]]
 		%skillmenucontainer/skillmenu.add_child(skillbutton)
+		
 	reactivate_action_select()
 
 func deactivate_action_select():

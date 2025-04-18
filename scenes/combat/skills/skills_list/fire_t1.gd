@@ -24,3 +24,5 @@ func _init() -> void:
 	skillName = "Fire"
 	targetType = CombatSkillDetail.TARGET_TYPE.ENEMY
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT
+	skillCostType = CombatSkillDetail.COST_TYPE.MP
+	skillCost = 5

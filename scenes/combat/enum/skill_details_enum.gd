@@ -21,3 +21,9 @@ enum EFFECT_TYPE {
 	DELAYED,
 	OTHER
 }
+
+enum COST_TYPE {
+	MP,
+	HP,
+	TP
+}

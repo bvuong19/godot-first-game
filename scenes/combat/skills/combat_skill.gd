@@ -17,6 +17,10 @@ class_name CombatSkill
 # instant, lingering, delayed, other
 @export var effectType : CombatSkillDetail.EFFECT_TYPE
 
+@export var skillCostType : CombatSkillDetail.COST_TYPE
+
+@export var skillCost : float
+
 func play_skill(details : Dictionary) -> void:
 	pass
 

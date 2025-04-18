@@ -25,7 +25,8 @@ func _init() -> void:
 	skillName = 'Heal'
 	targetType = CombatSkillDetail.TARGET_TYPE.ALLY
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT
-	
+	skillCostType = CombatSkillDetail.COST_TYPE.MP
+	skillCost = 10
 	#@export var skillName : String = "missingName"
 	#@export var targetType : CombatSkillDetail.TARGET_TYPE
 	#@export var targetRange : SkillRange
