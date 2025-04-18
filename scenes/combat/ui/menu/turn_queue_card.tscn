@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://hdcek6pvwxp5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_362fh"]
+bg_color = Color(0.878431, 0.878431, 0.878431, 1)
+skew = Vector2(0.01, 0)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.133333, 0.133333, 0.133333, 1)
+
+[sub_resource type="Theme" id="Theme_ui3ij"]
+Panel/styles/panel = SubResource("StyleBoxFlat_362fh")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ebqcr"]
+load_path = "res://.godot/imported/defaultplayer-portrait.png-9bf1b0616af4df8a0c193cf51f560dad.ctex"
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchor_left = -0.01
+anchor_right = 0.035
+anchor_bottom = 0.091
+offset_left = 11.52
+offset_right = -7.32
+offset_bottom = 0.0319977
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect2" type="Panel" parent="."]
+clip_children = 2
+clip_contents = true
+custom_minimum_size = Vector2(40, 50)
+layout_mode = 0
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 50.0
+rotation = 0.314855
+theme = SubResource("Theme_ui3ij")
+
+[node name="sprite" type="Sprite2D" parent="TextureRect2"]
+unique_name_in_owner = true
+position = Vector2(18.7988, 25.4285)
+rotation = -0.314159
+scale = Vector2(0.35, 0.35)
+texture = SubResource("CompressedTexture2D_ebqcr")

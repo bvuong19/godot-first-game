@@ -1,9 +1,6 @@
 [gd_resource type="Theme" load_steps=5 format=3 uid="uid://dwljlovjlh6hv"]
 
-[sub_resource type="SystemFont" id="SystemFont_msusc"]
-font_names = PackedStringArray("Monospace")
-font_weight = 600
-hinting = 2
+[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/Aptos-Bold.ttf" id="1_avou8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lifvo"]
 bg_color = Color(0.117647, 0.117647, 0.117647, 1)
@@ -19,7 +16,7 @@ skew = Vector2(0.1, 0)
 
 [resource]
 Label/font_sizes/font_size = 12
-Label/fonts/font = SubResource("SystemFont_msusc")
+Label/fonts/font = ExtResource("1_avou8")
 Label_active/base_type = &"Label"
 Label_active/colors/font_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_lifvo")

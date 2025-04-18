@@ -12,6 +12,9 @@ func initialize_turn_queue_bar(turn_queue : Array[CombatEntity]) -> void:
 		%turnqueue.remove_child(c)
 		c.queue_free()
 	for e in turn_queue:
+		#var turnqueuechild = preload("res://scenes/combat/ui/menu/turn_queue_card.tscn").instantiate()
+		#turnqueuechild.get_node('%sprite').texture = e.headSprite
+		#%turnqueue.add_child(turnqueuechild)
 		var turnqueuechild = TextureRect.new()
 		turnqueuechild.expand_mode = TextureRect.EXPAND_FIT_WIDTH
 		turnqueuechild.size = Vector2(40,40)

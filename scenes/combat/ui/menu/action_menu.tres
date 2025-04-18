@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=9 format=3 uid="uid://6ex88g4ggcq"]
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://6ex88g4ggcq"]
 
 [ext_resource type="FontFile" uid="uid://c4und8ixek2t5" path="res://assets/Aptos.ttf" id="1_u67xp"]
+[ext_resource type="StyleBox" uid="uid://c2d82i8cfu7no" path="res://scenes/combat/ui/menu/styleboxes/box_tail_1.tres" id="2_2i2n0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuqy3"]
 content_margin_left = 12.0
@@ -46,5 +47,6 @@ Button/styles/hover = SubResource("StyleBoxFlat_ot54i")
 Button/styles/normal = SubResource("StyleBoxFlat_cvw1s")
 Button/styles/pressed = SubResource("StyleBoxFlat_vtwey")
 Panel/styles/panel = SubResource("StyleBoxFlat_p3otd")
+Panel/styles/panel_tail = ExtResource("2_2i2n0")
 Panel_active/base_type = &"Control"
 Panel_active/styles/panel = SubResource("StyleBoxFlat_qwjsa")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://h185cdodyqnj"]
+[gd_scene load_steps=8 format=3 uid="uid://h185cdodyqnj"]
 
 [ext_resource type="Script" path="res://scenes/combat/ui/menu/party_bar.gd" id="1_7vqyn"]
 [ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/menu/action_menu.tres" id="2_h17vj"]
 [ext_resource type="Theme" uid="uid://dwljlovjlh6hv" path="res://scenes/combat/ui/menu/party_bar.tres" id="3_ucbi0"]
 [ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="4_fr6s5"]
 [ext_resource type="PackedScene" uid="uid://dqjps5gydl56l" path="res://scenes/combat/ui/menu/resourcebar.tscn" id="4_o6ui1"]
+[ext_resource type="StyleBox" uid="uid://c2d82i8cfu7no" path="res://scenes/combat/ui/menu/styleboxes/box_tail_1.tres" id="6_ocmr3"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wxvuv"]
 bg_color = Color(0.878431, 0.878431, 0.878431, 1)
@@ -41,9 +42,9 @@ text = "x/x"
 unique_name_in_owner = true
 layout_mode = 0
 offset_left = 8.0
-offset_top = 10.0
+offset_top = 9.0
 offset_right = 50.0
-offset_bottom = 24.0
+offset_bottom = 25.0
 theme = ExtResource("3_ucbi0")
 text = "name"
 
@@ -76,3 +77,11 @@ unique_name_in_owner = true
 position = Vector2(99, 24)
 scale = Vector2(0.3, 0.3)
 texture = ExtResource("4_fr6s5")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = -40.0
+offset_bottom = 50.0
+theme = ExtResource("2_h17vj")
+theme_type_variation = &"Panel_active"
+theme_override_styles/panel = ExtResource("6_ocmr3")
