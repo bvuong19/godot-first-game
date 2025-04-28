@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cexpypq3o6px7"
-path.s3tc="res://.godot/imported/grass.png-a207bda4a53e32c7645a41ec6d1c234e.s3tc.ctex"
+uid="uid://h1b251jd7mcj"
+path.s3tc="res://.godot/imported/gradient2.png-0de31e4adf5956f19dde5402d03a1043.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/grass.png"
-dest_files=["res://.godot/imported/grass.png-a207bda4a53e32c7645a41ec6d1c234e.s3tc.ctex"]
+source_file="res://assets/grid/gradient2.png"
+dest_files=["res://.godot/imported/gradient2.png-0de31e4adf5956f19dde5402d03a1043.s3tc.ctex"]
 
 [params]
 
