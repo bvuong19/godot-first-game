@@ -49,6 +49,8 @@ _data = {
 [node name="Entity" type="Node2D"]
 position = Vector2(0, -4)
 script = ExtResource("1_pg1hx")
+x = 1
+y = 1
 
 [node name="battlefieldSprite" type="Node2D" parent="."]
 position = Vector2(-1, 5)

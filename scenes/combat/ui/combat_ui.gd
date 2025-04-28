@@ -23,21 +23,23 @@ func initialize_turn_queue_bar(turn_queue : Array[CombatEntity]) -> void:
 
 func on_turn_queue_change(turn_queue : Array[CombatEntity]) -> void:
 	initialize_turn_queue_bar(turn_queue)
-	for party : PartyBarItem in $partybarcontainer/partybar.get_children():
-		if turn_queue[0] == party.entity:
-			party.set_active(true)
-		else:
-			party.set_active(false)
+	#for party : PartyBarItem in $partybarcontainer/partybar.get_children():
+		#if turn_queue[0] == party.entity:
+			#party.set_active(true)
+		#else:
+			#party.set_active(false)
 
 func add_entity(entity : CombatEntity, isEnemy: bool) -> void:
 	if not isEnemy:
-		var item = partyBarItem.instantiate()
-		item.setEntity(entity)
+		#var item = partyBarItem.instantiate()
+		#item.setEntity(entity)
+		var item = PartyBar.from_Entity(entity)
 		$partybarcontainer/partybar.add_child(item)
 	
 func update_party_bar() -> void:
 	for party in %partybar.get_children():
-		party.updateHP()
+		pass
+		#party.updateHP()
 
 func dmg_text(entity: CombatEntity, post_mit_dmg: int) -> void:
 	var dmgTextLabel = damagetext.instantiate()

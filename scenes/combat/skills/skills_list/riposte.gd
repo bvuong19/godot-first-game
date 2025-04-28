@@ -9,7 +9,7 @@ func play_skill(details : Dictionary) -> void:
 		var spell : AnimatedSprite2D = spell_fx_basic.instantiate()
 		var callback_free = func():
 			apply_effect(details)
-			spell.queue_free()		
+			spell.queue_free()
 		spell.play('Heal')
 		spell.animation_finished.connect(callback_free)
 		entity.add_child(spell)
@@ -23,12 +23,8 @@ func apply_effect(details: Dictionary) -> void:
 	callback.call()
 
 func _init() -> void:
-	skillName = 'Heal'
-	targetType = CombatSkillDetail.TARGET_TYPE.ALLY
+	skillName = 'Riposte'
+	targetType = CombatSkillDetail.TARGET_TYPE.SELF
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT
-	skillCostType = CombatSkillDetail.COST_TYPE.MP
-	skillCost = 10
-	#@export var skillName : String = "missingName"
-	#@export var targetType : CombatSkillDetail.TARGET_TYPE
-	#@export var targetRange : SkillRange
-	#@export var effectType : CombatSkillDetail.EFFECT_TYPE
+	skillCostType = CombatSkillDetail.COST_TYPE.NONE
+	skillCost = 0

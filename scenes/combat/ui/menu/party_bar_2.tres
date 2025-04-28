@@ -1,0 +1,44 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://dgn5gwlf3rq34"]
+
+[ext_resource type="FontFile" uid="uid://okjbk826exnp" path="res://assets/fonts/Mona-Sans.ttf" id="1_yx1aw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jisu0"]
+bg_color = Color(0.552941, 0.552941, 0.552941, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.552941, 0.552941, 0.552941, 1)
+expand_margin_left = 2.0
+expand_margin_top = 2.0
+expand_margin_right = 2.0
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qyxvu"]
+bg_color = Color(0.462745, 0.937255, 0.517647, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_v6k3p"]
+base_font = ExtResource("1_yx1aw")
+variation_opentype = {
+1936486004: -10,
+2003072104: 100,
+2003265652: 600
+}
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuog1"]
+bg_color = Color(0.921569, 0.913725, 0.419608, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7r6kb"]
+bg_color = Color(0.572549, 0.694118, 1, 1)
+
+[resource]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_jisu0")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_qyxvu")
+RichTextLabel/colors/default_color = Color(0.878431, 0.878431, 0.878431, 1)
+RichTextLabel/colors/font_outline_color = Color(0.552941, 0.552941, 0.552941, 1)
+RichTextLabel/constants/outline_size = 4
+RichTextLabel/fonts/bold_italics_font = SubResource("FontVariation_v6k3p")
+etcbar/base_type = &"ProgressBar"
+etcbar/styles/fill = SubResource("StyleBoxFlat_nuog1")
+manabar/base_type = &"ProgressBar"
+manabar/styles/fill = SubResource("StyleBoxFlat_7r6kb")

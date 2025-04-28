@@ -18,7 +18,7 @@ var is_phase_change = true
 var eventBuilder = {}
 var animation_locked = false
 
-var debug_add_event = true
+var debug_add_event = false
 func add_event(entity: CombatEntity, type: int, target: CombatEntity) -> void:
 	event_queue.append({entity=entity, type=type, target=target})
 
@@ -27,9 +27,11 @@ func process_turn_queue() -> void:
 		reset_turn_queue()
 	eventBuilder = {}
 	var e : CombatEntity = turn_queue[0]
+	print("turn queue updated, current turn is %s" % e.name)
 	e.on_turn_start()
 	turn_queue_updated.emit(turn_queue)
 	if e.isEnemy:
+		print("%s attacks." % e.name)
 		if debug_add_event:
 			debug_add_event = false
 			event_queue.append({'entity': e, 'type': Combat_Action.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
@@ -53,12 +55,13 @@ func sort_entity_priority(a : CombatEntity, b: CombatEntity) -> bool:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:	
 	if current_phase == BATTLING:
+		#print("event queue %s \nanim locked%s" % [event_queue, animation_locked])
 		if not animation_locked and event_queue:
 			eventBuilder = {}
 			$battlefield.refresh_selections()
 			if event_queue:
+				print("fuck u")
 				process_event(event_queue.pop_front())
-			animation_locked = true
 
 # callback for when battle animation is complete
 func _on_battle_anim_complete() -> void:
@@ -69,6 +72,7 @@ func _on_battle_anim_complete() -> void:
 
 func process_event(event : Dictionary) -> void:
 	event['battlefield'] = $battlefield
+	animation_locked = true
 	match event.type:
 		Combat_Action.ATTACK:
 			# TODO: add animation callbcaks
@@ -211,6 +215,7 @@ func change_phase(new_phase : int):
 			$combatUI.reset()
 			$combatUI.release_focus()
 			$battlefield.release_focus()
+			print("battling now!!!")
 	current_phase = new_phase
 
 func getEntityAtPosition(x: int, y: int, isEnemy: bool) -> CombatEntity:
@@ -250,7 +255,8 @@ func _ready() -> void:
 	for entity in $combatants.get_children():
 		entity.damage_taken.connect(_on_damage_taken)
 		entity.entity_death.connect(_on_entity_death)
-		
+	
+	get_players()[0].current_mp = 25
 	for entity in get_players():
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
 		$battlefield.add_entity(entity, false)

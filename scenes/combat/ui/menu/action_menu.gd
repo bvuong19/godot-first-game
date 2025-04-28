@@ -34,12 +34,15 @@ func initialize_menu(entity : CombatEntity):
 		
 	#TODO: add entity skills to the container
 	for skill in entity.skills:
-		var skillbutton = skillmenuitem.instantiate()
-		skillbutton.text = skill.skillName
-		skillbutton.skill = skill
-		skillbutton.pressed.connect(skillCallBack.bind(skillbutton.skill))
-		skillbutton.get_node('%skillcost').text = '%s %s' % [skill.skillCost, CombatSkillDetail.COST_TYPE.keys()[skill.skillCostType]]
-		%skillmenucontainer/skillmenu.add_child(skillbutton)
+		var isDisabled = skill.skillCostType and entity.current_mp < skill.skillCost
+		var skillButton = SkillMenuItem.from_skill(skill, isDisabled)
+		#var skillbutton = skillmenuitem.instantiate()
+		#skillbutton.text = skill.skillName
+		#skillbutton.skill = skill
+		#skillbutton.pressed.connect(skillCallBack.bind(skillbutton.skill))
+		#skillbutton.get_node('%skillcost').text = '%s %s' % [skill.skillCost, CombatSkillDetail.COST_TYPE.keys()[skill.skillCostType]]
+		skillButton.pressed.connect(skillCallBack.bind(skillButton.skill))
+		%skillmenucontainer/skillmenu.add_child(skillButton)
 		
 	reactivate_action_select()
 
@@ -88,7 +91,10 @@ func _on_skill_pressed() -> void:
 	deactivate_action_select()
 	%skillmenucontainer.show()
 	%skillmenucontainer.grab_focus()
-	%skillmenu.get_children()[0].grab_focus()
+	for child in %skillmenu.get_children():
+		if not child.disabled:
+			child.grab_focus()
+			break
 	active_menu = SKILL
 
 func _on_defend_pressed() -> void:

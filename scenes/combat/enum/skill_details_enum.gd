@@ -23,6 +23,7 @@ enum EFFECT_TYPE {
 }
 
 enum COST_TYPE {
+	NONE,
 	MP,
 	HP,
 	TP

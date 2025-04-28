@@ -3,22 +3,22 @@ extends Node2D
 class_name CombatEntity
 
 # unit's grid position
-@export var x = 0
-@export var y = 0
+@export var x : int
+@export var y : int
 
 # unit's base stats.
 # TODO: add other stats that we think would be cool and poggers.
-@export var atk = 0
-@export var matk = 0
-@export var luc = 0
-@export var spd = 0
-@export var def = 0
-@export var mdef = 0
-@export var hp = 0
-@export var mp = 0
+@export var atk : int
+@export var matk : int
+@export var luc : int
+@export var spd : int
+@export var def : int
+@export var mdef : int
+@export var hp : int
+@export var mp : int
 
-@export var current_hp = 0
-@export var current_mp = 0
+@export var current_hp : int
+@export var current_mp : int
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
 @export var battlefieldSprite : Texture2D = preload("res://assets/defaultplayer.png")
 @export var isEnemy = true
@@ -79,6 +79,18 @@ func on_turn_start() -> void:
 	for effect in expired:
 		effects.erase(effect)
 
+func apply_skill_cost(skill : CombatSkill) -> bool:
+	if not skill.skillCost or skill.skillCostType == CombatSkillDetail.COST_TYPE.NONE:
+		return true
+	elif skill.skillCostType == CombatSkillDetail.COST_TYPE.MP and current_mp > skill.skillCost:
+		current_mp -= skill.skillCost
+		return true
+	elif skill.skillCostType == CombatSkillDetail.COST_TYPE.HP and current_hp > skill.skillCost:
+		current_hp -= skill.skillCost
+		return true
+	return false
+
+
 func add_buff_bar(effect : CombatStatusEffect) -> void:
 	var buffbaritem = TextureRect.new()
 	buffbaritem.expand_mode = TextureRect.EXPAND_FIT_WIDTH
@@ -91,6 +103,7 @@ func _ready() -> void:
 	position = Vector2(300,300)
 	$battlefieldSprite/sprite.texture = battlefieldSprite
 	current_hp = hp 
+	current_mp = mp
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 
 func _process(delta: float) -> void:
