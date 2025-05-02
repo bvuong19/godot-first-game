@@ -1,7 +1,9 @@
 [gd_scene load_steps=7 format=3 uid="uid://bbsoijegpgdte"]
 
 [ext_resource type="Script" path="res://scenes/combat/combat_entity.gd" id="1_pg1hx"]
-[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/defaultplayer.png" id="2_rgbr5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lt4ye"]
+load_path = "res://.godot/imported/defaultplayer.png-9abc6194e4b9ac9c70cce27972ba8c4c.s3tc.ctex"
 
 [sub_resource type="SystemFont" id="SystemFont_wf0wx"]
 font_names = PackedStringArray("Monospace", "", "", "", "", "")
@@ -46,22 +48,25 @@ _data = {
 "attack": SubResource("Animation_hw5hl")
 }
 
-[node name="Entity" type="Node2D"]
-position = Vector2(0, -4)
+[node name="Entity" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
 script = ExtResource("1_pg1hx")
 x = 1
 y = 1
 
-[node name="battlefieldSprite" type="Node2D" parent="."]
-position = Vector2(-1, 5)
-
-[node name="sprite" type="Sprite2D" parent="battlefieldSprite"]
+[node name="battlefieldSprite" type="Node3D" parent="."]
 unique_name_in_owner = true
-position = Vector2(0, -94)
-texture = ExtResource("2_rgbr5")
+
+[node name="sprite" type="Sprite3D" parent="battlefieldSprite"]
+unique_name_in_owner = true
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.3, 0)
 flip_h = true
+billboard = 1
+render_priority = 2
+texture = SubResource("CompressedTexture2D_lt4ye")
 
 [node name="HPLabel" type="Label" parent="battlefieldSprite"]
+visible = false
 z_index = 2
 offset_left = 32.0
 offset_top = -80.0
@@ -93,6 +98,7 @@ libraries = {
 }
 
 [node name="PanelContainer" type="PanelContainer" parent="battlefieldSprite"]
+visible = false
 offset_left = 29.0
 offset_top = -40.0
 offset_right = 29.0
@@ -100,6 +106,7 @@ size_flags_horizontal = 0
 
 [node name="buffbar" type="HBoxContainer" parent="battlefieldSprite/PanelContainer"]
 unique_name_in_owner = true
+visible = false
 z_index = 1
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2

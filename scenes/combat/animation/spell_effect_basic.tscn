@@ -238,10 +238,13 @@ animations = [{
 "speed": 12.0
 }]
 
-[node name="sprite" type="AnimatedSprite2D"]
-z_index = 3
-texture_filter = 1
-scale = Vector2(5, 5)
+[node name="sprite" type="AnimatedSprite3D"]
+transform = Transform3D(2.2, 0, 0, 0, 2.2, 0, 0, 0, 2.2, 0, 0.2, 0)
+offset = Vector2(0, 10)
+billboard = 1
+texture_filter = 0
+render_priority = 2
 sprite_frames = SubResource("SpriteFrames_n6p6r")
-animation = &"Silence"
-offset = Vector2(0, -8)
+animation = &"Fire"
+frame = 9
+frame_progress = 1.0

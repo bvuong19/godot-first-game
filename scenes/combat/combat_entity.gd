@@ -1,4 +1,4 @@
-extends Node2D
+extends Node3D
 
 class_name CombatEntity
 
@@ -21,7 +21,7 @@ class_name CombatEntity
 @export var current_mp : int
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
 @export var battlefieldSprite : Texture2D = preload("res://assets/defaultplayer.png")
-@export var isEnemy = true
+@export var is_enemy = true
 @export var actions = [Combat_Action.ATTACK,Combat_Action.FLEE,Combat_Action.ITEM,Combat_Action.MOVE,Combat_Action.DEFEND,Combat_Action.SKILL]
 
 var effective_stats : Dictionary = {}
@@ -100,11 +100,10 @@ func add_buff_bar(effect : CombatStatusEffect) -> void:
 	%buffbar.add_child(buffbaritem)
 
 func _ready() -> void:
-	position = Vector2(300,300)
 	$battlefieldSprite/sprite.texture = battlefieldSprite
 	current_hp = hp 
 	current_mp = mp
-	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
+	#$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 
 func _process(delta: float) -> void:
 	pass

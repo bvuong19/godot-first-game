@@ -34,7 +34,6 @@ spd = 10
 def = 10
 hp = 100
 mp = 60
-isEnemy = false
 
 [node name="player2" parent="Combat/combatants" index="1" instance=ExtResource("3_3e8fj")]
 x = 3
@@ -42,7 +41,6 @@ atk = 40
 spd = 2
 hp = 100
 mp = 60
-isEnemy = false
 
 [node name="potato" parent="Combat/combatants" index="2" instance=ExtResource("3_3e8fj")]
 x = 4
@@ -51,7 +49,6 @@ atk = 40
 hp = 200
 headSprite = ExtResource("4_32isv")
 battlefieldSprite = ExtResource("4_32isv")
-isEnemy = false
 actions = [5, 3]
 
 [node name="enemy1" parent="Combat/combatants" index="3" instance=ExtResource("3_3e8fj")]

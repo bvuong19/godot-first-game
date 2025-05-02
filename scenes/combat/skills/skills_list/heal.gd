@@ -6,7 +6,7 @@ func play_skill(details : Dictionary) -> void:
 	var entity : CombatEntity = details.targetEntity
 	if entity.apply_cost(self):
 		#TODO: replace this copy pasted code you dung beetle
-		var spell : AnimatedSprite2D = spell_fx_basic.instantiate()
+		var spell : AnimatedSprite3D = spell_fx_basic.instantiate()
 		var callback_free = func():
 			apply_effect(details)
 			spell.queue_free()		

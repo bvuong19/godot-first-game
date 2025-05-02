@@ -5,17 +5,18 @@ var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.t
 func play_skill(details : Dictionary) -> void:
 	print('playing skill uwu')
 	var user : CombatEntity = details.entity
+	var target_is_enemy = not user.is_enemy
 	if (user.apply_skill_cost(self)):
 		var tiles = details.targetGridTiles
 		#TODO: replace this copy pasted code you dung beetle
-		var spellfx : Array[AnimatedSprite2D] = []
+		var spellfx : Array[AnimatedSprite3D] = []
 		var callback_free = func(spell):
 			spell.queue_free()
 			spellfx.erase(spell)
 			if not spellfx:
 				apply_effect(details)
 		for tile in tiles:
-			var spell : AnimatedSprite2D = spell_fx_basic.instantiate()
+			var spell : AnimatedSprite3D = spell_fx_basic.instantiate()
 			spell.play('Fire')
 			spell.animation_finished.connect(callback_free.bind(spell))
 			spellfx.append(spell)

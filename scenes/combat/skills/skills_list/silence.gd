@@ -5,7 +5,7 @@ var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.t
 func play_skill(details : Dictionary) -> void:
 	var entity : CombatEntity = details.targetEntity
 	#TODO: replace this copy pasted code you dung beetle
-	var spell : AnimatedSprite2D = spell_fx_basic.instantiate()
+	var spell : AnimatedSprite3D = spell_fx_basic.instantiate()
 	var callback_free = func():
 		apply_effect(details)
 		spell.queue_free()		
