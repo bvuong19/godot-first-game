@@ -182,7 +182,7 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				event_queue.append(eventBuilder)
 				change_phase(BATTLING)
 			# 2b: targets an area
-			elif (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ALLY_RANGE, CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE]) and eventBuilder.has('targetTiles') and eventBuilder['targetTiles']:
+			elif (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.ALLY_RANGE, CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE]) and eventBuilder.has('aoeTargetPositions') and eventBuilder['aoeTargetPositions']:
 				$battlefield.targetRange = null
 				event_queue.append(eventBuilder)
 				change_phase(BATTLING)

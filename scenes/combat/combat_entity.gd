@@ -20,7 +20,11 @@ class_name CombatEntity
 @export var current_hp : int
 @export var current_mp : int
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
-@export var battlefieldSprite : Texture2D = preload("res://assets/defaultplayer.png")
+@export var battlefieldSprite : Texture2D:
+	set(v): 
+		battlefieldSprite = v
+		%sprite.texture = v
+		
 @export var is_enemy = true
 @export var actions = [Combat_Action.ATTACK,Combat_Action.FLEE,Combat_Action.ITEM,Combat_Action.MOVE,Combat_Action.DEFEND,Combat_Action.SKILL]
 
@@ -42,6 +46,7 @@ func apply_damage(dmg: float, dmg_type : Combat_Detail.DAMAGE_TYPE) -> void:
 	else:
 		post_mit_dmg = dmg
 	if post_mit_dmg > 0:
+		print("%s takes %d damage!" % [name, post_mit_dmg])
 		current_hp -= post_mit_dmg
 	damage_taken.emit(self, post_mit_dmg)
 	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]	
