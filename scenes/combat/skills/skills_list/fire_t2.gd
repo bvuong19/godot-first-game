@@ -3,7 +3,6 @@ extends CombatSkill
 var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.tscn")
 
 func play_skill(details : Dictionary) -> void:
-	print('playing skill uwu')
 	var user : CombatEntity = details.entity
 	var target_is_enemy = not user.is_enemy
 	if (user.apply_skill_cost(self)):

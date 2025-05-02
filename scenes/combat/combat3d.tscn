@@ -52,14 +52,21 @@ mesh = SubResource("PlaneMesh_exykq")
 [node name="combatants" type="Node" parent="."]
 
 [node name="player1" parent="combatants" instance=ExtResource("3_hirq7")]
+atk = 20
+def = 10
+hp = 100
 is_enemy = false
 
 [node name="player2" parent="combatants" instance=ExtResource("3_hirq7")]
 x = 4
 y = 0
+atk = 20
+hp = 100
 is_enemy = false
 
 [node name="Entity" parent="combatants" instance=ExtResource("3_hirq7")]
+atk = 20
+hp = 40
 headSprite = ExtResource("4_xnbgp")
 battlefieldSprite = ExtResource("5_xfrb4")
 

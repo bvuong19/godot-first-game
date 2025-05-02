@@ -90,36 +90,51 @@ func process_event(event : Dictionary) -> void:
 			print(event.entity.name + " defends, raising their defense to " + str(entity.effective_stats.get('def', entity.def)) + "!")
 		Combat_Action.MOVE:
 			print(event.entity.name + " moves!")
-			event.entity.x = event.targetPosition[0]
-			event.entity.y = event.targetPosition[1]
+			event.entity.x = event.targetTile[0]
+			event.entity.y = event.targetTile[1]
 			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
 		Combat_Action.SKILL:
 			print(event.entity.name + " casts the %s skill!" % event['skillDetail'].skillName)
 			event.callback = _on_battle_anim_complete
 			event['skillDetail'].play_skill(event)
 			
+
+# signal onSelect(targetTile : Vector2, targetPosition : Vector3i, aoeTargetPositions : Array[Array], isEnemy : bool)
 # Called when grid selected. Provides the eventBuilder with the following fields:
-# targetPosition: the targeted position selected explicitly by the player cursor
-# targetTiles: targeted tiles covered by an AoE, if the player was targeting an AoE skill.
-# targetGridTiles: targeted tiles covered by an AoE, if the player was targeting an AoE skill.
-# is_enemy
-func _on_grid_selected(targetPosition : Vector2, targetTiles : Array[Vector2i], is_enemy : bool) -> void:
-	var properties = {'targetGridTiles': [], 'targetEntities' : [], 'targetPosition' : targetPosition, 'targetTiles': targetTiles}
+# targetTile - x/y coord of original tile
+# targetPosiiton - 3D grid coord of original tile
+# targetEntity - entiy at targeted tile, if it exists
+# aoeTargetPositions - aoe Target positions in range
+# aoeTargetEntities - aoe Targeted entities in range
+func _on_grid_selected(targetTile : Vector2i, targetPosition : Vector3i, aoeTargetPositions: Array, is_enemy : bool) -> void:
+	var properties = {'targetTile': targetTile, 'targetPosition' : targetPosition, 'aoeTargetPositions': aoeTargetPositions}
 	
-	for tile in targetTiles:
-		var tileEntity = getEntityAtPosition(tile.x, tile.y, is_enemy)	
-		if tileEntity: 
-			properties.targetEntities.append(tileEntity)
-		properties.targetGridTiles.append($battlefield.get_tile(tile.x,tile.y, is_enemy))
+	var targetRange = eventBuilder['skillDetail'].targetRange if eventBuilder.has('skillDetail') else null
+	if targetRange:
+		var targetEntities = []
+		var x = targetTile[0]
+		var y = targetTile[1]
+		var tilePositions : Array[Array] = []
+		var mask = targetRange.aoe
+		var orig_x = targetRange.origin[0]
+		var orig_y = targetRange.origin[1]
+		for i in range(len(mask)):
+			var col = []
+			for j in range(len(mask[0])):
+				var entityAtTile : CombatEntity = getEntityAtPosition(x+j-orig_x, y+i-orig_y, is_enemy)
+				col.append(entityAtTile)
+			targetEntities.append(col)
+		properties['aoeTargetEntities'] = targetEntities
 	
-	print("getting enemy at %s" % targetPosition)
-	var cursorEntity = getEntityAtPosition(targetPosition[0], targetPosition[1], is_enemy)
+	print("getting enemy at %s" % targetTile)
+	var cursorEntity = getEntityAtPosition(targetTile[0], targetTile[1], is_enemy)
 	print("found %s" % cursorEntity)
 	if cursorEntity:
 		properties['targetEntity'] = cursorEntity
-		
 	updateEventBuilder(properties)
-	
+
+
+
 func _on_grid_cancel() -> void:
 	eventBuilder = { 'entity': eventBuilder.entity }
 	$battlefield.refresh_selections()
@@ -196,6 +211,7 @@ func updateEventBuilder(properties: Dictionary) -> void:
 			else:
 				$battlefield.is_select_enemy = false
 				change_phase(TARGET)
+	print(eventBuilder)
 
 func change_phase(new_phase : int):
 	#	show and hide UI elements depending on phase of control flow

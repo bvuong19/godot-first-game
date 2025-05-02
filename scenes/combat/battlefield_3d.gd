@@ -3,21 +3,19 @@ extends Control
 const grid_w : int = 5
 const grid_h : int = 4
 
-
 var selected_entity = null
 var cursor_tile : Vector3i = Vector3i(0,0,0)
-@export var is_select_enemy = false
+var is_select_enemy = false
 var is_active = false
 
-
-signal onSelect(targetPosition : Vector2, targetTiles : Array[Vector2i], isEnemy : bool)
+# targetTiles and targetEntities takes the same shape as the range, or a scalar if there is no range.
+# godot type checking for matrices is hot stinky garbage so proceed with caution
+signal onSelect(targetTile : Vector2i, targetPosition : Vector3i, aoeTargetPositions : Array, isEnemy : bool)
 signal onCancel()
 var targetRange : SkillRange = null
 
 func _ready() -> void:
-	#$playergrid.set_cell_item(Vector3i(0,0,0),1)
 	grab_focus()
-
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -25,7 +23,6 @@ func _process(delta: float) -> void:
 		if Input.is_action_just_pressed("ui_cancel"):
 			onCancel.emit()
 			return
-			
 		var selected_grid : GridMap = $enemygrid if is_select_enemy else $playergrid
 		selected_grid.set_cell_item(cursor_tile,1)
 		var new_tile : Vector3i
@@ -33,48 +30,51 @@ func _process(delta: float) -> void:
 		if new_tile != cursor_tile:
 			reset_cursor()
 			cursor_tile = new_tile
-			
-			#var tiles = selected_grid.get_tiles_from_range(cursor_tile[0], cursor_tile[1], targetRange)
-			#for tile in tiles:
-				#if tile:
-					#tile._animate_select()
-			selected_grid.set_cell_item(cursor_tile,1)
+			print("current cursor tile is %s" % new_tile)
+			var tiles = get_tiles_from_range(new_tile[0], new_tile[2], targetRange)
+			for tile in tiles:
+				selected_grid.set_cell_item(tile, 1)
 		if Input.is_action_just_pressed("confirm"):
 			selected_grid.set_cell_item(cursor_tile,2)
-			onSelect.emit(Vector2i(cursor_tile[0],cursor_tile[2]), get_tile_coords_from_range(cursor_tile[0], cursor_tile[2], targetRange), is_select_enemy)
+			var targetTile = cursor_tile
+			var targetPosition = get_global_position_from_grid(cursor_tile[0], cursor_tile[2], is_select_enemy)
+			var aoeTargetPositions : Array = get_tile_positions_from_range(cursor_tile[0], cursor_tile[2], targetRange) if targetRange else []
+			onSelect.emit(Vector2i(targetTile[0], targetTile[2]), targetPosition, aoeTargetPositions, is_select_enemy)
 
 #TODO implement this
-
-#
-func get_tiles_from_range(x : int, y : int, range: SkillRange) -> Array[Vector2i]:
+func get_tiles_from_range(x : int, y : int, range: SkillRange) -> Array[Vector3i]:
 	if is_invalid_coordinate(x, y):
 		return []
 	elif not range:
-		return [Vector2i(x,y)]
+		return [Vector3i(x,0,y)]
 	else:
-		var tiles : Array[Vector2i] = []
+		var tiles : Array[Vector3i] = []
 		var mask = range.aoe
 		var orig_x = range.origin[0]
 		var orig_y = range.origin[1]
 		for i in range(len(mask)):
 			for j in range(len(mask[0])):
 				if mask[i][j] and not is_invalid_coordinate(x+j-orig_x,y+i-orig_y):
-					tiles.append(Vector2i(x+j-orig_x,y+i-orig_y))
+					tiles.append(Vector3i(x+j-orig_x,0,y+i-orig_y))
 		return tiles
-		
-func get_tile_coords_from_range(x : int, y : int, range: SkillRange) -> Array[Vector2i]:
+
+func get_tile_positions_from_range(x : int, y : int, range: SkillRange) -> Array:
 	if is_invalid_coordinate(x, y) or not range:
+		print("get_tile_positions_from_range was called without a range")
 		return []
 	else:
-		var tiles : Array[Vector2i] = []
+		var tilePositions : Array = []
 		var mask = range.aoe
 		var orig_x = range.origin[0]
 		var orig_y = range.origin[1]
 		for i in range(len(mask)):
+			var col = []
 			for j in range(len(mask[0])):
-				if mask[i][j] and not is_invalid_coordinate(x+j-orig_x,y+i-orig_y):
-					tiles.append(Vector2i(x+j-orig_x,y+i-orig_y))
-		return tiles
+				#if mask[i][j] and not is_invalid_coordinate(x+j-orig_x,y+i-orig_y):
+					col.append(get_global_position_from_grid(x+j-orig_x, y+i-orig_y, is_select_enemy))
+			tilePositions.append(col)
+		#print(tilePositions)
+		return tilePositions
 		
 func is_invalid_coordinate(x : int, y : int):
 	return x >= grid_w or y >= grid_h or x < 0 or y < 0
@@ -108,13 +108,16 @@ func add_entity(entity: CombatEntity) -> void:
 	if entity.is_enemy:
 		grid = $enemygrid
 	var entity_position = grid.map_to_local(Vector3i(entity.x,0.2,entity.y))
-	#print('entity position\t\t%s' % entity_position)
-	#print('grid position\t\t%s' % grid.position)
 	entity.set_position(entity_position + grid.position)
 #
 func highlight_entity(entity: CombatEntity) -> void:
 	var grid : GridMap = $enemygrid if entity.is_enemy else $playergrid
 	grid.set_cell_item(Vector3i(entity.x,0,entity.y),2)
+
+func get_global_position_from_grid(x : int, z : int, is_enemy : bool) -> Vector3:
+	var grid : GridMap =  %enemygrid if is_enemy else %playergrid
+	return grid.map_to_local(Vector3i(x, 0, z)) + grid.position
+
 
 func set_active(active : bool) -> void:
 	is_active = active
@@ -144,7 +147,7 @@ func animate_entity_attack(char : Node3D, target : Node3D, callback : Callable) 
 	tween.chain().tween_property(char, "rotation", char.rotation, 0.2)
 	tween.chain().tween_property(char, "position:x", pos[0], 0.5)
 	tween.tween_property(char, "position:z", pos[2], 0.5)
-	tween.tween_callback(callback)
+	tween.tween_callback(callback)	
 	
 	var tween_jump = char.create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD)
 	tween_jump.set_ease(Tween.EASE_OUT)
@@ -154,9 +157,13 @@ func animate_entity_attack(char : Node3D, target : Node3D, callback : Callable) 
 	
 func animate_entity_move(entity : CombatEntity, x : int, y : int, callback) -> void:
 	var entity_pos  = Vector2(entity.position[0], entity.position[1]) #index into array to avoid copying array reference
+	print("$$$WTF")
+	print(entity_pos)
 	var grid = $playergrid
+	#var target_pos = get_global_position_from_grid(x, y, false)
 	var target_pos = grid.map_to_local(Vector3i(x,0.2,y)) + grid.position
 	var tween = entity.create_tween()
+	print(target_pos)
 	tween.tween_property(entity, "position", target_pos, 0.5).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(callback)
 
