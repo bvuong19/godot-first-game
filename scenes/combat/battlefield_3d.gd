@@ -147,7 +147,7 @@ func animate_entity_attack(char : Node3D, target : Node3D, callback : Callable) 
 	tween.chain().tween_property(char, "rotation", char.rotation, 0.2)
 	tween.chain().tween_property(char, "position:x", pos[0], 0.5)
 	tween.tween_property(char, "position:z", pos[2], 0.5)
-	tween.tween_callback(callback)	
+	tween.chain().tween_callback(callback)
 	
 	var tween_jump = char.create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD)
 	tween_jump.set_ease(Tween.EASE_OUT)
@@ -157,13 +157,10 @@ func animate_entity_attack(char : Node3D, target : Node3D, callback : Callable) 
 	
 func animate_entity_move(entity : CombatEntity, x : int, y : int, callback) -> void:
 	var entity_pos  = Vector2(entity.position[0], entity.position[1]) #index into array to avoid copying array reference
-	print("$$$WTF")
-	print(entity_pos)
 	var grid = $playergrid
 	#var target_pos = get_global_position_from_grid(x, y, false)
 	var target_pos = grid.map_to_local(Vector3i(x,0.2,y)) + grid.position
 	var tween = entity.create_tween()
-	print(target_pos)
 	tween.tween_property(entity, "position", target_pos, 0.5).set_trans(Tween.TRANS_CUBIC)
 	tween.tween_callback(callback)
 

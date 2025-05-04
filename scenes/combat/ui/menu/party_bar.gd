@@ -21,12 +21,24 @@ func setEntity(x : CombatEntity) -> void:
 	%sprite.texture = entity.headSprite
 	updateHP()
 
+func refresh() -> void:
+	updateHP()
+	updateMP()
+
 func updateHP() -> void:
 	if entity:
 		%hplabel.text = "%d / %d" % [entity.current_hp, entity.hp]
 		%hpbar.value = entity.current_hp
 		%hpbar.min_value = 0
 		%hpbar.max_value = entity.hp
+
+func updateMP() -> void:
+	if entity:
+		%hplabel.text = "%d / %d" % [entity.current_hp, entity.hp]
+		%hpbar.value = entity.current_hp
+		%hpbar.min_value = 0
+		%hpbar.max_value = entity.hp
+
 
 func set_active(active : bool) -> void:
 	if active:

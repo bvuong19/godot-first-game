@@ -61,6 +61,7 @@ text_direction = 2
 
 [node name="etcbar" type="ProgressBar" parent="Control"]
 unique_name_in_owner = true
+visible = false
 custom_minimum_size = Vector2(110, 6)
 layout_mode = 0
 offset_left = 46.0
@@ -73,6 +74,7 @@ value = 60.0
 show_percentage = false
 
 [node name="label" type="RichTextLabel" parent="Control/etcbar"]
+visible = false
 layout_mode = 0
 offset_left = 20.0
 offset_top = -9.0
@@ -86,7 +88,7 @@ text = "[b]100"
 fit_content = true
 text_direction = 2
 
-[node name="manabar" type="ProgressBar" parent="Control"]
+[node name="mpbar" type="ProgressBar" parent="Control"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(110, 6)
 layout_mode = 0
@@ -99,7 +101,7 @@ theme_type_variation = &"manabar"
 value = 60.0
 show_percentage = false
 
-[node name="label" type="RichTextLabel" parent="Control/manabar"]
+[node name="label" type="RichTextLabel" parent="Control/mpbar"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = -9.0

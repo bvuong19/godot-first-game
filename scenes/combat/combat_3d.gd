@@ -270,6 +270,7 @@ func _ready() -> void:
 
 	for entity in $combatants.get_children():
 		entity.damage_taken.connect(_on_damage_taken)
+
 		entity.entity_death.connect(_on_entity_death)
 	
 	get_players()[0].current_mp = 25

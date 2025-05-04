@@ -24,7 +24,7 @@ class_name CombatEntity
 	set(v): 
 		battlefieldSprite = v
 		%sprite.texture = v
-		
+
 @export var is_enemy = true
 @export var actions = [Combat_Action.ATTACK,Combat_Action.FLEE,Combat_Action.ITEM,Combat_Action.MOVE,Combat_Action.DEFEND,Combat_Action.SKILL]
 

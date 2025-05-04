@@ -10,12 +10,31 @@ func _ready() -> void:
 	set_active(false)
 	pass # Replace with function body.
 
+func refresh() -> void:
+	%nametag.set_text("[b][i]%s" % entity.name)
+	updateHP()
+	updateMP()
+
+func updateMP() -> void:
+	if entity:
+		if entity.mp > 0:
+			%mpbar/label.set_text("[b]" + str(entity.mp) + " / " + str(entity.current_mp))
+			%mpbar.value = entity.current_mp
+			%mpbar.min_value = 0
+			%mpbar.max_value = entity.mp
+		else:
+			%mpbar.hide()
+
+
 func updateHP() -> void:
 	if entity:
-		%hplabel.text = "%d / %d" % [entity.current_hp, entity.hp]
 		%hpbar.value = entity.current_hp
 		%hpbar.min_value = 0
 		%hpbar.max_value = entity.hp
+
+		var label : String = "[b]" + str(entity.hp) + " / " + str(entity.current_hp)
+		%hpbar/label.set_text(label)
+		print(label)
 
 func set_active(active : bool) -> void:
 	pass
@@ -33,13 +52,7 @@ func set_active(active : bool) -> void:
 static func from_Entity(entity : CombatEntity) -> PartyBar:
 	var node : PartyBar = scene.instantiate()
 	node.entity = entity
-	node.get_node("%nametag").text = '[b][i]%s' % entity.name
-	node.get_node("%hpbar").max_value = entity.hp
-	node.get_node("%hpbar").value = entity.current_hp
-	node.get_node("%hpbar/label").text = '[b]%s' % entity.current_hp
-	node.get_node("%manabar").max_value = entity.mp
-	node.get_node("%manabar").value = entity.current_mp
-	node.get_node("%manabar/label").text = '[b]%s' % entity.current_mp
+	node.refresh()
 	#node.get_node("%sprite").texture = entity.headSprite
 	#entity.on_changed.connect(update_ui)
 	node.scale = Vector2(0.5,0.5)
