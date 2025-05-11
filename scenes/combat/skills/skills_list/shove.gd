@@ -2,7 +2,7 @@ extends CombatAction
 
 var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.tscn")
 
-func play_skill(details : Dictionary) -> void:
+func play_action(details : Dictionary) -> void:
 	var entity : CombatEntity = details.entity
 	var target : CombatEntity = details.targetEntity
 	if entity.apply_skill_cost(self):
@@ -63,6 +63,7 @@ func apply_effect(details: Dictionary) -> void:
 
 func _init() -> void:
 	skillName = 'Shove'
+	actionType = CombatDetail.ACTION_TYPE.SKILL
 	targetType = CombatSkillDetail.TARGET_TYPE.ENEMY
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT
 	targetRange = preload("res://scenes/combat/skills/range/pierce_two.tres")

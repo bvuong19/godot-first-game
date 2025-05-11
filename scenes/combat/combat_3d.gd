@@ -39,7 +39,7 @@ func process_turn_queue() -> void:
 			event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
 		# TODO: more support for enemy actions. Currently we just let them attack.
 		else:
-			event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.ATTACK, 'targetEntity': get_players().front()})
+			event_queue.append({'entity': e, 'action': preload("res://scenes/combat/skills/basic_actions_list/attack.gd").new(), 'targetEntity': get_players().front()})
 		change_phase(BATTLING)
 	else:
 		# start player turn
@@ -74,12 +74,11 @@ func _on_battle_anim_complete() -> void:
 func process_event(event : Dictionary) -> void:
 	event['battlefield'] = $battlefield
 	animation_locked = true
-	match event.type:
+	match event.action.actionType:
 		CombatDetail.ACTION_TYPE.ATTACK:
-			# TODO: add animation callbcaks
 			print(event.entity.name + " attacks " + event.targetEntity.name + " with an ATK of " + str(event.entity.atk) + "!")
-			$battlefield.animate_entity_attack(event.entity, event.targetEntity, _on_battle_anim_complete)
-			event.targetEntity.apply_damage(event.entity.atk, CombatDetail.DAMAGE_TYPE.PHYSICAL)
+			event.callback = _on_battle_anim_complete
+			event['action'].play_action(event)
 		CombatDetail.ACTION_TYPE.DEFEND:
 			var entity : CombatEntity = event.entity
 			var guard_status = preload('res://scenes/combat/status/status_list/status_guarding.gd').new()
@@ -94,9 +93,9 @@ func process_event(event : Dictionary) -> void:
 			event.entity.y = event.targetTile[1]
 			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
 		CombatDetail.ACTION_TYPE.SKILL:
-			print(event.entity.name + " casts the %s skill!" % event['skillDetail'].skillName)
+			print(event.entity.name + " casts the %s skill!" % event['action'].skillName)
 			event.callback = _on_battle_anim_complete
-			event['skillDetail'].play_skill(event)
+			event['action'].play_action(event)
 			
 
 # signal onSelect(targetTile : Vector2, targetPosition : Vector3i, aoeTargetPositions : Array[Array], isEnemy : bool)
@@ -109,7 +108,7 @@ func process_event(event : Dictionary) -> void:
 func _on_grid_selected(targetTile : Vector2i, targetPosition : Vector3i, aoeTargetPositions: Array, is_enemy : bool) -> void:
 	var properties = {'targetTile': targetTile, 'targetPosition' : targetPosition, 'aoeTargetPositions': aoeTargetPositions}
 	
-	var targetRange = eventBuilder['skillDetail'].targetRange if eventBuilder.has('skillDetail') else null
+	var targetRange = eventBuilder['action'].targetRange if eventBuilder.has('action') else null
 	if targetRange:
 		var targetEntities = []
 		var x = targetTile[0]
@@ -157,11 +156,11 @@ func updateEventBuilder(properties: Dictionary) -> void:
 	if not eventBuilder.has('entity'):
 		return
 	$battlefield.highlight_entity(eventBuilder['entity'])
-	if not eventBuilder.has('type'):
+	if not eventBuilder.has('action'):
 		change_phase(TURNSTART)
 		return
-		
-	match eventBuilder['type']:
+	
+	match eventBuilder['action'].actionType:
 		CombatDetail.ACTION_TYPE.ATTACK:
 			if eventBuilder.has('targetEntity') and eventBuilder['targetEntity']:
 				event_queue.append(eventBuilder)
@@ -172,7 +171,7 @@ func updateEventBuilder(properties: Dictionary) -> void:
 		CombatDetail.ACTION_TYPE.SKILL:
 			# should check targeting type.
 			# 1: does not need targeting
-			var skillDetail : CombatAction = eventBuilder['skillDetail']
+			var skillDetail : CombatAction = eventBuilder['action']
 			if (skillDetail.targetType in [CombatSkillDetail.TARGET_TYPE.NONE, CombatSkillDetail.TARGET_TYPE.SELF, CombatSkillDetail.TARGET_TYPE.GLOBAL]):
 				event_queue.append(eventBuilder)
 				change_phase(BATTLING)

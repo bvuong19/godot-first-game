@@ -2,7 +2,7 @@ extends CombatAction
 
 var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.tscn")
 
-func play_skill(details : Dictionary) -> void:
+func play_action(details : Dictionary) -> void:
 	print("casting uwu")
 	var user : CombatEntity = details.entity
 	var target_is_enemy = not user.is_enemy
@@ -44,6 +44,7 @@ func apply_effect(details: Dictionary) -> void:
 func _init() -> void:
 	skillName = "Fira"
 	targetType = CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE
+	actionType = CombatDetail.ACTION_TYPE.SKILL
 	#targetRange = preload("res://scenes/combat/skills/range/pierce_two.tres")
 	targetRange = preload("res://scenes/combat/skills/range/small_plus.tres")
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT

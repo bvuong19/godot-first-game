@@ -95,7 +95,7 @@ func process_event(event : Dictionary) -> void:
 		CombatDetail.ACTION_TYPE.SKILL:
 			print(event.entity.name + " casts the %s skill!" % event['skillDetail'].skillName)
 			event.callback = _on_battle_anim_complete
-			event['skillDetail'].play_skill(event)
+			event['skillDetail'].play_action(event)
 			
 # Called when grid selected. Provides the eventBuilder with the following fields:
 # targetPosition: the targeted position selected explicitly by the player cursor

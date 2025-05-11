@@ -17,7 +17,7 @@ enum {
 }
 
 var skillCallBack = func(skill : CombatAction):
-	userInput.emit({'entity': entity, 'type' : CombatDetail.ACTION_TYPE.SKILL, 'skillDetail' : skill})
+	userInput.emit({'entity': entity, 'action' : skill})
 
 
 func initialize_menu(entity : CombatEntity):
@@ -84,8 +84,11 @@ func _process(delta: float) -> void:
 				%itemmenucontainer.hide()
 				reactivate_action_select(%ITEM)
 
+#func _on_attack_pressed() -> void:
+	#userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.ATTACK})
+	
 func _on_attack_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.ATTACK})
+	userInput.emit({'entity': entity, 'action': preload("res://scenes/combat/skills/basic_actions_list/attack.gd").new()})
 
 func _on_skill_pressed() -> void:
 	deactivate_action_select()
