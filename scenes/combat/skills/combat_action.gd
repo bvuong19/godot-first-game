@@ -1,5 +1,5 @@
 extends Resource
-class_name CombatSkill
+class_name CombatAction
 
 # what do combat skills need?
 @export var skillName : String = "missingName"

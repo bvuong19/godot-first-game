@@ -1,4 +1,4 @@
-extends CombatSkill
+extends CombatAction
 
 var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.tscn")
 

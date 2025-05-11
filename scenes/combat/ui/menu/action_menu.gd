@@ -16,8 +16,8 @@ enum {
 	ITEM
 }
 
-var skillCallBack = func(skill : CombatSkill):
-	userInput.emit({'entity': entity, 'type' : Combat_Action.SKILL, 'skillDetail' : skill})
+var skillCallBack = func(skill : CombatAction):
+	userInput.emit({'entity': entity, 'type' : Combat_Action_Type.SKILL, 'skillDetail' : skill})
 
 
 func initialize_menu(entity : CombatEntity):
@@ -64,12 +64,12 @@ func reactivate_action_select(selectedButton : Button = %ATTACK):
 
 func _ready() -> void:
 	active_menu = ACTION
-	action_buttons[Combat_Action.ATTACK] = %ATTACK
-	action_buttons[Combat_Action.SKILL] = %SKILL
-	action_buttons[Combat_Action.DEFEND] = %DEFEND
-	action_buttons[Combat_Action.MOVE] = %MOVE
-	action_buttons[Combat_Action.ITEM] = %ITEM
-	action_buttons[Combat_Action.FLEE] = %FLEE
+	action_buttons[Combat_Action_Type.ATTACK] = %ATTACK
+	action_buttons[Combat_Action_Type.SKILL] = %SKILL
+	action_buttons[Combat_Action_Type.DEFEND] = %DEFEND
+	action_buttons[Combat_Action_Type.MOVE] = %MOVE
+	action_buttons[Combat_Action_Type.ITEM] = %ITEM
+	action_buttons[Combat_Action_Type.FLEE] = %FLEE
 	#action_buttons = [%ATTACK, %SKILL, %DEFEND, %MOVE, %ITEM, %FLEE]
 	reactivate_action_select()
 
@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 				reactivate_action_select(%ITEM)
 
 func _on_attack_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action.ATTACK})
+	userInput.emit({'entity': entity, 'type': Combat_Action_Type.ATTACK})
 
 func _on_skill_pressed() -> void:
 	deactivate_action_select()
@@ -98,10 +98,10 @@ func _on_skill_pressed() -> void:
 	active_menu = SKILL
 
 func _on_defend_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action.DEFEND})
+	userInput.emit({'entity': entity, 'type': Combat_Action_Type.DEFEND})
 
 func _on_move_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action.MOVE})
+	userInput.emit({'entity': entity, 'type': Combat_Action_Type.MOVE})
 
 func _on_item_pressed() -> void:
 	deactivate_action_select()
@@ -111,4 +111,4 @@ func _on_item_pressed() -> void:
 	active_menu = ITEM
 
 func _on_flee_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action.FLEE})
+	userInput.emit({'entity': entity, 'type': Combat_Action_Type.FLEE})

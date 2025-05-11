@@ -4,7 +4,7 @@ class_name SilencedDebuffStatus
 
 func apply_effect(entity : CombatEntity) -> void:
 	entity.effective_stats.actions = entity.effective_stats.get('actions', entity.actions)
-	entity.effective_stats.actions.erase(Combat_Action.SKILL)
+	entity.effective_stats.actions.erase(Combat_Action_Type.SKILL)
 
 func _init() -> void:
 	status_name = "Silenced"

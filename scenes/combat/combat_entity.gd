@@ -26,10 +26,10 @@ class_name CombatEntity
 		%sprite.texture = v
 
 @export var is_enemy = true
-@export var actions = [Combat_Action.ATTACK,Combat_Action.FLEE,Combat_Action.ITEM,Combat_Action.MOVE,Combat_Action.DEFEND,Combat_Action.SKILL]
+@export var actions = [Combat_Action_Type.ATTACK,Combat_Action_Type.FLEE,Combat_Action_Type.ITEM,Combat_Action_Type.MOVE,Combat_Action_Type.DEFEND,Combat_Action_Type.SKILL]
 
 var effective_stats : Dictionary = {}
-var skills : Array[CombatSkill] = []
+var skills : Array[CombatAction] = []
 var effects : Array[CombatStatusEffect] = []
 
 # other
@@ -84,7 +84,7 @@ func on_turn_start() -> void:
 	for effect in expired:
 		effects.erase(effect)
 
-func apply_skill_cost(skill : CombatSkill) -> bool:
+func apply_skill_cost(skill : CombatAction) -> bool:
 	if not skill.skillCost or skill.skillCostType == CombatSkillDetail.COST_TYPE.NONE:
 		return true
 	elif skill.skillCostType == CombatSkillDetail.COST_TYPE.MP and current_mp > skill.skillCost:

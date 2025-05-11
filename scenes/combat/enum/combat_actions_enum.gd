@@ -1,4 +1,4 @@
-class_name Combat_Action
+class_name Combat_Action_Type
 enum {
 	ATTACK,
 	MOVE,

@@ -2,7 +2,7 @@ extends Button
 
 class_name SkillMenuItem
 
-var skill : CombatSkill
+var skill : CombatAction
 var pressed_color : Color
 var default_color : Color
 var disabled_color : Color
@@ -29,7 +29,7 @@ func refresh_label(color : Color) -> void:
 func _process(delta: float) -> void:
 	pass
 
-static func from_skill(skill : CombatSkill, disabled : bool = false) -> SkillMenuItem:
+static func from_skill(skill : CombatAction, disabled : bool = false) -> SkillMenuItem:
 	var skillButton = scene.instantiate()
 	skillButton.skill = skill
 	skillButton.text = skill.skillName
