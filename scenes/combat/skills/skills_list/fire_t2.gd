@@ -44,6 +44,7 @@ func apply_effect(details: Dictionary) -> void:
 func _init() -> void:
 	skillName = "Fira"
 	targetType = CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE
+	#targetRange = preload("res://scenes/combat/skills/range/pierce_two.tres")
 	targetRange = preload("res://scenes/combat/skills/range/small_plus.tres")
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT
 	skillCostType = CombatSkillDetail.COST_TYPE.MP

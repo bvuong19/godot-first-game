@@ -49,7 +49,7 @@ func apply_damage(dmg: float, dmg_type : Combat_Detail.DAMAGE_TYPE) -> void:
 		print("%s takes %d damage!" % [name, post_mit_dmg])
 		current_hp -= post_mit_dmg
 	damage_taken.emit(self, post_mit_dmg)
-	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]	
+	%HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]	
 	if (current_hp <= 0):
 		print(name + " has been defeated!")
 		entity_death.emit(self)
@@ -65,7 +65,7 @@ func apply_heal(dmg: float) -> void:
 	current_hp = min(hp, current_hp + dmg)
 	print("%s was healed for %d damage, now has %d HP" % [name, amount_healed, current_hp])
 	damage_taken.emit(self, amount_healed * -1)
-	$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
+	%HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 
 # when the unit's turn starts, apply lingering effects and tick them down
 func on_turn_start() -> void:
@@ -104,11 +104,12 @@ func add_buff_bar(effect : CombatStatusEffect) -> void:
 	buffbaritem.show()
 	%buffbar.add_child(buffbaritem)
 
+
 func _ready() -> void:
 	$battlefieldSprite/sprite.texture = battlefieldSprite
 	current_hp = hp 
 	current_mp = mp
-	#$battlefieldSprite/HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
+	%HPLabel.text = "%s/%s" % [str(current_hp), str(hp)]
 
 func _process(delta: float) -> void:
 	pass

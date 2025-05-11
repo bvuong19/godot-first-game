@@ -1,5 +1,7 @@
 extends Control
 
+class_name Battlefield3D
+
 const grid_w : int = 5
 const grid_h : int = 4
 

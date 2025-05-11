@@ -282,6 +282,8 @@ func _ready() -> void:
 		entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t1.gd").new())
 		entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t2.gd").new())
 		entity.skills.append(preload("res://scenes/combat/skills/skills_list/silence.gd").new())
+		entity.skills.append(preload("res://scenes/combat/skills/skills_list/shove.gd").new())
+
 		
 	print("...and enemy characters: ")
 	for entity in get_enemies():
