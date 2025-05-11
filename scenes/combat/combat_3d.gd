@@ -33,7 +33,6 @@ func process_turn_queue() -> void:
 	e.on_turn_start()
 	turn_queue_updated.emit(turn_queue)
 	if e.is_enemy:
-		print("%s attacks." % e.name)
 		if debug_add_event:
 			debug_add_event = false
 			event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
@@ -71,32 +70,13 @@ func _on_battle_anim_complete() -> void:
 		turn_queue.pop_front()
 		process_turn_queue()
 
+# process an event from the queue
 func process_event(event : Dictionary) -> void:
+	#TODO: this feels weird. maybe needs a change.
 	event['battlefield'] = $battlefield
 	animation_locked = true
-	match event.action.actionType:
-		CombatDetail.ACTION_TYPE.ATTACK:
-			print(event.entity.name + " attacks " + event.targetEntity.name + " with an ATK of " + str(event.entity.atk) + "!")
-			event.callback = _on_battle_anim_complete
-			event['action'].play_action(event)
-		CombatDetail.ACTION_TYPE.DEFEND:
-			var entity : CombatEntity = event.entity
-			var guard_status = preload('res://scenes/combat/status/status_list/status_guarding.gd').new()
-			print(guard_status)
-			entity.apply_status(guard_status, 2)
-			guard_status.apply_effect(entity)
-			$battlefield.animate_entity_hop(event.entity, _on_battle_anim_complete)
-			print(event.entity.name + " defends, raising their defense to " + str(entity.effective_stats.get('def', entity.def)) + "!")
-		CombatDetail.ACTION_TYPE.MOVE:
-			print(event.entity.name + " moves!")
-			event.entity.x = event.targetTile[0]
-			event.entity.y = event.targetTile[1]
-			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
-		CombatDetail.ACTION_TYPE.SKILL:
-			print(event.entity.name + " casts the %s skill!" % event['action'].skillName)
-			event.callback = _on_battle_anim_complete
-			event['action'].play_action(event)
-			
+	event.callback = _on_battle_anim_complete
+	event['action'].play_action(event)
 
 # signal onSelect(targetTile : Vector2, targetPosition : Vector3i, aoeTargetPositions : Array[Array], isEnemy : bool)
 # Called when grid selected. Provides the eventBuilder with the following fields:
@@ -210,7 +190,6 @@ func updateEventBuilder(properties: Dictionary) -> void:
 			else:
 				$battlefield.is_select_enemy = false
 				change_phase(TARGET)
-	print(eventBuilder)
 
 func change_phase(new_phase : int):
 	#	show and hide UI elements depending on phase of control flow

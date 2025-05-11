@@ -83,9 +83,6 @@ func _process(delta: float) -> void:
 			ITEM:
 				%itemmenucontainer.hide()
 				reactivate_action_select(%ITEM)
-
-#func _on_attack_pressed() -> void:
-	#userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.ATTACK})
 	
 func _on_attack_pressed() -> void:
 	userInput.emit({'entity': entity, 'action': preload("res://scenes/combat/skills/basic_actions_list/attack.gd").new()})
@@ -101,10 +98,10 @@ func _on_skill_pressed() -> void:
 	active_menu = SKILL
 
 func _on_defend_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.DEFEND})
+	userInput.emit({'entity': entity, 'action' : preload("res://scenes/combat/skills/basic_actions_list/defend.gd").new()})
 
 func _on_move_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.MOVE})
+	userInput.emit({'entity': entity, 'action': preload("res://scenes/combat/skills/basic_actions_list/move.gd").new()})
 
 func _on_item_pressed() -> void:
 	deactivate_action_select()

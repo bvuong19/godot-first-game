@@ -28,6 +28,7 @@ func apply_effect(details: Dictionary) -> void:
 	var callback : Callable = details.callback
 	var entity : CombatEntity = details.entity
 	var target : CombatEntity = details.targetEntity
+	print(entity.name + " attacks " + target.name + " with an ATK of " + str(entity.atk) + "!")
 	target.apply_damage(entity.atk, CombatDetail.DAMAGE_TYPE.PHYSICAL)
 	callback.call()
 
