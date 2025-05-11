@@ -83,6 +83,7 @@ offset_bottom = 40.0
 script = ExtResource("2_s38ri")
 
 [node name="PanelContainer" type="PanelContainer" parent="battlefieldSprite/uiAnchor/unitUI"]
+layout_mode = 0
 offset_top = 12.0
 offset_bottom = 24.0
 size_flags_horizontal = 0
@@ -97,6 +98,7 @@ metadata/_edit_use_anchors_ = true
 [node name="HPLabel" type="Label" parent="battlefieldSprite/uiAnchor/unitUI"]
 unique_name_in_owner = true
 z_index = 2
+layout_mode = 0
 offset_left = 2.0
 offset_right = 38.0
 offset_bottom = 14.0

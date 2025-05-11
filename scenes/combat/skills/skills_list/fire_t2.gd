@@ -38,7 +38,7 @@ func apply_effect(details: Dictionary) -> void:
 	var targets = utils.flatten(details.aoeTargetEntities)
 	for target in targets:
 		if target:
-			target.apply_damage(user.atk * 1.5, Combat_Detail.DAMAGE_TYPE.MAGIC)
+			target.apply_damage(user.atk * 1.5, CombatDetail.DAMAGE_TYPE.MAGIC)
 	callback.call()
 
 func _init() -> void:

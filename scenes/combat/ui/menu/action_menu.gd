@@ -17,7 +17,7 @@ enum {
 }
 
 var skillCallBack = func(skill : CombatAction):
-	userInput.emit({'entity': entity, 'type' : Combat_Action_Type.SKILL, 'skillDetail' : skill})
+	userInput.emit({'entity': entity, 'type' : CombatDetail.ACTION_TYPE.SKILL, 'skillDetail' : skill})
 
 
 func initialize_menu(entity : CombatEntity):
@@ -64,12 +64,12 @@ func reactivate_action_select(selectedButton : Button = %ATTACK):
 
 func _ready() -> void:
 	active_menu = ACTION
-	action_buttons[Combat_Action_Type.ATTACK] = %ATTACK
-	action_buttons[Combat_Action_Type.SKILL] = %SKILL
-	action_buttons[Combat_Action_Type.DEFEND] = %DEFEND
-	action_buttons[Combat_Action_Type.MOVE] = %MOVE
-	action_buttons[Combat_Action_Type.ITEM] = %ITEM
-	action_buttons[Combat_Action_Type.FLEE] = %FLEE
+	action_buttons[CombatDetail.ACTION_TYPE.ATTACK] = %ATTACK
+	action_buttons[CombatDetail.ACTION_TYPE.SKILL] = %SKILL
+	action_buttons[CombatDetail.ACTION_TYPE.DEFEND] = %DEFEND
+	action_buttons[CombatDetail.ACTION_TYPE.MOVE] = %MOVE
+	action_buttons[CombatDetail.ACTION_TYPE.ITEM] = %ITEM
+	action_buttons[CombatDetail.ACTION_TYPE.FLEE] = %FLEE
 	#action_buttons = [%ATTACK, %SKILL, %DEFEND, %MOVE, %ITEM, %FLEE]
 	reactivate_action_select()
 
@@ -85,7 +85,7 @@ func _process(delta: float) -> void:
 				reactivate_action_select(%ITEM)
 
 func _on_attack_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action_Type.ATTACK})
+	userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.ATTACK})
 
 func _on_skill_pressed() -> void:
 	deactivate_action_select()
@@ -98,10 +98,10 @@ func _on_skill_pressed() -> void:
 	active_menu = SKILL
 
 func _on_defend_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action_Type.DEFEND})
+	userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.DEFEND})
 
 func _on_move_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action_Type.MOVE})
+	userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.MOVE})
 
 func _on_item_pressed() -> void:
 	deactivate_action_select()
@@ -111,4 +111,4 @@ func _on_item_pressed() -> void:
 	active_menu = ITEM
 
 func _on_flee_pressed() -> void:
-	userInput.emit({'entity': entity, 'type': Combat_Action_Type.FLEE})
+	userInput.emit({'entity': entity, 'type': CombatDetail.ACTION_TYPE.FLEE})

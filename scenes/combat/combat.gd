@@ -34,10 +34,10 @@ func process_turn_queue() -> void:
 		print("%s attacks." % e.name)
 		if debug_add_event:
 			debug_add_event = false
-			event_queue.append({'entity': e, 'type': Combat_Action_Type.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
+			event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
 		# TODO: more support for enemy actions. Currently we just let them attack.
 		else:
-			event_queue.append({'entity': e, 'type': Combat_Action_Type.ATTACK, 'targetEntity': get_players().front()})
+			event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.ATTACK, 'targetEntity': get_players().front()})
 		change_phase(BATTLING)
 	else:
 		# start player turn
@@ -74,12 +74,12 @@ func process_event(event : Dictionary) -> void:
 	event['battlefield'] = $battlefield
 	animation_locked = true
 	match event.type:
-		Combat_Action_Type.ATTACK:
+		CombatDetail.ACTION_TYPE.ATTACK:
 			# TODO: add animation callbcaks
 			print(event.entity.name + " attacks " + event.targetEntity.name + " with an ATK of " + str(event.entity.atk) + "!")
 			$battlefield.animate_entity_attack(event.entity, event.targetEntity, _on_battle_anim_complete)
-			event.targetEntity.apply_damage(event.entity.atk, Combat_Detail.DAMAGE_TYPE.PHYSICAL)
-		Combat_Action_Type.DEFEND:
+			event.targetEntity.apply_damage(event.entity.atk, CombatDetail.DAMAGE_TYPE.PHYSICAL)
+		CombatDetail.ACTION_TYPE.DEFEND:
 			var entity : CombatEntity = event.entity
 			var guard_status = preload('res://scenes/combat/status/status_list/status_guarding.gd').new()
 			print(guard_status)
@@ -87,12 +87,12 @@ func process_event(event : Dictionary) -> void:
 			guard_status.apply_effect(entity)
 			$battlefield.animate_entity_hop(event.entity, _on_battle_anim_complete)
 			print(event.entity.name + " defends, raising their defense to " + str(entity.effective_stats.get('def', entity.def)) + "!")
-		Combat_Action_Type.MOVE:
+		CombatDetail.ACTION_TYPE.MOVE:
 			print(event.entity.name + " moves!")
 			event.entity.x = event.targetPosition[0]
 			event.entity.y = event.targetPosition[1]
 			$battlefield.animate_entity_move(event.entity, event.entity.x, event.entity.y, _on_battle_anim_complete)
-		Combat_Action_Type.SKILL:
+		CombatDetail.ACTION_TYPE.SKILL:
 			print(event.entity.name + " casts the %s skill!" % event['skillDetail'].skillName)
 			event.callback = _on_battle_anim_complete
 			event['skillDetail'].play_skill(event)
@@ -146,14 +146,14 @@ func updateEventBuilder(properties: Dictionary) -> void:
 		return
 		
 	match eventBuilder['type']:
-		Combat_Action_Type.ATTACK:
+		CombatDetail.ACTION_TYPE.ATTACK:
 			if eventBuilder.has('targetEntity') and eventBuilder['targetEntity']:
 				event_queue.append(eventBuilder)
 				change_phase(BATTLING)
 			else:
 				$battlefield.is_select_enemy = true
 				change_phase(TARGET)
-		Combat_Action_Type.SKILL:
+		CombatDetail.ACTION_TYPE.SKILL:
 			# should check targeting type.
 			# 1: does not need targeting
 			var skillDetail : CombatAction = eventBuilder['skillDetail']
@@ -177,13 +177,13 @@ func updateEventBuilder(properties: Dictionary) -> void:
 					$battlefield.targetRange = skillDetail.targetRange
 				change_phase(TARGET)
 				
-		Combat_Action_Type.DEFEND:
+		CombatDetail.ACTION_TYPE.DEFEND:
 			change_phase(BATTLING)
 			event_queue.append(eventBuilder)
-		Combat_Action_Type.FLEE:
+		CombatDetail.ACTION_TYPE.FLEE:
 			change_phase(BATTLING)
 			event_queue.append(eventBuilder)
-		Combat_Action_Type.MOVE:
+		CombatDetail.ACTION_TYPE.MOVE:
 			if eventBuilder.has('targetPosition') and eventBuilder['targetPosition']:
 				# check valid location
 				if not getEntityAtPosition(eventBuilder['targetPosition'].x, eventBuilder['targetPosition'].y, eventBuilder['entity'].isEnemy):

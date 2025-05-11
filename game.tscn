@@ -64,6 +64,12 @@ battlefieldSprite = ExtResource("4_tyfko")
 [node name="sprite" parent="Combat/combatants/enemy1/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
 
+[node name="PanelContainer" parent="Combat/combatants/enemy1/battlefieldSprite/uiAnchor/unitUI" index="0"]
+layout_mode = 0
+
+[node name="HPLabel" parent="Combat/combatants/enemy1/battlefieldSprite/uiAnchor/unitUI" index="1"]
+layout_mode = 0
+
 [node name="enemy2" parent="Combat/combatants" index="4" instance=ExtResource("3_3e8fj")]
 atk = 20
 def = 20
@@ -73,6 +79,12 @@ battlefieldSprite = ExtResource("4_tyfko")
 
 [node name="sprite" parent="Combat/combatants/enemy2/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
+
+[node name="PanelContainer" parent="Combat/combatants/enemy2/battlefieldSprite/uiAnchor/unitUI" index="0"]
+layout_mode = 0
+
+[node name="HPLabel" parent="Combat/combatants/enemy2/battlefieldSprite/uiAnchor/unitUI" index="1"]
+layout_mode = 0
 
 [node name="enemy3" parent="Combat/combatants" index="5" instance=ExtResource("3_3e8fj")]
 x = 2
@@ -85,6 +97,12 @@ battlefieldSprite = ExtResource("4_tyfko")
 [node name="sprite" parent="Combat/combatants/enemy3/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
 
+[node name="PanelContainer" parent="Combat/combatants/enemy3/battlefieldSprite/uiAnchor/unitUI" index="0"]
+layout_mode = 0
+
+[node name="HPLabel" parent="Combat/combatants/enemy3/battlefieldSprite/uiAnchor/unitUI" index="1"]
+layout_mode = 0
+
 [node name="enemy4" parent="Combat/combatants" index="6" instance=ExtResource("3_3e8fj")]
 x = 0
 y = 0
@@ -96,6 +114,12 @@ battlefieldSprite = ExtResource("4_tyfko")
 
 [node name="sprite" parent="Combat/combatants/enemy4/battlefieldSprite" index="0"]
 texture = ExtResource("4_tyfko")
+
+[node name="PanelContainer" parent="Combat/combatants/enemy4/battlefieldSprite/uiAnchor/unitUI" index="0"]
+layout_mode = 0
+
+[node name="HPLabel" parent="Combat/combatants/enemy4/battlefieldSprite/uiAnchor/unitUI" index="1"]
+layout_mode = 0
 
 [editable path="Combat"]
 [editable path="Combat/combatants/enemy1"]

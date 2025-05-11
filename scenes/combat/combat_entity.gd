@@ -26,7 +26,7 @@ class_name CombatEntity
 		%sprite.texture = v
 
 @export var is_enemy = true
-@export var actions = [Combat_Action_Type.ATTACK,Combat_Action_Type.FLEE,Combat_Action_Type.ITEM,Combat_Action_Type.MOVE,Combat_Action_Type.DEFEND,Combat_Action_Type.SKILL]
+@export var actions = [CombatDetail.ACTION_TYPE.ATTACK,CombatDetail.ACTION_TYPE.FLEE,CombatDetail.ACTION_TYPE.ITEM,CombatDetail.ACTION_TYPE.MOVE,CombatDetail.ACTION_TYPE.DEFEND,CombatDetail.ACTION_TYPE.SKILL]
 
 var effective_stats : Dictionary = {}
 var skills : Array[CombatAction] = []
@@ -36,12 +36,12 @@ var effects : Array[CombatStatusEffect] = []
 signal damage_taken(Node2D, float)
 signal entity_death(CombatEntity)
 
-func apply_damage(dmg: float, dmg_type : Combat_Detail.DAMAGE_TYPE) -> void:
+func apply_damage(dmg: float, dmg_type : CombatDetail.DAMAGE_TYPE) -> void:
 	var post_mit_dmg : float
 	# determine post-mitigation dmg
-	if dmg_type == Combat_Detail.DAMAGE_TYPE.PHYSICAL:
+	if dmg_type == CombatDetail.DAMAGE_TYPE.PHYSICAL:
 		post_mit_dmg = dmg - effective_stats.get('def', def)
-	elif dmg_type == Combat_Detail.DAMAGE_TYPE.MAGIC:
+	elif dmg_type == CombatDetail.DAMAGE_TYPE.MAGIC:
 		post_mit_dmg = dmg * (1 - (effective_stats.get('mdef', mdef)/100))
 	else:
 		post_mit_dmg = dmg

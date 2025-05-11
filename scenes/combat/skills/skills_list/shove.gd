@@ -55,8 +55,8 @@ func apply_effect(details: Dictionary) -> void:
 	target.x = push_result.endpointTile[0]
 	target.y = push_result.endpointTile[1]
 	if push_result.collidedEntity:
-		target.apply_damage(target.hp * 0.2, Combat_Detail.DAMAGE_TYPE.PHYSICAL)
-		push_result.collidedEntity.apply_damage(target.hp * 0.2, Combat_Detail.DAMAGE_TYPE.PHYSICAL)
+		target.apply_damage(target.hp * 0.2, CombatDetail.DAMAGE_TYPE.PHYSICAL)
+		push_result.collidedEntity.apply_damage(target.hp * 0.2, CombatDetail.DAMAGE_TYPE.PHYSICAL)
 	
 	var callback : Callable = details.callback
 	callback.call()
