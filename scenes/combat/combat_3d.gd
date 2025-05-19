@@ -5,10 +5,9 @@ enum {
 	PLANNING,
 	TURNSTART,
 	TARGET,
-	BATTLING
+	BATTLING,
+	END
 }
-
-
 
 var event_queue: Array = []
 var turn_queue: Array[CombatEntity] = []
@@ -19,10 +18,7 @@ var current_phase = BATTLING
 var is_phase_change = true
 var eventBuilder = {}
 var animation_locked = false
-
 var debug_add_event = false
-func add_event(entity: CombatEntity, type: int, target: CombatEntity) -> void:
-	event_queue.append({entity=entity, type=type, target=target})
 
 func process_turn_queue() -> void:
 	if not turn_queue:
@@ -60,23 +56,20 @@ func _process(delta: float) -> void:
 		if not animation_locked and event_queue:
 			eventBuilder = {}
 			$battlefield.refresh_selections()
+			# process the next event
 			if event_queue:
-				process_event(event_queue.pop_front())
+				var event = event_queue.pop_front()
+				event['battlefield'] = $battlefield
+				animation_locked = true
+				event.callback = _on_battle_anim_complete
+				event['action'].play_action(event)
 
 # callback for when battle animation is complete
 func _on_battle_anim_complete() -> void:
 	animation_locked = false
-	if not event_queue:
+	if not event_queue and current_phase != END:
 		turn_queue.pop_front()
 		process_turn_queue()
-
-# process an event from the queue
-func process_event(event : Dictionary) -> void:
-	#TODO: this feels weird. maybe needs a change.
-	event['battlefield'] = $battlefield
-	animation_locked = true
-	event.callback = _on_battle_anim_complete
-	event['action'].play_action(event)
 
 # signal onSelect(targetTile : Vector2, targetPosition : Vector3i, aoeTargetPositions : Array[Array], isEnemy : bool)
 # Called when grid selected. Provides the eventBuilder with the following fields:
@@ -112,8 +105,6 @@ func _on_grid_selected(targetTile : Vector2i, targetPosition : Vector3i, aoeTarg
 		properties['targetEntity'] = cursorEntity
 	updateEventBuilder(properties)
 
-
-
 func _on_grid_cancel() -> void:
 	eventBuilder = { 'entity': eventBuilder.entity }
 	$battlefield.refresh_selections()
@@ -129,10 +120,10 @@ func _on_user_input_selected(properties: Dictionary) -> void:
 # targetPosition: a targeted tile
 # targetTiles: targeted tiles covered by an AoE, if the player was targeting an AoE skill.
 # targetEntities: all entities within targetTiles, if the player was targeting an AoE skill.
-# skillDetail: details for the skill. Refer to combat_skill.gd for more info
+# skillDetail: details for the skill. Refer to combat_action.gd for more info
+# TODO: use combat action detail to determine how to handle control flow
 func updateEventBuilder(properties: Dictionary) -> void:
 	eventBuilder.merge(properties)
-	#TODO: need more logic on how to confirm
 	if not eventBuilder.has('entity'):
 		return
 	$battlefield.highlight_entity(eventBuilder['entity'])
@@ -248,7 +239,6 @@ func _ready() -> void:
 
 	for entity in $combatants.get_children():
 		entity.damage_taken.connect(_on_damage_taken)
-
 		entity.entity_death.connect(_on_entity_death)
 	
 	get_players()[0].current_mp = 25
@@ -261,7 +251,6 @@ func _ready() -> void:
 		entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t2.gd").new())
 		entity.skills.append(preload("res://scenes/combat/skills/skills_list/silence.gd").new())
 		entity.skills.append(preload("res://scenes/combat/skills/skills_list/shove.gd").new())
-
 		
 	print("...and enemy characters: ")
 	for entity in get_enemies():
@@ -279,3 +268,21 @@ func _on_entity_death(entity : CombatEntity) -> void:
 	turn_queue.erase(entity)
 	entity.queue_free()
 	turn_queue_updated.emit(turn_queue)
+	check_combat_end()
+	
+# checks if all players or enemies are dead
+func check_combat_end() -> void:
+	var player_wipe = true
+	for player in get_players():
+		if player.current_hp > 0:
+			player_wipe = false
+	var enemy_wipe = true
+	for enemy in get_enemies():
+		if enemy.current_hp > 0:
+			enemy_wipe = false
+	if player_wipe:
+		current_phase = END
+		print("Party was defeated!")
+	if enemy_wipe:
+		current_phase = END
+		print("Victory!")
