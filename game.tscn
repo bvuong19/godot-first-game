@@ -1,11 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://casgft4ymkw8m"]
+[gd_scene load_steps=3 format=3 uid="uid://casgft4ymkw8m"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_d4whd"]
-[ext_resource type="PackedScene" uid="uid://ch0twm02cqdm1" path="res://scenes/combat/combat.tscn" id="2_jl2p3"]
-[ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/combat_entity.tscn" id="3_3e8fj"]
-[ext_resource type="Texture2D" uid="uid://drw71hbw73gkc" path="res://assets/stolen-potato.webp" id="4_32isv"]
-[ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/copyrightinfringement-portrait.jpg" id="4_s1twx"]
-[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="4_tyfko"]
+[ext_resource type="PackedScene" uid="uid://dugr1wwntqsdi" path="res://scenes/combat/combat_3d.tscn" id="2_plr1r"]
 
 [node name="game" type="Control"]
 layout_mode = 3
@@ -17,6 +13,7 @@ grow_vertical = 2
 script = ExtResource("1_d4whd")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 z_index = -1
 layout_mode = 1
 anchors_preset = 15
@@ -25,116 +22,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Combat" parent="." instance=ExtResource("2_jl2p3")]
-layout_mode = 1
+[node name="Combat2" parent="." instance=ExtResource("2_plr1r")]
 
-[node name="player1" parent="Combat/combatants" index="0" instance=ExtResource("3_3e8fj")]
-atk = 40
-spd = 10
-def = 10
-hp = 100
-mp = 60
-
-[node name="player2" parent="Combat/combatants" index="1" instance=ExtResource("3_3e8fj")]
-x = 3
-atk = 40
-spd = 2
-hp = 100
-mp = 60
-
-[node name="potato" parent="Combat/combatants" index="2" instance=ExtResource("3_3e8fj")]
-x = 4
-y = 2
-atk = 40
-hp = 200
-headSprite = ExtResource("4_32isv")
-battlefieldSprite = ExtResource("4_32isv")
-actions = [5, 3]
-
-[node name="enemy1" parent="Combat/combatants" index="3" instance=ExtResource("3_3e8fj")]
-x = 3
-y = 3
-atk = 20
-spd = 3
-def = 20
-hp = 40
-headSprite = ExtResource("4_s1twx")
-battlefieldSprite = ExtResource("4_tyfko")
-
-[node name="sprite" parent="Combat/combatants/enemy1/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
-
-[node name="PanelContainer" parent="Combat/combatants/enemy1/battlefieldSprite/uiAnchor/unitUI" index="0"]
-offset_top = 0.0
-offset_bottom = 12.0
-
-[node name="HPLabel" parent="Combat/combatants/enemy1/battlefieldSprite/uiAnchor/unitUI" index="1"]
-offset_left = 0.0
-offset_right = 36.0
-offset_bottom = 23.0
-
-[node name="enemy2" parent="Combat/combatants" index="4" instance=ExtResource("3_3e8fj")]
-atk = 20
-def = 20
-hp = 40
-headSprite = ExtResource("4_s1twx")
-battlefieldSprite = ExtResource("4_tyfko")
-
-[node name="sprite" parent="Combat/combatants/enemy2/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
-
-[node name="PanelContainer" parent="Combat/combatants/enemy2/battlefieldSprite/uiAnchor/unitUI" index="0"]
-offset_top = 0.0
-offset_bottom = 12.0
-
-[node name="HPLabel" parent="Combat/combatants/enemy2/battlefieldSprite/uiAnchor/unitUI" index="1"]
-offset_left = 0.0
-offset_right = 36.0
-offset_bottom = 23.0
-
-[node name="enemy3" parent="Combat/combatants" index="5" instance=ExtResource("3_3e8fj")]
-x = 2
-atk = 20
-def = 20
-hp = 40
-headSprite = ExtResource("4_s1twx")
-battlefieldSprite = ExtResource("4_tyfko")
-
-[node name="sprite" parent="Combat/combatants/enemy3/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
-
-[node name="PanelContainer" parent="Combat/combatants/enemy3/battlefieldSprite/uiAnchor/unitUI" index="0"]
-offset_top = 0.0
-offset_bottom = 12.0
-
-[node name="HPLabel" parent="Combat/combatants/enemy3/battlefieldSprite/uiAnchor/unitUI" index="1"]
-offset_left = 0.0
-offset_right = 36.0
-offset_bottom = 23.0
-
-[node name="enemy4" parent="Combat/combatants" index="6" instance=ExtResource("3_3e8fj")]
-x = 0
-y = 0
-atk = 20
-def = 20
-hp = 40
-headSprite = ExtResource("4_s1twx")
-battlefieldSprite = ExtResource("4_tyfko")
-
-[node name="sprite" parent="Combat/combatants/enemy4/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
-
-[node name="PanelContainer" parent="Combat/combatants/enemy4/battlefieldSprite/uiAnchor/unitUI" index="0"]
-offset_top = 0.0
-offset_bottom = 12.0
-
-[node name="HPLabel" parent="Combat/combatants/enemy4/battlefieldSprite/uiAnchor/unitUI" index="1"]
-offset_left = 0.0
-offset_right = 36.0
-offset_bottom = 23.0
-
-[editable path="Combat"]
-[editable path="Combat/combatants/enemy1"]
-[editable path="Combat/combatants/enemy2"]
-[editable path="Combat/combatants/enemy3"]
-[editable path="Combat/combatants/enemy4"]
+[editable path="Combat2"]
