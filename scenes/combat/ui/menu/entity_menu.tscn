@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://s4fty7w8raad"]
+
+[ext_resource type="Theme" uid="uid://c3qax2qsij4qv" path="res://scenes/combat/ui/menu/entity_menu.tres" id="1_usx3k"]
+[ext_resource type="Script" path="res://scenes/combat/ui/menu/entity_menu.gd" id="2_jtfpd"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="3_p0wbi"]
+[ext_resource type="PackedScene" uid="uid://dqjps5gydl56l" path="res://scenes/combat/ui/menu/resourcebar.tscn" id="4_jemsv"]
+[ext_resource type="Theme" uid="uid://dwljlovjlh6hv" path="res://scenes/combat/ui/menu/party_bar.tres" id="5_lu07o"]
+
+[node name="EntityMenu" type="PanelContainer"]
+custom_minimum_size = Vector2(125, 0)
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = -120.0
+offset_right = 126.0
+offset_bottom = 1.0
+grow_vertical = 0
+size_flags_horizontal = 0
+size_flags_vertical = 3
+theme = ExtResource("1_usx3k")
+script = ExtResource("2_jtfpd")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="nameplatecontainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="nameLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/nameplatecontainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "entity name"
+clip_text = true
+
+[node name="entityPortrait" type="TextureRect" parent="MarginContainer/VBoxContainer/VBoxContainer/nameplatecontainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+texture = ExtResource("3_p0wbi")
+expand_mode = 2
+
+[node name="resourcebarscontainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = -1
+
+[node name="hpbarcontainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer/hpbarcontainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="hpbar" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer/hpbarcontainer/MarginContainer" instance=ExtResource("4_jemsv")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 10)
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 4
+fill_mode = 0
+
+[node name="hpbarLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer/hpbarcontainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_usx3k")
+theme_override_font_sizes/font_size = 8
+text = "100/100"
+horizontal_alignment = 2
+
+[node name="resourcebarcontainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("5_lu07o")
+theme_type_variation = &"manaBar"
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer/resourcebarcontainer"]
+custom_minimum_size = Vector2(70, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="resourcebar" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer/resourcebarcontainer/MarginContainer" instance=ExtResource("4_jemsv")]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(40, 6)
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 4
+theme_type_variation = &"manaBar"
+fill_mode = 0
+
+[node name="resourcebarLabel" type="Label" parent="MarginContainer/VBoxContainer/VBoxContainer/resourcebarscontainer/resourcebarcontainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 8
+theme = ExtResource("1_usx3k")
+theme_override_font_sizes/font_size = 8
+text = "100/100"
+horizontal_alignment = 2
+
+[node name="statsmenu" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2

@@ -1,0 +1,41 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://drub0g3xif2y5"]
+
+[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/Aptos-Bold.ttf" id="1_oxrhg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuqy3"]
+content_margin_left = 12.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p5a0f"]
+bg_color = Color(0.878431, 0.878431, 0.878431, 1)
+border_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ot54i"]
+content_margin_left = 12.0
+bg_color = Color(0.357071, 0.34658, 0.762068, 0.917647)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cvw1s"]
+content_margin_left = 12.0
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vtwey"]
+content_margin_left = 12.0
+bg_color = Color(0.74978, 0.74978, 0.74978, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p3otd"]
+bg_color = Color(0.110829, 0.118523, 0.405301, 1)
+
+[resource]
+Button/colors/font_color = Color(0.875, 0.875, 0.875, 1)
+Button/colors/font_disabled_color = Color(0.627451, 0.627451, 0.627451, 1)
+Button/colors/font_focus_color = Color(0.0862745, 0.0784314, 0.32549, 1)
+Button/colors/font_hover_color = Color(0.0862745, 0.0784314, 0.32549, 1)
+Button/colors/font_pressed_color = Color(0.117647, 0.117647, 0.117647, 1)
+Button/fonts/font = ExtResource("1_oxrhg")
+Button/styles/disabled = SubResource("StyleBoxFlat_nuqy3")
+Button/styles/focus = SubResource("StyleBoxFlat_p5a0f")
+Button/styles/hover = SubResource("StyleBoxFlat_ot54i")
+Button/styles/normal = SubResource("StyleBoxFlat_cvw1s")
+Button/styles/pressed = SubResource("StyleBoxFlat_vtwey")
+Label/fonts/font = ExtResource("1_oxrhg")
+Panel/styles/panel = SubResource("StyleBoxFlat_p3otd")

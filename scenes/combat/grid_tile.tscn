@@ -1,21 +1,43 @@
-[gd_scene load_steps=12 format=3 uid="uid://ko307l8a87qk"]
+[gd_scene load_steps=20 format=3 uid="uid://dflsc3310528f"]
 
-[ext_resource type="Script" path="res://scenes/combat/grid_tile.gd" id="1_0mbch"]
-[ext_resource type="Texture2D" uid="uid://dtijo5k74spyk" path="res://assets/gridtiles/selected1.png" id="1_6u1cu"]
-[ext_resource type="Texture2D" uid="uid://bcpblpdkotl2v" path="res://assets/gridtiles/selected2.png" id="2_31k54"]
-[ext_resource type="Texture2D" uid="uid://8d77qpbj1kmm" path="res://assets/gridtiles/confirm.png" id="2_yuw4m"]
-[ext_resource type="Texture2D" uid="uid://i4kd52p57syn" path="res://assets/gridtiles/selected3.png" id="3_7u541"]
-[ext_resource type="Texture2D" uid="uid://b0ty0ttqpnkd6" path="res://assets/gridtiles/selected4.png" id="4_yivho"]
-[ext_resource type="Texture2D" uid="uid://ighwp5kkow1w" path="res://assets/gridtiles/selected5.png" id="5_4qeq5"]
-[ext_resource type="Texture2D" uid="uid://1eajwbn7878c" path="res://assets/gridtiles/selected6.png" id="6_lr2qj"]
-[ext_resource type="Texture2D" uid="uid://bgnsyicm3xvni" path="res://assets/gridtiles/selected7.png" id="7_vcxwl"]
-[ext_resource type="Texture2D" uid="uid://e6hg7ox13r1s" path="res://assets/gridtiles/selected8.png" id="8_6frna"]
+[ext_resource type="Texture2D" uid="uid://junp7xukluxv" path="res://assets/gridtiles/confirmbold1.png" id="2_5hk8t"]
+[ext_resource type="Texture2D" uid="uid://biy8gv5kq2532" path="res://assets/gridtiles/simple.png" id="3_27xmq"]
+[ext_resource type="Texture2D" uid="uid://cgbmmsrjxrt1r" path="res://assets/gridtiles/selectedbold1.png" id="4_l3p6p"]
+[ext_resource type="Texture2D" uid="uid://d18c7behr7h4a" path="res://assets/gridtiles/selectedbold2.png" id="5_qqo52"]
+[ext_resource type="Texture2D" uid="uid://cpwdlb6ykiku8" path="res://assets/gridtiles/selectedbold3.png" id="6_esnyp"]
+[ext_resource type="Texture2D" uid="uid://cfrmjwcf81k41" path="res://assets/gridtiles/selectedbold4.png" id="7_j8nt5"]
+[ext_resource type="Texture2D" uid="uid://bhtre4uywmmgh" path="res://assets/gridtiles/selectedbold5.png" id="8_sanjg"]
+[ext_resource type="Texture2D" uid="uid://chncws7tj22fn" path="res://assets/gradient1.png" id="9_udfwh"]
+[ext_resource type="Texture2D" uid="uid://qncwvlc0ehr2" path="res://assets/gradient2.png" id="10_7cmji"]
+[ext_resource type="Texture2D" uid="uid://8gtu3fn6j8hc" path="res://assets/gradient3.png" id="11_43nnu"]
+[ext_resource type="Texture2D" uid="uid://blykq0n1asqxq" path="res://assets/gradient4.png" id="12_rm0g6"]
+[ext_resource type="Texture2D" uid="uid://baa7jkylykccs" path="res://assets/gradient5.png" id="13_vjksw"]
+[ext_resource type="Texture2D" uid="uid://dpm2pv1ns5es3" path="res://assets/gradient7.png" id="14_0t33u"]
+[ext_resource type="Texture2D" uid="uid://tybghi78d5dm" path="res://assets/gradient8.png" id="15_56fxd"]
+[ext_resource type="Texture2D" uid="uid://cdr076en1tot0" path="res://assets/gradient9.png" id="16_m8on2"]
+[ext_resource type="Texture2D" uid="uid://baprr7t74use2" path="res://assets/gradient10.png" id="17_ysn48"]
+[ext_resource type="Texture2D" uid="uid://jlj8twiij8cu" path="res://assets/gradient11.png" id="18_m68ir"]
+
+[sub_resource type="GDScript" id="GDScript_s7y5e"]
+script/source = "extends Node2D
+class_name GridTile
+
+func _animate_select() -> void:
+	$Gridtile1.animation = \"selected\"
+	
+
+func _animate_unselect() -> void:
+	$Gridtile1.animation = \"default\"
+
+func _animate_confirm() -> void:
+	$Gridtile1.animation = \"confirm\"
+"
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_udd3k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_yuw4m")
+"texture": ExtResource("2_5hk8t")
 }],
 "loop": true,
 "name": &"confirm",
@@ -23,7 +45,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_6u1cu")
+"texture": ExtResource("3_27xmq")
 }],
 "loop": true,
 "name": &"default",
@@ -31,61 +53,81 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_6u1cu")
+"texture": ExtResource("9_udfwh")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_31k54")
+"texture": ExtResource("10_7cmji")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_7u541")
+"texture": ExtResource("11_43nnu")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_yivho")
+"texture": ExtResource("12_rm0g6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_4qeq5")
+"texture": ExtResource("13_vjksw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_lr2qj")
+"texture": ExtResource("14_0t33u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_vcxwl")
+"texture": ExtResource("15_56fxd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_6frna")
+"texture": ExtResource("16_m8on2")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_vcxwl")
+"texture": ExtResource("17_ysn48")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_lr2qj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_4qeq5")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_yivho")
-}, {
-"duration": 1.0,
-"texture": ExtResource("3_7u541")
-}, {
-"duration": 1.0,
-"texture": ExtResource("2_31k54")
+"texture": ExtResource("18_m68ir")
 }],
 "loop": true,
 "name": &"selected",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_l3p6p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qqo52")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_esnyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j8nt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_sanjg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j8nt5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_esnyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_qqo52")
+}],
+"loop": true,
+"name": &"selected_old",
 "speed": 15.0
 }]
 
 [node name="gridTile" type="Node2D"]
-script = ExtResource("1_0mbch")
+texture_filter = 3
+script = SubResource("GDScript_s7y5e")
 
 [node name="marker" type="Marker2D" parent="."]
 position = Vector2(32, 32)
 
 [node name="Gridtile1" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.702843, 0.772117, 0.758949, 1)
 texture_filter = 1
 position = Vector2(32, 32)
 sprite_frames = SubResource("SpriteFrames_udd3k")
-animation = &"confirm"
+animation = &"selected"
 autoplay = "default"
+frame_progress = 0.103717

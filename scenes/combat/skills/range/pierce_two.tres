@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="SkillRange" load_steps=2 format=3 uid="uid://dmnxgfqdh7hlf"]
+
+[ext_resource type="Script" path="res://scenes/combat/skills/skill_range.gd" id="1_xh30y"]
+
+[resource]
+resource_name = "SMALL_PLUS"
+script = ExtResource("1_xh30y")
+aoe = Array[Array]([[1, 2, 2]])
+origin = Vector2(0, 0)
+range = Array[Array]([[null, null, null, null, null], [null, null, null, null, null], [null, null, null, null, null], [null, null, null, null, null], [null, null, null, null, null]])

@@ -1,71 +1,27 @@
-[gd_scene load_steps=5 format=3 uid="uid://casgft4ymkw8m"]
+[gd_scene load_steps=3 format=3 uid="uid://casgft4ymkw8m"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_d4whd"]
-[ext_resource type="PackedScene" uid="uid://ch0twm02cqdm1" path="res://scenes/combat/combat.tscn" id="2_jl2p3"]
-[ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/CombatEntity.tscn" id="3_3e8fj"]
-[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="4_tyfko"]
+[ext_resource type="PackedScene" uid="uid://dugr1wwntqsdi" path="res://scenes/combat/combat_3d.tscn" id="2_plr1r"]
 
 [node name="game" type="Control"]
 layout_mode = 3
-anchor_left = -0.307
-anchor_top = -0.277
-anchor_right = 0.32
-anchor_bottom = 0.343
-offset_left = 353.664
-offset_top = 179.496
-offset_right = -368.64
-offset_bottom = -222.264
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_d4whd")
-
-[node name="Combat" parent="." instance=ExtResource("2_jl2p3")]
-
-[node name="player1" parent="Combat/players" index="0" instance=ExtResource("3_3e8fj")]
-atk = 40
-def = 20
-hp = 100
-
-[node name="player2" parent="Combat/players" index="1" instance=ExtResource("3_3e8fj")]
-x = 3
-atk = 40
-def = 20
-hp = 100
-
-[node name="enemy1" parent="Combat/enemies" index="0" instance=ExtResource("3_3e8fj")]
-x = 3
-y = 3
-atk = 20
-def = 20
-hp = 40
-
-[node name="sprite" parent="Combat/enemies/enemy1/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
-
-[node name="enemy2" parent="Combat/enemies" index="1" instance=ExtResource("3_3e8fj")]
-atk = 20
-def = 20
-hp = 40
-
-[node name="sprite" parent="Combat/enemies/enemy2/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
-
-[node name="enemy3" parent="Combat/enemies" index="2" instance=ExtResource("3_3e8fj")]
-x = 2
-y = 1
-atk = 20
-def = 20
-hp = 40
-
-[node name="sprite" parent="Combat/enemies/enemy3/battlefieldSprite" index="0"]
-texture = ExtResource("4_tyfko")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 z_index = -1
-layout_mode = 0
-offset_right = 1159.0
-offset_bottom = 662.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[editable path="Combat"]
-[editable path="Combat/enemies/enemy1"]
-[editable path="Combat/enemies/enemy2"]
-[editable path="Combat/enemies/enemy3"]
+[node name="Combat2" parent="." instance=ExtResource("2_plr1r")]
+
+[editable path="Combat2"]

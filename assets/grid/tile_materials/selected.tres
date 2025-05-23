@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://rndwhknxidyc"]
+
+[ext_resource type="Texture2D" uid="uid://cfurir7vrvjaq" path="res://assets/grid/tile_materials/anim_grid_selected.tres" id="1_g3l76"]
+
+[resource]
+transparency = 1
+albedo_texture = ExtResource("1_g3l76")
+subsurf_scatter_enabled = true
+subsurf_scatter_strength = 0.2

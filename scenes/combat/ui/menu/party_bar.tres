@@ -1,0 +1,25 @@
+[gd_resource type="Theme" load_steps=5 format=3 uid="uid://dwljlovjlh6hv"]
+
+[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/Aptos-Bold.ttf" id="1_avou8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lifvo"]
+bg_color = Color(0.117647, 0.117647, 0.117647, 1)
+skew = Vector2(0.1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4qgy"]
+bg_color = Color(0.436338, 0.676602, 0.306282, 1)
+skew = Vector2(0.1, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q4ep5"]
+bg_color = Color(0.36514, 0.723087, 0.79335, 1)
+skew = Vector2(0.1, 0)
+
+[resource]
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_avou8")
+Label_active/base_type = &"Label"
+Label_active/colors/font_color = Color(0.0666667, 0.0666667, 0.0666667, 1)
+ProgressBar/styles/background = SubResource("StyleBoxFlat_lifvo")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_q4qgy")
+manaBar/base_type = &"ProgressBar"
+manaBar/styles/fill = SubResource("StyleBoxFlat_q4ep5")

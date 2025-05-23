@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2jbsrvrww10m"]
+
+[ext_resource type="Script" path="res://scenes/combat/ui/combat_ui.gd" id="1_fb66i"]
+[ext_resource type="PackedScene" uid="uid://b27vm76qgpnyc" path="res://scenes/combat/ui/menu/action_menu.tscn" id="2_n48y7"]
+[ext_resource type="PackedScene" uid="uid://s4fty7w8raad" path="res://scenes/combat/ui/menu/entity_menu.tscn" id="3_fsf0j"]
+
+[node name="combatUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("1_fb66i")
+
+[node name="partybarcontainer" type="MarginContainer" parent="."]
+layout_mode = 1
+offset_right = 100.0
+offset_bottom = 78.0
+scale = Vector2(0.8, 0.8)
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+
+[node name="partybar" type="VBoxContainer" parent="partybarcontainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+custom_minimum_size = Vector2(600, 64)
+layout_mode = 2
+offset_left = 276.0
+offset_right = 876.0
+offset_bottom = 64.0
+size_flags_horizontal = 0
+
+[node name="actionmenu" parent="." instance=ExtResource("2_n48y7")]
+layout_mode = 1
+
+[node name="turnqueuecontainer" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -300.0
+offset_right = 300.0
+offset_bottom = 64.0
+grow_horizontal = 2
+
+[node name="turnqueue" type="HBoxContainer" parent="turnqueuecontainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(600, 64)
+layout_direction = 2
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="EntityMenu" parent="." instance=ExtResource("3_fsf0j")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.00260417
+anchor_top = 0.993827
+anchor_right = 0.00260417
+anchor_bottom = 0.993827

@@ -1,0 +1,93 @@
+[gd_scene load_steps=6 format=3 uid="uid://ch0twm02cqdm1"]
+
+[ext_resource type="Script" path="res://scenes/combat/combat.gd" id="1_4yapm"]
+[ext_resource type="PackedScene" uid="uid://bk1np44yetrnc" path="res://scenes/combat/battlefield.tscn" id="2_jy3dx"]
+[ext_resource type="Script" path="res://scenes/combat/combat_ui.gd" id="3_460r7"]
+[ext_resource type="PackedScene" uid="uid://b27vm76qgpnyc" path="res://scenes/combat/ui/actionmenu.tscn" id="4_63gni"]
+[ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/grass.png" id="5_4q124"]
+
+[node name="Combat" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4yapm")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(830, 100)
+scale = Vector2(1.3, 1.3)
+skew = 0.872665
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+texture = ExtResource("5_4q124")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+position = Vector2(-636, 0)
+texture = ExtResource("5_4q124")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+position = Vector2(640, 0)
+texture = ExtResource("5_4q124")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+position = Vector2(-0.999939, 639)
+texture = ExtResource("5_4q124")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+position = Vector2(-637, 639)
+texture = ExtResource("5_4q124")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
+position = Vector2(639, 639)
+texture = ExtResource("5_4q124")
+
+[node name="enemies" type="Node" parent="."]
+
+[node name="players" type="Node" parent="."]
+
+[node name="battlefield" parent="." instance=ExtResource("2_jy3dx")]
+layout_mode = 1
+focus_mode = 2
+is_select_enemy = null
+
+[node name="combatUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 2
+script = ExtResource("3_460r7")
+
+[node name="partybarcontainer" type="MarginContainer" parent="combatUI"]
+layout_mode = 1
+offset_right = 140.0
+offset_bottom = 78.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 20
+
+[node name="partybar" type="VBoxContainer" parent="combatUI/partybarcontainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="actionmenu" parent="combatUI" instance=ExtResource("4_63gni")]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -302.0
+offset_top = -212.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[connection signal="pressed" from="combatUI/actionmenu/hbox/VBoxContainer/ATTACK" to="combatUI" method="_on_attack_pressed"]
+[connection signal="pressed" from="combatUI/actionmenu/hbox/VBoxContainer/DEFEND" to="combatUI" method="_on_defend_pressed"]
+[connection signal="pressed" from="combatUI/actionmenu/hbox/MarginContainer/VBoxContainer2/MOVE" to="combatUI" method="_on_move_pressed"]
+
+[editable path="combatUI/actionmenu"]

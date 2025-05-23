@@ -1,0 +1,97 @@
+[gd_scene load_steps=7 format=3 uid="uid://h185cdodyqnj"]
+
+[ext_resource type="Script" path="res://scenes/combat/ui/partybar.gd" id="1_eutng"]
+[ext_resource type="Texture2D" uid="uid://brp6xxfcdu646" path="res://assets/playerbar1.png" id="1_m73ny"]
+[ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/actionmenu.tres" id="2_8u0j2"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="4_xrew7"]
+[ext_resource type="Theme" uid="uid://dwljlovjlh6hv" path="res://scenes/combat/ui/partybar.tres" id="5_jhawl"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rbr8q"]
+texture = ExtResource("1_m73ny")
+
+[node name="partyBarItem" type="Control"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 100.0
+offset_bottom = 40.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource("1_eutng")
+
+[node name="Panel" type="Panel" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_rbr8q")
+
+[node name="HPLabelContainer" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.583
+anchor_bottom = 0.583
+offset_left = 45.0
+offset_top = -18.47
+offset_right = 72.0
+offset_bottom = 18.53
+grow_vertical = 2
+
+[node name="HPLabel" type="Label" parent="HPLabelContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("2_8u0j2")
+theme_override_font_sizes/font_size = 12
+text = "X/X"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(120, 47)
+scale = Vector2(0.341459, 0.341459)
+texture = ExtResource("4_xrew7")
+
+[node name="Panel2" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 40.0
+theme = ExtResource("2_8u0j2")
+
+[node name="sprite" type="Sprite2D" parent="Panel2"]
+unique_name_in_owner = true
+position = Vector2(81, 20)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("4_xrew7")
+
+[node name="hplabel" type="Label" parent="Panel2"]
+unique_name_in_owner = true
+offset_left = 8.0
+offset_top = 22.0
+offset_right = 50.0
+offset_bottom = 36.0
+theme = ExtResource("5_jhawl")
+text = "x/x"
+
+[node name="namelabel" type="Label" parent="Panel2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 4.0
+offset_right = 50.0
+offset_bottom = 18.0
+theme = ExtResource("5_jhawl")
+text = "name"
+
+[node name="hpbar" type="ProgressBar" parent="Panel2"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 6.0
+offset_top = 16.0
+offset_right = 66.0
+offset_bottom = 24.0
+theme = ExtResource("5_jhawl")
+fill_mode = 1
+show_percentage = false

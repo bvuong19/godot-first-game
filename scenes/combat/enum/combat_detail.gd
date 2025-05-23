@@ -1,0 +1,16 @@
+class_name CombatDetail
+
+enum DAMAGE_TYPE {
+	PHYSICAL,
+	MAGIC,
+	TRUE
+}
+
+enum ACTION_TYPE {
+	ATTACK,
+	MOVE,
+	SKILL,
+	DEFEND,
+	ITEM,
+	FLEE
+}

@@ -1,0 +1,38 @@
+[gd_resource type="AnimatedTexture" load_steps=12 format=3 uid="uid://cfurir7vrvjaq"]
+
+[ext_resource type="Texture2D" uid="uid://b2bmlvetl56mf" path="res://assets/grid/gradient1.png" id="1_egipw"]
+[ext_resource type="Texture2D" uid="uid://h1b251jd7mcj" path="res://assets/grid/gradient2.png" id="2_fwqh6"]
+[ext_resource type="Texture2D" uid="uid://ckol4nj1wf6m" path="res://assets/grid/gradient11.png" id="3_7xw4w"]
+[ext_resource type="Texture2D" uid="uid://b2wqx356xcs6j" path="res://assets/grid/gradient3.png" id="4_1e8ea"]
+[ext_resource type="Texture2D" uid="uid://bnlophfmgfisl" path="res://assets/grid/gradient4.png" id="5_tbafg"]
+[ext_resource type="Texture2D" uid="uid://canr2u7e6x52q" path="res://assets/grid/gradient5.png" id="6_hx86p"]
+[ext_resource type="Texture2D" uid="uid://bfibm5ff040q5" path="res://assets/grid/gradient6.png" id="7_vtmr1"]
+[ext_resource type="Texture2D" uid="uid://cc4hx6u8tmg1w" path="res://assets/grid/gradient7.png" id="8_005lb"]
+[ext_resource type="Texture2D" uid="uid://c7nqah7vnukf6" path="res://assets/grid/gradient8.png" id="9_l15rr"]
+[ext_resource type="Texture2D" uid="uid://d1hrdc1yauvjs" path="res://assets/grid/gradient9.png" id="10_yfka1"]
+[ext_resource type="Texture2D" uid="uid://dqm8688fn84xi" path="res://assets/grid/gradient10.png" id="11_qxob8"]
+
+[resource]
+frames = 11
+speed_scale = 15.0
+frame_0/texture = ExtResource("1_egipw")
+frame_1/texture = ExtResource("2_fwqh6")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("4_1e8ea")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("5_tbafg")
+frame_3/duration = 1.0
+frame_4/texture = ExtResource("6_hx86p")
+frame_4/duration = 1.0
+frame_5/texture = ExtResource("7_vtmr1")
+frame_5/duration = 1.0
+frame_6/texture = ExtResource("8_005lb")
+frame_6/duration = 1.0
+frame_7/texture = ExtResource("9_l15rr")
+frame_7/duration = 1.0
+frame_8/texture = ExtResource("10_yfka1")
+frame_8/duration = 1.0
+frame_9/texture = ExtResource("11_qxob8")
+frame_9/duration = 1.0
+frame_10/texture = ExtResource("3_7xw4w")
+frame_10/duration = 1.0

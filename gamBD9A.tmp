@@ -1,0 +1,74 @@
+[gd_scene load_steps=5 format=3 uid="uid://casgft4ymkw8m"]
+
+[ext_resource type="Script" path="res://game.gd" id="1_d4whd"]
+[ext_resource type="PackedScene" uid="uid://ch0twm02cqdm1" path="res://scenes/combat/combat.tscn" id="2_jl2p3"]
+[ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/CombatEntity.tscn" id="3_3e8fj"]
+[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="4_tyfko"]
+
+[node name="game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d4whd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Combat" parent="." instance=ExtResource("2_jl2p3")]
+layout_mode = 1
+
+[node name="player1" parent="Combat/players" index="0" instance=ExtResource("3_3e8fj")]
+atk = 40
+def = 20
+hp = 100
+
+[node name="player2" parent="Combat/players" index="1" instance=ExtResource("3_3e8fj")]
+x = 3
+atk = 40
+def = 20
+hp = 100
+
+[node name="enemy1" parent="Combat/enemies" index="0" instance=ExtResource("3_3e8fj")]
+x = 3
+y = 3
+atk = 20
+def = 20
+hp = 40
+
+[node name="sprite" parent="Combat/enemies/enemy1/battlefieldSprite" index="0"]
+texture = ExtResource("4_tyfko")
+
+[node name="enemy2" parent="Combat/enemies" index="1" instance=ExtResource("3_3e8fj")]
+atk = 20
+def = 20
+hp = 40
+
+[node name="sprite" parent="Combat/enemies/enemy2/battlefieldSprite" index="0"]
+texture = ExtResource("4_tyfko")
+
+[node name="enemy3" parent="Combat/enemies" index="2" instance=ExtResource("3_3e8fj")]
+x = 2
+y = 1
+atk = 20
+def = 20
+hp = 40
+
+[node name="sprite" parent="Combat/enemies/enemy3/battlefieldSprite" index="0"]
+texture = ExtResource("4_tyfko")
+
+[connection signal="pressed" from="Combat/combatUI/actionmenu/hbox/VBoxContainer/ATTACK" to="Combat/combatUI" method="_on_attack_pressed"]
+
+[editable path="Combat"]
+[editable path="Combat/enemies/enemy1"]
+[editable path="Combat/enemies/enemy2"]
+[editable path="Combat/enemies/enemy3"]
+[editable path="Combat/combatUI/actionmenu"]

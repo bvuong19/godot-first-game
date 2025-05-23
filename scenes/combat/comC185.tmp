@@ -1,0 +1,110 @@
+[gd_scene load_steps=15 format=3 uid="uid://dugr1wwntqsdi"]
+
+[ext_resource type="Script" path="res://scenes/combat/combat_3d.gd" id="1_8af8a"]
+[ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/grass.png" id="2_3k76t"]
+[ext_resource type="Script" path="res://scenes/combat/battlefield_3d.gd" id="3_eujal"]
+[ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/combat_entity.tscn" id="3_hirq7"]
+[ext_resource type="PackedScene" uid="uid://b2jbsrvrww10m" path="res://scenes/combat/ui/combat_ui.tscn" id="4_3iqmt"]
+[ext_resource type="MeshLibrary" uid="uid://bjyjc86701m0b" path="res://assets/grid/combat_grid_ui_tiles.tres" id="4_n3v5s"]
+[ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/copyrightinfringement-portrait.jpg" id="4_xnbgp"]
+[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/defaultplayer.png" id="5_6nyls"]
+[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="5_xfrb4"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8won"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_eyynt"]
+sky_material = SubResource("ProceduralSkyMaterial_g8won")
+
+[sub_resource type="Environment" id="Environment_jm4rq"]
+background_mode = 2
+sky = SubResource("Sky_eyynt")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gvw84"]
+render_priority = -1
+albedo_texture = ExtResource("2_3k76t")
+uv1_scale = Vector3(4, 4, 4)
+uv2_scale = Vector3(4, 4, 4)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_exykq"]
+lightmap_size_hint = Vector2i(102, 102)
+material = SubResource("StandardMaterial3D_gvw84")
+size = Vector2(40, 40)
+
+[node name="Combat" type="Node3D"]
+script = ExtResource("1_8af8a")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_jm4rq")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+light_energy = 0.8
+shadow_enabled = true
+sky_mode = 1
+
+[node name="background" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.01, 0)
+mesh = SubResource("PlaneMesh_exykq")
+
+[node name="combatants" type="Node" parent="."]
+
+[node name="player1" parent="combatants" instance=ExtResource("3_hirq7")]
+atk = 20
+def = 10
+hp = 100
+battlefieldSprite = ExtResource("5_6nyls")
+is_enemy = false
+
+[node name="player2" parent="combatants" instance=ExtResource("3_hirq7")]
+x = 4
+y = 0
+atk = 20
+hp = 100
+battlefieldSprite = ExtResource("5_6nyls")
+is_enemy = false
+
+[node name="Entity" parent="combatants" instance=ExtResource("3_hirq7")]
+atk = 20
+hp = 40
+headSprite = ExtResource("4_xnbgp")
+battlefieldSprite = ExtResource("5_xfrb4")
+
+[node name="combatUI" parent="." instance=ExtResource("4_3iqmt")]
+
+[node name="side" type="Camera3D" parent="."]
+transform = Transform3D(1, 4.15065e-08, -7.31872e-09, -2.98023e-08, 0.819152, 0.573577, 2.98023e-08, -0.573577, 0.819152, 0, 5.75, 8)
+projection = 1
+size = 6.5
+
+[node name="rear" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, 0.298836, -0.640856, 0, 0.906308, 0.422618, 0.707107, -0.298836, 0.640856, -9, 6.5, 9)
+projection = 1
+size = 6.5
+
+[node name="battlefield" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("3_eujal")
+
+[node name="enemygrid" type="GridMap" parent="battlefield"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -2)
+mesh_library = ExtResource("4_n3v5s")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 0, 0, 1, 1, 0, 2, 1, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 1, 2, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 4, 1, 0, 3, 1, 0)
+}
+
+[node name="playergrid" type="GridMap" parent="battlefield"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, -0.5, -2)
+mesh_library = ExtResource("4_n3v5s")
+cell_size = Vector3(1, 1, 1)
+data = {
+"cells": PackedInt32Array(0, 0, 0, 1, 1, 0, 2, 1, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 0, 1, 0, 0, 2, 0, 0, 3, 0, 1, 3, 0, 2, 3, 0, 3, 3, 0, 4, 3, 0, 1, 2, 0, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 4, 1, 0, 3, 1, 0)
+}

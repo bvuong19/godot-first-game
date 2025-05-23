@@ -1,0 +1,135 @@
+[gd_scene load_steps=5 format=3 uid="uid://n8jr8u3x84jv"]
+
+[ext_resource type="Texture2D" uid="uid://brujgve543km7" path="res://assets/ui/partybar.svg" id="1_ip772"]
+[ext_resource type="Script" path="res://scenes/combat/ui/partybaritem.gd" id="2_8dsla"]
+[ext_resource type="Theme" uid="uid://dgn5gwlf3rq34" path="res://scenes/combat/ui/menu/party_bar_2.tres" id="3_jn7sw"]
+[ext_resource type="Texture2D" uid="uid://dl7ed8bcf1pl1" path="res://assets/headthing.png" id="3_mf18t"]
+
+[node name="MarginContainer" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+script = ExtResource("2_8dsla")
+
+[node name="Control" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(104, 60)
+layout_mode = 2
+theme = ExtResource("3_jn7sw")
+texture = ExtResource("1_ip772")
+stretch_mode = 4
+
+[node name="nametag" type="RichTextLabel" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -6.0
+offset_top = 1.0
+offset_right = 139.0
+offset_bottom = 21.0
+theme = ExtResource("3_jn7sw")
+theme_override_constants/outline_size = 2
+bbcode_enabled = true
+text = "[b][i]Character"
+fit_content = true
+text_direction = 2
+
+[node name="hpbar" type="ProgressBar" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 6)
+layout_mode = 0
+offset_left = 26.0
+offset_top = 32.0
+offset_right = 136.0
+offset_bottom = 38.0
+theme = ExtResource("3_jn7sw")
+value = 60.0
+show_percentage = false
+
+[node name="label" type="RichTextLabel" parent="Control/hpbar"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = -9.0
+offset_right = 111.0
+offset_bottom = 8.0
+theme = ExtResource("3_jn7sw")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
+text = "[b]100"
+fit_content = true
+text_direction = 2
+
+[node name="etcbar" type="ProgressBar" parent="Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(110, 6)
+layout_mode = 0
+offset_left = 46.0
+offset_top = 63.0
+offset_right = 156.0
+offset_bottom = 69.0
+theme = ExtResource("3_jn7sw")
+theme_type_variation = &"etcbar"
+value = 60.0
+show_percentage = false
+
+[node name="label" type="RichTextLabel" parent="Control/etcbar"]
+visible = false
+layout_mode = 0
+offset_left = 20.0
+offset_top = -9.0
+offset_right = 111.0
+offset_bottom = 8.0
+theme = ExtResource("3_jn7sw")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
+text = "[b]100"
+fit_content = true
+text_direction = 2
+
+[node name="mpbar" type="ProgressBar" parent="Control"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(110, 6)
+layout_mode = 0
+offset_left = 36.0
+offset_top = 47.0
+offset_right = 146.0
+offset_bottom = 53.0
+theme = ExtResource("3_jn7sw")
+theme_type_variation = &"manabar"
+value = 60.0
+show_percentage = false
+
+[node name="label" type="RichTextLabel" parent="Control/mpbar"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -9.0
+offset_right = 111.0
+offset_bottom = 8.0
+theme = ExtResource("3_jn7sw")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+bbcode_enabled = true
+text = "[b]100"
+fit_content = true
+text_direction = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 20.0
+offset_right = 183.0
+offset_bottom = 22.0
+color = Color(0.878431, 0.878431, 0.878431, 1)
+
+[node name="sprite" type="TextureRect" parent="Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 158.0
+offset_top = -26.0
+offset_right = 252.0
+offset_bottom = 114.0
+texture = ExtResource("3_mf18t")
+expand_mode = 4
+stretch_mode = 4

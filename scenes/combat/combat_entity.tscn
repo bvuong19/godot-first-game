@@ -1,0 +1,122 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbsoijegpgdte"]
+
+[ext_resource type="Script" path="res://scenes/combat/combat_entity.gd" id="1_pg1hx"]
+[ext_resource type="Script" path="res://scenes/combat/combat_entity_3d_ui.gd" id="2_s38ri"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lt4ye"]
+load_path = "res://.godot/imported/defaultplayer.png-9abc6194e4b9ac9c70cce27972ba8c4c.s3tc.ctex"
+
+[sub_resource type="Animation" id="Animation_q04ct"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -4)]
+}
+
+[sub_resource type="Animation" id="Animation_hw5hl"]
+resource_name = "attack"
+length = 1.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("..:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.0333333, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, -4), Vector2(200, -4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kkn1o"]
+_data = {
+"RESET": SubResource("Animation_q04ct"),
+"attack": SubResource("Animation_hw5hl")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_wf0wx"]
+font_names = PackedStringArray("Monospace", "", "", "", "", "")
+font_weight = 600
+subpixel_positioning = 0
+
+[node name="Entity" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -4, 0)
+script = ExtResource("1_pg1hx")
+x = 1
+y = 1
+
+[node name="battlefieldSprite" type="Node3D" parent="."]
+unique_name_in_owner = true
+
+[node name="sprite" type="Sprite3D" parent="battlefieldSprite"]
+unique_name_in_owner = true
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.3, 0)
+flip_h = true
+billboard = 1
+render_priority = 2
+texture = SubResource("CompressedTexture2D_lt4ye")
+
+[node name="animationplayer" type="AnimationPlayer" parent="battlefieldSprite"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_kkn1o")
+}
+
+[node name="uiAnchor" type="Marker3D" parent="battlefieldSprite"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.1)
+
+[node name="unitUI" type="Control" parent="battlefieldSprite/uiAnchor"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_s38ri")
+
+[node name="PanelContainer" type="PanelContainer" parent="battlefieldSprite/uiAnchor/unitUI"]
+layout_mode = 0
+offset_top = 12.0
+offset_bottom = 24.0
+size_flags_horizontal = 0
+
+[node name="buffbar" type="HBoxContainer" parent="battlefieldSprite/uiAnchor/unitUI/PanelContainer"]
+unique_name_in_owner = true
+z_index = 1
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HPLabel" type="Label" parent="battlefieldSprite/uiAnchor/unitUI"]
+unique_name_in_owner = true
+z_index = 2
+layout_mode = 0
+offset_left = 2.0
+offset_right = 38.0
+offset_bottom = 14.0
+theme_override_colors/font_outline_color = Color(0.117647, 0.117647, 0.117647, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = SubResource("SystemFont_wf0wx")
+theme_override_font_sizes/font_size = 12
+text = "X/X"
+metadata/_edit_use_anchors_ = true
+
+[node name="labelBG" type="ColorRect" parent="battlefieldSprite/uiAnchor/unitUI/HPLabel"]
+z_index = -1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.717647
+anchor_bottom = 0.414634
+offset_left = -2.0
+offset_right = 12.1647
+offset_bottom = 6.19512
+color = Color(0.117647, 0.117647, 0.117647, 1)
+metadata/_edit_use_anchors_ = true

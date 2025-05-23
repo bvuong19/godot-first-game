@@ -1,0 +1,72 @@
+[gd_scene load_steps=6 format=3 uid="uid://d1h2cm6qmfihw"]
+
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="1_a8jgt"]
+[ext_resource type="Texture2D" uid="uid://b5gtubxqlp6cb" path="res://assets/ui/radialbar_mana.png" id="2_xlqf0"]
+[ext_resource type="Texture2D" uid="uid://bjl8o272326kh" path="res://assets/ui/radialbar_neutral.png" id="3_araov"]
+[ext_resource type="Texture2D" uid="uid://bq4378hdm7f3j" path="res://assets/ui/radialbar_hp.png" id="4_wxpor"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wn3fi"]
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchor_right = 0.086
+anchor_bottom = 0.153
+offset_right = -35.072
+offset_bottom = -35.144
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="background" type="Panel" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wn3fi")
+
+[node name="clipping_mask" type="Panel" parent="."]
+clip_children = 1
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_wn3fi")
+
+[node name="pfp" type="TextureRect" parent="clipping_mask"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -24.0
+offset_top = -48.0
+offset_right = 24.0
+grow_horizontal = 2
+grow_vertical = 0
+texture = ExtResource("1_a8jgt")
+expand_mode = 2
+
+[node name="manabar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+value = 100.0
+fill_mode = 5
+radial_initial_angle = 180.0
+radial_fill_degrees = 180.0
+texture_progress = ExtResource("2_xlqf0")
+texture_progress_offset = Vector2(4, 0)
+
+[node name="hpbar" type="TextureProgressBar" parent="."]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+value = 50.0
+fill_mode = 5
+radial_initial_angle = 180.0
+texture_under = ExtResource("3_araov")
+texture_progress = ExtResource("4_wxpor")

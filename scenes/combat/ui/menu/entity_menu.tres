@@ -1,0 +1,26 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c3qax2qsij4qv"]
+
+[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/Aptos-Bold.ttf" id="1_j1tp5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4oan4"]
+bg_color = Color(0, 0, 0, 0)
+corner_detail = 1
+expand_margin_left = 4.0
+expand_margin_top = 4.0
+expand_margin_right = 4.0
+expand_margin_bottom = 4.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p2xno"]
+bg_color = Color(0.0862745, 0.0784314, 0.32549, 1)
+skew = Vector2(0.01, 0.02)
+corner_radius_top_left = 2
+corner_radius_top_right = 2
+corner_radius_bottom_right = 2
+corner_radius_bottom_left = 2
+corner_detail = 1
+
+[resource]
+Label/font_sizes/font_size = 13
+Label/fonts/font = ExtResource("1_j1tp5")
+Label/styles/normal = SubResource("StyleBoxFlat_4oan4")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_p2xno")
