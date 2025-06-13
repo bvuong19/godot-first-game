@@ -1,5 +1,8 @@
 extends Node3D
 
+class_name Combat3D
+const scene : PackedScene = preload("res://scenes/combat/combat_3d.tscn")
+
 #control flow state
 enum {
 	PLANNING,
@@ -286,3 +289,10 @@ func check_combat_end() -> void:
 	if enemy_wipe:
 		current_phase = END
 		print("Victory!")
+		
+		
+static func init(entities : Array[CombatEntity]) -> Combat3D:
+	var node : Combat3D = scene.instantiate()
+	for entity in entities:
+		node.get_node("$combatants").add_child(entity)
+	return node

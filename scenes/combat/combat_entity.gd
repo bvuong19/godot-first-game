@@ -2,12 +2,8 @@ extends Node3D
 
 class_name CombatEntity
 
-# unit's grid position
-@export var x : int
-@export var y : int
 
-# unit's base stats.
-# TODO: add other stats that we think would be cool and poggers.
+# unit's base stats
 @export var atk : int
 @export var matk : int
 @export var luc : int
@@ -17,19 +13,23 @@ class_name CombatEntity
 @export var hp : int
 @export var mp : int
 
-@export var current_hp : int
-@export var current_mp : int
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
 @export var battlefieldSprite : Texture2D:
 	set(v): 
 		battlefieldSprite = v
 		%sprite.texture = v
-
-@export var is_enemy = true
 @export var actions = [CombatDetail.ACTION_TYPE.ATTACK,CombatDetail.ACTION_TYPE.FLEE,CombatDetail.ACTION_TYPE.ITEM,CombatDetail.ACTION_TYPE.MOVE,CombatDetail.ACTION_TYPE.DEFEND,CombatDetail.ACTION_TYPE.SKILL]
+var skills : Array[CombatAction] = []
+
+
+# instance-based data
+@export var x : int
+@export var y : int
+@export var current_hp : int
+@export var current_mp : int
+@export var is_enemy = true
 
 var effective_stats : Dictionary = {}
-var skills : Array[CombatAction] = []
 var effects : Array[CombatStatusEffect] = []
 
 # other

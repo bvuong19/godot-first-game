@@ -58,14 +58,16 @@ def = 10
 hp = 100
 mp = 60
 battlefieldSprite = ExtResource("5_6nyls")
+x = 0
+y = 0
 is_enemy = false
 
 [node name="player2" parent="combatants" instance=ExtResource("3_hirq7")]
-x = 4
-y = 0
 atk = 20
 hp = 100
 battlefieldSprite = ExtResource("5_6nyls")
+x = 0
+y = 0
 is_enemy = false
 
 [node name="enemy1" parent="combatants" instance=ExtResource("3_hirq7")]
@@ -74,14 +76,17 @@ hp = 40
 mp = 40
 headSprite = ExtResource("4_xnbgp")
 battlefieldSprite = ExtResource("5_xfrb4")
+x = 0
+y = 0
 
 [node name="enemy2" parent="combatants" instance=ExtResource("3_hirq7")]
-x = 3
 atk = 20
 hp = 40
 mp = 40
 headSprite = ExtResource("4_xnbgp")
 battlefieldSprite = ExtResource("5_xfrb4")
+x = 0
+y = 0
 
 [node name="combatUI" parent="." instance=ExtResource("4_3iqmt")]
 
