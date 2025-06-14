@@ -23,5 +23,6 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Combat2" parent="." instance=ExtResource("2_plr1r")]
+visible = false
 
 [editable path="Combat2"]

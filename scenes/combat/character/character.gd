@@ -2,7 +2,6 @@ extends Resource
 
 class_name Character
 
-# unit's base stats
 @export var atk : int
 @export var matk : int
 @export var luc : int
@@ -13,9 +12,12 @@ class_name Character
 @export var mp : int
 
 @export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
-@export var battlefieldSprite : Texture2D:
-	set(v): 
-		battlefieldSprite = v
-		%sprite.texture = v
+@export var battlefieldSprite : Texture2D = preload("res://assets/defaultplayer.png")
 @export var actions = [CombatDetail.ACTION_TYPE.ATTACK,CombatDetail.ACTION_TYPE.FLEE,CombatDetail.ACTION_TYPE.ITEM,CombatDetail.ACTION_TYPE.MOVE,CombatDetail.ACTION_TYPE.DEFEND,CombatDetail.ACTION_TYPE.SKILL]
-var skills : Array[CombatAction] = []
+@export var skills : Array[CombatAction] = []
+
+# instance-based data
+@export var x : int
+@export var y : int
+@export var current_hp : int
+@export var current_mp : int

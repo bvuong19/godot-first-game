@@ -2,6 +2,7 @@ extends Node3D
 
 class_name CombatEntity
 
+const scene : PackedScene = preload("res://scenes/combat/combat_entity.tscn")
 
 # unit's base stats
 @export var atk : int
@@ -27,7 +28,7 @@ var skills : Array[CombatAction] = []
 @export var y : int
 @export var current_hp : int
 @export var current_mp : int
-@export var is_enemy = true
+@export var is_enemy = false
 
 var effective_stats : Dictionary = {}
 var effects : Array[CombatStatusEffect] = []
@@ -58,7 +59,6 @@ func apply_status(statusEffect : CombatStatusEffect, duration : int):
 	effects.append(statusEffect)
 	statusEffect.duration = duration
 	add_buff_bar(statusEffect)
-
 
 func apply_heal(dmg: float) -> void:
 	var amount_healed = min(dmg, hp - current_hp)
@@ -113,3 +113,24 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	pass
+
+
+static func from_character(character : Character) -> CombatEntity:
+	var node = scene.instantiate()
+	node.atk = character.atk
+	node.matk = character.matk
+	node.luc = character.luc
+	node.spd = character.spd
+	node.def = character.def
+	node.mdef = character.mdef
+	node.hp = character.hp
+	node.mp = character.mp
+	node.headSprite = character.headSprite
+	node.battlefieldSprite = character.battlefieldSprite
+	node.actions = character.actions
+	node.skills = character.skills
+	node.x = character.x
+	node.y = character.y
+	node.current_hp = character.current_hp
+	node.current_mp = character.current_mp	
+	return node

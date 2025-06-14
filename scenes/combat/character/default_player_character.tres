@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://be21r4yr23qnh"]
+
+[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/defaultplayer.png" id="1_o1l40"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="2_vhk83"]
+[ext_resource type="Script" path="res://scenes/combat/character/character.gd" id="3_5twvl"]
+[ext_resource type="Script" path="res://scenes/combat/skills/combat_action.gd" id="4_atyhm"]
+
+[resource]
+script = ExtResource("3_5twvl")
+atk = 0
+matk = 0
+luc = 0
+spd = 0
+def = 0
+mdef = 0
+hp = 0
+mp = 0
+headSprite = ExtResource("2_vhk83")
+battlefieldSprite = ExtResource("1_o1l40")
+actions = [0, 5, 4, 1, 3, 2]
+skills = Array[ExtResource("4_atyhm")]([])
+x = 0
+y = 0
+current_hp = 0
+current_mp = 0
