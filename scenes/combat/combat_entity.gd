@@ -128,9 +128,11 @@ static func from_character(character : Character) -> CombatEntity:
 	node.headSprite = character.headSprite
 	node.battlefieldSprite = character.battlefieldSprite
 	node.actions = character.actions
-	node.skills = character.skills
+	for skill in character.skills:
+		#print(load(skill.resource_path).new())
+		node.skills.append(load(skill.resource_path).new())
 	node.x = character.x
 	node.y = character.y
 	node.current_hp = character.current_hp
-	node.current_mp = character.current_mp	
+	node.current_mp = character.current_mp
 	return node

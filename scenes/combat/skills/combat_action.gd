@@ -18,6 +18,8 @@ class_name CombatAction
 @export var skillCost : float
 @export var skillName : String = "missingName"
 
+@export var skillScript : Script
+
 func play_action(details : Dictionary) -> void:
 	pass
 

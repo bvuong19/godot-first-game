@@ -102,6 +102,7 @@ text = "Flee"
 
 [node name="skillmenucontainer" type="ScrollContainer" parent="."]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0

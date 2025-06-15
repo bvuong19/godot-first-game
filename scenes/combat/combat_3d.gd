@@ -249,11 +249,11 @@ func _ready() -> void:
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
 		$battlefield.add_entity(entity)
 		$combatUI.add_entity(entity, false)
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/heal.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t1.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t2.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/silence.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/shove.gd").new())
+		#entity.skills.append(preload("res://scenes/combat/skills/skills_list/heal.gd").new())
+		#entity.skills.append(load("res://scenes/combat/skills/skills_list/fire_t1.gd").new())
+		#entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t2.gd").new())
+		#entity.skills.append(preload("res://scenes/combat/skills/skills_list/silence.gd").new())
+		#entity.skills.append(preload("res://scenes/combat/skills/skills_list/shove.gd").new())
 		
 	print("...and enemy characters: ")
 	for entity in get_enemies():

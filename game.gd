@@ -4,7 +4,7 @@ extends Control
 func _ready() -> void:
 	#add_child(preload("res://scenes/combat/combat_3d.tscn").instantiate())
 	var combatants : Array[CombatEntity] = []
-	var player = CombatEntity.from_character(preload("res://scenes/combat/character/default_enemy.tres"))
+	var player = CombatEntity.from_character(preload("res://scenes/combat/character/default_player_character.tres"))
 	player.x = 2
 	player.y = 2
 	combatants.append(player)
