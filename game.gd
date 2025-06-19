@@ -7,9 +7,17 @@ func _ready() -> void:
 	var player = CombatEntity.from_character(preload("res://scenes/combat/character/default_player_character.tres"))
 	player.x = 2
 	player.y = 2
-	combatants.append(player)
+	var jf = CombatEntity.from_character(preload("res://scenes/combat/character/default_enemy.tres"))
+	jf.x = 0
+	jf.y = 1
+	jf.is_enemy = true
+	var jf2 = CombatEntity.from_character(preload("res://scenes/combat/character/default_enemy.tres"))
+	jf2.x = 3
+	jf2.y = 1
+	jf2.is_enemy = true
+	
 	print('huh')
-	var combat = Combat3D.init(combatants)
+	var combat = Combat3D.init([player, jf, jf2])
 	add_child(combat)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

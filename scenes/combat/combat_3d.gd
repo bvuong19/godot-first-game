@@ -293,7 +293,6 @@ func check_combat_end() -> void:
 		
 static func init(entities : Array[CombatEntity]) -> Combat3D:
 	var node : Combat3D = scene.instantiate()
-	print('guh')
 	for entity in entities:
 		node.get_node("combatants").add_child(entity)
 		print(entity)
