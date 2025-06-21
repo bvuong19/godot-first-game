@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://kv5ciopg3m8s"]
+[gd_scene load_steps=2 format=3 uid="uid://blhgfkcefnda8"]
 
 [ext_resource type="PackedScene" uid="uid://dugr1wwntqsdi" path="res://scenes/combat/combat_3d.tscn" id="1_lt82h"]
 

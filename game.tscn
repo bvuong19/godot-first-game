@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://casgft4ymkw8m"]
+[gd_scene load_steps=2 format=3 uid="uid://casgft4ymkw8m"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_d4whd"]
-[ext_resource type="PackedScene" uid="uid://dugr1wwntqsdi" path="res://scenes/combat/combat_3d.tscn" id="2_plr1r"]
 
 [node name="game" type="Control"]
 layout_mode = 3
@@ -21,8 +20,3 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Combat2" parent="." instance=ExtResource("2_plr1r")]
-visible = false
-
-[editable path="Combat2"]
