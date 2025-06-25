@@ -14,3 +14,9 @@ enum ACTION_TYPE {
 	ITEM,
 	FLEE
 }
+
+enum ENCOUNTER_EXIT_TYPE {
+	NULL,
+	VICTORY,
+	DEFEAT,
+}

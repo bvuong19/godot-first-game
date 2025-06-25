@@ -4,7 +4,7 @@ var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.t
 
 func play_action(details : Dictionary) -> void:
 	var entity : CombatEntity = details.targetEntity
-	if (details.user.apply_skill_cost(self)):
+	if (details.entity.apply_skill_cost(self)):
 		var spell : AnimatedSprite3D = spell_fx_basic.instantiate()
 		var callback_free = func():
 			apply_effect(details)
