@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://brujgve543km7" path="res://assets/ui/partybar.svg" id="1_ip772"]
 [ext_resource type="Script" path="res://scenes/combat/ui/partybaritem.gd" id="2_8dsla"]
 [ext_resource type="Theme" uid="uid://dgn5gwlf3rq34" path="res://scenes/combat/ui/menu/party_bar_2.tres" id="3_jn7sw"]
-[ext_resource type="Texture2D" uid="uid://dl7ed8bcf1pl1" path="res://assets/headthing.png" id="3_mf18t"]
+[ext_resource type="Texture2D" uid="uid://dl7ed8bcf1pl1" path="res://assets/ui/headthing.png" id="3_mf18t"]
 
 [node name="MarginContainer" type="MarginContainer"]
 offset_right = 40.0

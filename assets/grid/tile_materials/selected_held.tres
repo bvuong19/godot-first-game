@@ -1,6 +1,6 @@
 [gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://dj5n1gen3u7sl"]
 
-[ext_resource type="Texture2D" uid="uid://bfibm5ff040q5" path="res://assets/grid/gradient6.png" id="1_mntwm"]
+[ext_resource type="Texture2D" uid="uid://bfibm5ff040q5" path="res://assets/grid/hover_animation/gradient6.png" id="1_mntwm"]
 
 [resource]
 transparency = 1

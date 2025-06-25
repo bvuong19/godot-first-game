@@ -1,7 +1,7 @@
 [gd_scene load_steps=15 format=3 uid="uid://dugr1wwntqsdi"]
 
 [ext_resource type="Script" path="res://scenes/combat/combat_3d.gd" id="1_8af8a"]
-[ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/grass.png" id="2_3k76t"]
+[ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/combat/environment/grass.png" id="2_3k76t"]
 [ext_resource type="Script" path="res://scenes/combat/battlefield_3d.gd" id="3_eujal"]
 [ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/combat_entity.tscn" id="3_hirq7"]
 [ext_resource type="PackedScene" uid="uid://b2jbsrvrww10m" path="res://scenes/combat/ui/combat_ui.tscn" id="4_3iqmt"]

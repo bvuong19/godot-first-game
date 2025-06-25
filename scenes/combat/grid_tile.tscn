@@ -1,22 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dflsc3310528f"]
-
-[ext_resource type="Texture2D" uid="uid://junp7xukluxv" path="res://assets/gridtiles/confirmbold1.png" id="2_5hk8t"]
-[ext_resource type="Texture2D" uid="uid://biy8gv5kq2532" path="res://assets/gridtiles/simple.png" id="3_27xmq"]
-[ext_resource type="Texture2D" uid="uid://cgbmmsrjxrt1r" path="res://assets/gridtiles/selectedbold1.png" id="4_l3p6p"]
-[ext_resource type="Texture2D" uid="uid://d18c7behr7h4a" path="res://assets/gridtiles/selectedbold2.png" id="5_qqo52"]
-[ext_resource type="Texture2D" uid="uid://cpwdlb6ykiku8" path="res://assets/gridtiles/selectedbold3.png" id="6_esnyp"]
-[ext_resource type="Texture2D" uid="uid://cfrmjwcf81k41" path="res://assets/gridtiles/selectedbold4.png" id="7_j8nt5"]
-[ext_resource type="Texture2D" uid="uid://bhtre4uywmmgh" path="res://assets/gridtiles/selectedbold5.png" id="8_sanjg"]
-[ext_resource type="Texture2D" uid="uid://chncws7tj22fn" path="res://assets/gradient1.png" id="9_udfwh"]
-[ext_resource type="Texture2D" uid="uid://qncwvlc0ehr2" path="res://assets/gradient2.png" id="10_7cmji"]
-[ext_resource type="Texture2D" uid="uid://8gtu3fn6j8hc" path="res://assets/gradient3.png" id="11_43nnu"]
-[ext_resource type="Texture2D" uid="uid://blykq0n1asqxq" path="res://assets/gradient4.png" id="12_rm0g6"]
-[ext_resource type="Texture2D" uid="uid://baa7jkylykccs" path="res://assets/gradient5.png" id="13_vjksw"]
-[ext_resource type="Texture2D" uid="uid://dpm2pv1ns5es3" path="res://assets/gradient7.png" id="14_0t33u"]
-[ext_resource type="Texture2D" uid="uid://tybghi78d5dm" path="res://assets/gradient8.png" id="15_56fxd"]
-[ext_resource type="Texture2D" uid="uid://cdr076en1tot0" path="res://assets/gradient9.png" id="16_m8on2"]
-[ext_resource type="Texture2D" uid="uid://baprr7t74use2" path="res://assets/gradient10.png" id="17_ysn48"]
-[ext_resource type="Texture2D" uid="uid://jlj8twiij8cu" path="res://assets/gradient11.png" id="18_m68ir"]
+[gd_scene load_steps=20 format=3 uid="uid://cn3bnuo7gc7k2"]
 
 [sub_resource type="GDScript" id="GDScript_s7y5e"]
 script/source = "extends Node2D
@@ -33,11 +15,62 @@ func _animate_confirm() -> void:
 	$Gridtile1.animation = \"confirm\"
 "
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ql77e"]
+load_path = "res://.godot/imported/confirmbold1.png-6468f8445e4e9b55b6f7b5e655d0aee3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gxs7k"]
+load_path = "res://.godot/imported/simple.png-09ea50d30c77646e02526991c3a1e1c0.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_we6tc"]
+load_path = "res://.godot/imported/gradient1.png-f4e9cad801f084e228794101754ad121.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_fxmgc"]
+load_path = "res://.godot/imported/gradient2.png-7602531358460d7b42b9185244c71c6d.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3wby3"]
+load_path = "res://.godot/imported/gradient3.png-d88d20add50721130348f967fb3d7aed.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q3j6l"]
+load_path = "res://.godot/imported/gradient4.png-1a744b14dbb1a9f68427692c4000f1ca.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vutmn"]
+load_path = "res://.godot/imported/gradient5.png-36e205124154d4e2061ec4b813ad822f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_t6teb"]
+load_path = "res://.godot/imported/gradient7.png-dfdd5321fbd3e0d6f4a0c62e0aad8e48.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3uf60"]
+load_path = "res://.godot/imported/gradient8.png-7232eb82f255f4c33d874cedaa1e0dae.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rltfj"]
+load_path = "res://.godot/imported/gradient9.png-562b0ee8d394912c0ac9ed169b5523f9.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_56noe"]
+load_path = "res://.godot/imported/gradient10.png-b64e9d045b1a3c4a2ca6247438013d87.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_gi7lg"]
+load_path = "res://.godot/imported/gradient11.png-d5c61e35e568822bbfe813326e9f4b14.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kbtg8"]
+load_path = "res://.godot/imported/selectedbold1.png-809d1ff22b4564308c7f7c58072eda57.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6706c"]
+load_path = "res://.godot/imported/selectedbold2.png-544c6c8e595e1ea28471356b492f7da8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2kmri"]
+load_path = "res://.godot/imported/selectedbold3.png-fb8faa352c078d0aad6a37b066ad1a9a.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_q23bf"]
+load_path = "res://.godot/imported/selectedbold4.png-2977137c53d6fd096ba2beba03a3b21c.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lmc4t"]
+load_path = "res://.godot/imported/selectedbold5.png-f64f6bb8eda3fdcf36ce56a50b70de42.ctex"
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_udd3k"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_5hk8t")
+"texture": SubResource("CompressedTexture2D_ql77e")
 }],
 "loop": true,
 "name": &"confirm",
@@ -45,7 +78,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_27xmq")
+"texture": SubResource("CompressedTexture2D_gxs7k")
 }],
 "loop": true,
 "name": &"default",
@@ -53,34 +86,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("9_udfwh")
+"texture": SubResource("CompressedTexture2D_we6tc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_7cmji")
+"texture": SubResource("CompressedTexture2D_fxmgc")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_43nnu")
+"texture": SubResource("CompressedTexture2D_3wby3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_rm0g6")
+"texture": SubResource("CompressedTexture2D_q3j6l")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_vjksw")
+"texture": SubResource("CompressedTexture2D_vutmn")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_0t33u")
+"texture": SubResource("CompressedTexture2D_t6teb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_56fxd")
+"texture": SubResource("CompressedTexture2D_3uf60")
 }, {
 "duration": 1.0,
-"texture": ExtResource("16_m8on2")
+"texture": SubResource("CompressedTexture2D_rltfj")
 }, {
 "duration": 1.0,
-"texture": ExtResource("17_ysn48")
+"texture": SubResource("CompressedTexture2D_56noe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("18_m68ir")
+"texture": SubResource("CompressedTexture2D_gi7lg")
 }],
 "loop": true,
 "name": &"selected",
@@ -88,28 +121,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_l3p6p")
+"texture": SubResource("CompressedTexture2D_kbtg8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_qqo52")
+"texture": SubResource("CompressedTexture2D_6706c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_esnyp")
+"texture": SubResource("CompressedTexture2D_2kmri")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_j8nt5")
+"texture": SubResource("CompressedTexture2D_q23bf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_sanjg")
+"texture": SubResource("CompressedTexture2D_lmc4t")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_j8nt5")
+"texture": SubResource("CompressedTexture2D_q23bf")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_esnyp")
+"texture": SubResource("CompressedTexture2D_2kmri")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_qqo52")
+"texture": SubResource("CompressedTexture2D_6706c")
 }],
 "loop": true,
 "name": &"selected_old",
