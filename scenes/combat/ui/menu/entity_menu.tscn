@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://c3qax2qsij4qv" path="res://scenes/combat/ui/menu/entity_menu.tres" id="1_usx3k"]
 [ext_resource type="Script" path="res://scenes/combat/ui/menu/entity_menu.gd" id="2_jtfpd"]
-[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="3_p0wbi"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/combat/default/defaultplayer-portrait.png" id="3_p0wbi"]
 [ext_resource type="PackedScene" uid="uid://dqjps5gydl56l" path="res://scenes/combat/ui/menu/resourcebar.tscn" id="4_jemsv"]
 [ext_resource type="Theme" uid="uid://dwljlovjlh6hv" path="res://scenes/combat/ui/menu/party_bar.tres" id="5_lu07o"]
 

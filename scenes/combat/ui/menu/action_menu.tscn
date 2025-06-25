@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://6ex88g4ggcq" path="res://scenes/combat/ui/menu/action_menu.tres" id="1_fmdcl"]
 [ext_resource type="Script" path="res://scenes/combat/ui/menu/action_menu.gd" id="2_ypep0"]
 [ext_resource type="PackedScene" uid="uid://capcbr314ldqa" path="res://scenes/combat/ui/menu/action_menu_button.tscn" id="3_twkav"]
-[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/Aptos-Bold.ttf" id="4_8mcju"]
+[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/fonts/Aptos-Bold.ttf" id="4_8mcju"]
 [ext_resource type="PackedScene" uid="uid://dkbj4ntwr528w" path="res://scenes/combat/ui/menu/skill_menu_button.tscn" id="4_w756a"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0o18y"]

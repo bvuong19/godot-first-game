@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=8 format=3 uid="uid://drub0g3xif2y5"]
 
-[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/Aptos-Bold.ttf" id="1_oxrhg"]
+[ext_resource type="FontFile" uid="uid://dkou36ehf1qjw" path="res://assets/fonts/Aptos-Bold.ttf" id="1_oxrhg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuqy3"]
 content_margin_left = 12.0

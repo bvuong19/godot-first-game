@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://d1h2cm6qmfihw"]
 
-[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="1_a8jgt"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/combat/default/defaultplayer-portrait.png" id="1_a8jgt"]
 [ext_resource type="Texture2D" uid="uid://b5gtubxqlp6cb" path="res://assets/ui/radialbar_mana.png" id="2_xlqf0"]
 [ext_resource type="Texture2D" uid="uid://bjl8o272326kh" path="res://assets/ui/radialbar_neutral.png" id="3_araov"]
 [ext_resource type="Texture2D" uid="uid://bq4378hdm7f3j" path="res://assets/ui/radialbar_hp.png" id="4_wxpor"]

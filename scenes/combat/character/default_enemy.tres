@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://d0ullkr305hta"]
 
-[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="1_ojo6j"]
-[ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/copyrightinfringement-portrait.jpg" id="2_iju1l"]
+[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/combat/default/copyrightinfringement.jpg" id="1_ojo6j"]
+[ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/combat/default/copyrightinfringement-portrait.jpg" id="2_iju1l"]
 [ext_resource type="Script" path="res://scenes/combat/character/character.gd" id="3_5rjjr"]
 [ext_resource type="Script" path="res://scenes/combat/skills/combat_action.gd" id="4_4dqs8"]
 

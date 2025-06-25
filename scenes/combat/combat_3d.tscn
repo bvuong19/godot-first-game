@@ -1,14 +1,14 @@
 [gd_scene load_steps=15 format=3 uid="uid://dugr1wwntqsdi"]
 
 [ext_resource type="Script" path="res://scenes/combat/combat_3d.gd" id="1_8af8a"]
-[ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/grass.png" id="2_3k76t"]
+[ext_resource type="Texture2D" uid="uid://cexpypq3o6px7" path="res://assets/combat/environment/grass.png" id="2_3k76t"]
 [ext_resource type="Script" path="res://scenes/combat/battlefield_3d.gd" id="3_eujal"]
 [ext_resource type="PackedScene" uid="uid://bbsoijegpgdte" path="res://scenes/combat/combat_entity.tscn" id="3_hirq7"]
 [ext_resource type="PackedScene" uid="uid://b2jbsrvrww10m" path="res://scenes/combat/ui/combat_ui.tscn" id="4_3iqmt"]
 [ext_resource type="MeshLibrary" uid="uid://bjyjc86701m0b" path="res://assets/grid/combat_grid_ui_tiles.tres" id="4_n3v5s"]
-[ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/copyrightinfringement-portrait.jpg" id="4_xnbgp"]
-[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/defaultplayer.png" id="5_6nyls"]
-[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="5_xfrb4"]
+[ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/combat/default/copyrightinfringement-portrait.jpg" id="4_xnbgp"]
+[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/combat/default/defaultplayer.png" id="5_6nyls"]
+[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/combat/default/copyrightinfringement.jpg" id="5_xfrb4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g8won"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)

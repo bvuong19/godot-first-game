@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=10 format=3 uid="uid://6ex88g4ggcq"]
 
-[ext_resource type="FontFile" uid="uid://c4und8ixek2t5" path="res://assets/Aptos.ttf" id="1_u67xp"]
+[ext_resource type="FontFile" uid="uid://c4und8ixek2t5" path="res://assets/fonts/Aptos.ttf" id="1_u67xp"]
 [ext_resource type="StyleBox" uid="uid://c2d82i8cfu7no" path="res://scenes/combat/ui/menu/styleboxes/box_tail_1.tres" id="2_2i2n0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nuqy3"]

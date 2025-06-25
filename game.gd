@@ -1,10 +1,7 @@
 extends Control
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#add_child(preload("res://scenes/combat/combat_3d.tscn").instantiate())
-	pass
-	
+	add_combat()
 	
 func _on_combat_ended(combat : Node) -> void:
 	remove_child(combat)
@@ -24,12 +21,10 @@ func add_combat() -> void:
 	#jf2.x = 3
 	#jf2.y = 1
 	#jf2.is_enemy = true
-	
-	print('huh')
 	var combat = Combat3D.init([player, jf])
 	add_child(combat)
 	combat.end_combat.connect(_on_combat_ended.bind(combat))
+	print('added new combat scene')
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
