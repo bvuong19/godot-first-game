@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpfvbp08ule05"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7on34"]
+albedo_color = Color(0.293225, 0.393457, 0.243392, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_lbbeb"]
+material = SubResource("StandardMaterial3D_7on34")
+size = Vector2(1, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="empty_tile" type="MeshInstance3D" parent="."]
+visible = false
+mesh = SubResource("PlaneMesh_lbbeb")
+
+[node name="empty_tile2" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_lbbeb")
+
+[node name="Sprite3D" type="Sprite3D" parent="empty_tile2"]

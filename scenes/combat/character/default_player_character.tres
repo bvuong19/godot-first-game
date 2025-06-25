@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://be21r4yr23qnh"]
+
+[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/defaultplayer.png" id="1_o1l40"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="2_vhk83"]
+[ext_resource type="Script" path="res://scenes/combat/character/character.gd" id="3_5twvl"]
+[ext_resource type="Script" path="res://scenes/combat/skills/skills_list/fire_t1.gd" id="4_hk2uq"]
+[ext_resource type="Script" path="res://scenes/combat/skills/skills_list/fire_t2.gd" id="5_r7q2x"]
+[ext_resource type="Script" path="res://scenes/combat/skills/skills_list/heal.gd" id="6_63s6d"]
+[ext_resource type="Script" path="res://scenes/combat/skills/skills_list/shove.gd" id="7_fh3dn"]
+[ext_resource type="Script" path="res://scenes/combat/skills/skills_list/silence.gd" id="8_aqmo2"]
+
+[resource]
+script = ExtResource("3_5twvl")
+atk = 10
+matk = 10
+luc = 0
+spd = 15
+def = 5
+mdef = 0
+hp = 60
+mp = 40
+headSprite = ExtResource("2_vhk83")
+battlefieldSprite = ExtResource("1_o1l40")
+actions = [0, 5, 4, 1, 3, 2]
+skills = Array[Resource]([ExtResource("4_hk2uq"), ExtResource("5_r7q2x"), ExtResource("6_63s6d"), ExtResource("7_fh3dn"), ExtResource("8_aqmo2")])
+x = 0
+y = 0
+current_hp = 0
+current_mp = 0

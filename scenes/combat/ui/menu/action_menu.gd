@@ -32,15 +32,9 @@ func initialize_menu(entity : CombatEntity):
 	for actionType in entity.effective_stats.get('actions', entity.actions):
 		action_buttons[actionType].disabled = false
 		
-	#TODO: add entity skills to the container
 	for skill in entity.skills:
 		var isDisabled = skill.skillCostType and entity.current_mp < skill.skillCost
 		var skillButton = SkillMenuItem.from_skill(skill, isDisabled)
-		#var skillbutton = skillmenuitem.instantiate()
-		#skillbutton.text = skill.skillName
-		#skillbutton.skill = skill
-		#skillbutton.pressed.connect(skillCallBack.bind(skillbutton.skill))
-		#skillbutton.get_node('%skillcost').text = '%s %s' % [skill.skillCost, CombatSkillDetail.COST_TYPE.keys()[skill.skillCostType]]
 		skillButton.pressed.connect(skillCallBack.bind(skillButton.skill))
 		%skillmenucontainer/skillmenu.add_child(skillButton)
 		

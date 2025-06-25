@@ -1,5 +1,8 @@
 extends Node3D
 
+class_name Combat3D
+const scene : PackedScene = preload("res://scenes/combat/combat_3d.tscn")
+
 #control flow state
 enum {
 	PLANNING,
@@ -12,6 +15,8 @@ enum {
 var event_queue: Array = []
 var turn_queue: Array[CombatEntity] = []
 signal turn_queue_updated(Array)
+signal end_combat()
+
 var debug = true
 
 var current_phase = BATTLING
@@ -24,22 +29,22 @@ func process_turn_queue() -> void:
 	if not turn_queue:
 		reset_turn_queue()
 	eventBuilder = {}
-	var e : CombatEntity = turn_queue[0]
-	print("turn queue updated, current turn is %s" % e.name)
-	e.on_turn_start()
-	turn_queue_updated.emit(turn_queue)
-	if e.is_enemy:
-		if debug_add_event:
-			debug_add_event = false
-			event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
-		# TODO: more support for enemy actions. Currently we just let them attack.
+	if turn_queue:
+		var e : CombatEntity = turn_queue[0]
+		print("turn queue updated, current turn is %s" % e.name)
+		e.on_turn_start()
+		turn_queue_updated.emit(turn_queue)
+		if e.is_enemy:
+			if debug_add_event:
+				debug_add_event = false
+				event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
+			else:
+				event_queue.append({'entity': e, 'action': preload("res://scenes/combat/skills/basic_actions_list/attack.gd").new(), 'targetEntity': get_players().front()})
+			change_phase(BATTLING)
 		else:
-			event_queue.append({'entity': e, 'action': preload("res://scenes/combat/skills/basic_actions_list/attack.gd").new(), 'targetEntity': get_players().front()})
-		change_phase(BATTLING)
-	else:
-		# start player turn
-		updateEventBuilder({'entity': e})
-		change_phase(TURNSTART)
+			# start player turn
+			updateEventBuilder({'entity': e})
+			change_phase(TURNSTART)
 
 func reset_turn_queue() -> void:
 	for c in $combatants.get_children():
@@ -121,7 +126,6 @@ func _on_user_input_selected(properties: Dictionary) -> void:
 # targetTiles: targeted tiles covered by an AoE, if the player was targeting an AoE skill.
 # targetEntities: all entities within targetTiles, if the player was targeting an AoE skill.
 # skillDetail: details for the skill. Refer to combat_action.gd for more info
-# TODO: use combat action detail to determine how to handle control flow
 func updateEventBuilder(properties: Dictionary) -> void:
 	eventBuilder.merge(properties)
 	if not eventBuilder.has('entity'):
@@ -241,17 +245,10 @@ func _ready() -> void:
 		entity.damage_taken.connect(_on_damage_taken)
 		entity.entity_death.connect(_on_entity_death)
 	
-	get_players()[0].current_mp = 25
 	for entity in get_players():
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
 		$battlefield.add_entity(entity)
 		$combatUI.add_entity(entity, false)
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/heal.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t1.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/fire_t2.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/silence.gd").new())
-		entity.skills.append(preload("res://scenes/combat/skills/skills_list/shove.gd").new())
-		
 	print("...and enemy characters: ")
 	for entity in get_enemies():
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
@@ -286,3 +283,12 @@ func check_combat_end() -> void:
 	if enemy_wipe:
 		current_phase = END
 		print("Victory!")
+	end_combat.emit()
+	
+
+static func init(entities : Array[CombatEntity]) -> Combat3D:
+	var node : Combat3D = scene.instantiate()
+	for entity in entities:
+		node.get_node("combatants").add_child(entity)
+		print(entity)
+	return node

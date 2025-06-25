@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="Character" load_steps=5 format=3 uid="uid://d0ullkr305hta"]
+
+[ext_resource type="Texture2D" uid="uid://oywrrfqhsyif" path="res://assets/copyrightinfringement.jpg" id="1_ojo6j"]
+[ext_resource type="Texture2D" uid="uid://7vm13rxyf64i" path="res://assets/copyrightinfringement-portrait.jpg" id="2_iju1l"]
+[ext_resource type="Script" path="res://scenes/combat/character/character.gd" id="3_5rjjr"]
+[ext_resource type="Script" path="res://scenes/combat/skills/combat_action.gd" id="4_4dqs8"]
+
+[resource]
+script = ExtResource("3_5rjjr")
+atk = 10
+matk = 10
+luc = 0
+spd = 0
+def = 0
+mdef = 0
+hp = 40
+mp = 0
+headSprite = ExtResource("2_iju1l")
+battlefieldSprite = ExtResource("1_ojo6j")
+actions = [0, 5, 4, 1, 3, 2]
+skills = Array[ExtResource("4_4dqs8")]([])
+x = 0
+y = 0
+current_hp = 0
+current_mp = 0

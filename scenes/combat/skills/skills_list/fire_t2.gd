@@ -3,7 +3,6 @@ extends CombatAction
 var spell_fx_basic = preload("res://scenes/combat/animation/spell_effect_basic.tscn")
 
 func play_action(details : Dictionary) -> void:
-	print("casting uwu")
 	var user : CombatEntity = details.entity
 	var target_is_enemy = not user.is_enemy
 	if (user.apply_skill_cost(self)):
@@ -24,12 +23,10 @@ func play_action(details : Dictionary) -> void:
 					spell.animation_finished.connect(callback_free.bind(spell))
 					spellfx.append(spell)
 					spell.position = tiles[i][j]
-					#spell.apply_scale(Vector2(0.3,0.3))
 					details.battlefield.add_child(spell)
-		#TODO: replace this copy pasted code you dung beetle
 	else:
+		print('skill cost could not be applied!')
 		var callback : Callable = details.callback
-		print('bitchass')
 		callback.call()
 
 func apply_effect(details: Dictionary) -> void:
@@ -45,7 +42,6 @@ func _init() -> void:
 	skillName = "Fira"
 	targetType = CombatSkillDetail.TARGET_TYPE.ENEMY_RANGE
 	actionType = CombatDetail.ACTION_TYPE.SKILL
-	#targetRange = preload("res://scenes/combat/skills/range/pierce_two.tres")
 	targetRange = preload("res://scenes/combat/skills/range/small_plus.tres")
 	effectType = CombatSkillDetail.EFFECT_TYPE.INSTANT
 	skillCostType = CombatSkillDetail.COST_TYPE.MP
