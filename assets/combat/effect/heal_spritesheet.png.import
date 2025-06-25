@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctlipdel5uron"
-path="res://.godot/imported/test-image.svg.webp-4b80c5aaf04eeb736100ef1a46e06e27.ctex"
+uid="uid://bjr78lhhksc5f"
+path="res://.godot/imported/heal_spritesheet.png-3c15f93c72c49dad4e2a5f41d6c0f38c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/test-image.svg.webp"
-dest_files=["res://.godot/imported/test-image.svg.webp-4b80c5aaf04eeb736100ef1a46e06e27.ctex"]
+source_file="res://assets/combat/effect/heal_spritesheet.png"
+dest_files=["res://.godot/imported/heal_spritesheet.png-3c15f93c72c49dad4e2a5f41d6c0f38c.ctex"]
 
 [params]
 

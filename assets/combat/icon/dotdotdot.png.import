@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cs54hkturdvfr"
-path="res://.godot/imported/riposte_buff.png-4cbdb42fc8a55a0a7b07403462220751.ctex"
+uid="uid://ddp01jubb63ek"
+path="res://.godot/imported/dotdotdot.png-f29e1e2eb97cdf483ba4ef50dfefec2c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/riposte_buff.png"
-dest_files=["res://.godot/imported/riposte_buff.png-4cbdb42fc8a55a0a7b07403462220751.ctex"]
+source_file="res://assets/combat/icon/dotdotdot.png"
+dest_files=["res://.godot/imported/dotdotdot.png-f29e1e2eb97cdf483ba4ef50dfefec2c.ctex"]
 
 [params]
 

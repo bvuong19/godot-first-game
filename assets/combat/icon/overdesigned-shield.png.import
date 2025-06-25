@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ddp01jubb63ek"
-path="res://.godot/imported/dotdotdot.png-0e6cee98eb98202b095db4b7f42df7f0.ctex"
+uid="uid://c7kxbe80htvtt"
+path="res://.godot/imported/overdesigned-shield.png-4ae9262ebccf931d373b616d2e4e668d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/dotdotdot.png"
-dest_files=["res://.godot/imported/dotdotdot.png-0e6cee98eb98202b095db4b7f42df7f0.ctex"]
+source_file="res://assets/combat/icon/overdesigned-shield.png"
+dest_files=["res://.godot/imported/overdesigned-shield.png-4ae9262ebccf931d373b616d2e4e668d.ctex"]
 
 [params]
 

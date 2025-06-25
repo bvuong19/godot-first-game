@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgqd4dmxsuhg0"
-path="res://.godot/imported/copyrightinfringement.webp-b9f35e79cc0b25cb0ecea2331b8d755a.ctex"
+uid="uid://checi5t2imsm6"
+path="res://.godot/imported/silence2_spritesheet.png-e4db2b63d82f8c05d879b0e79e43ba47.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/copyrightinfringement.webp"
-dest_files=["res://.godot/imported/copyrightinfringement.webp-b9f35e79cc0b25cb0ecea2331b8d755a.ctex"]
+source_file="res://assets/combat/effect/silence2_spritesheet.png"
+dest_files=["res://.godot/imported/silence2_spritesheet.png-e4db2b63d82f8c05d879b0e79e43ba47.ctex"]
 
 [params]
 

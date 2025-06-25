@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmjw0x4pihk2v"
-path.s3tc="res://.godot/imported/silence_spritesheet.png-2e4af635febe34fd21fb2cfdcb3ab842.s3tc.ctex"
+uid="uid://7vm13rxyf64i"
+path.s3tc="res://.godot/imported/copyrightinfringement-portrait.jpg-3ee460cebeecf16c044e5127312e7d14.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/silence_spritesheet.png"
-dest_files=["res://.godot/imported/silence_spritesheet.png-2e4af635febe34fd21fb2cfdcb3ab842.s3tc.ctex"]
+source_file="res://assets/combat/default/copyrightinfringement-portrait.jpg"
+dest_files=["res://.godot/imported/copyrightinfringement-portrait.jpg-3ee460cebeecf16c044e5127312e7d14.s3tc.ctex"]
 
 [params]
 

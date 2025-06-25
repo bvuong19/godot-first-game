@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nxdt467rbuds"
-path="res://.godot/imported/silence_icon.png-0d1ff5fd26ef439ace7eab9d5d03c363.ctex"
+uid="uid://buh3xakpelt5e"
+path="res://.godot/imported/Potato_JE3_BE2.webp-f051351f002fd5711dc7c5924fb76c7d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/silence_icon.png"
-dest_files=["res://.godot/imported/silence_icon.png-0d1ff5fd26ef439ace7eab9d5d03c363.ctex"]
+source_file="res://assets/combat/default/Potato_JE3_BE2.webp"
+dest_files=["res://.godot/imported/Potato_JE3_BE2.webp-f051351f002fd5711dc7c5924fb76c7d.ctex"]
 
 [params]
 

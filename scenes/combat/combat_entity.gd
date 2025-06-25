@@ -14,7 +14,7 @@ const scene : PackedScene = preload("res://scenes/combat/combat_entity.tscn")
 @export var hp : int
 @export var mp : int
 
-@export var headSprite : Texture2D = preload("res://assets/defaultplayer-portrait.png")
+@export var headSprite : Texture2D = preload("res://assets/combat/default/defaultplayer-portrait.png")
 @export var battlefieldSprite : Texture2D:
 	set(v): 
 		battlefieldSprite = v

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bjr78lhhksc5f"
-path="res://.godot/imported/heal_spritesheet.png-d67573ae668c9b1998b4d1085fdf3562.ctex"
+uid="uid://dgqd4dmxsuhg0"
+path="res://.godot/imported/copyrightinfringement.webp-94baece598a4292e4ccfdf0033df98c8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/heal_spritesheet.png"
-dest_files=["res://.godot/imported/heal_spritesheet.png-d67573ae668c9b1998b4d1085fdf3562.ctex"]
+source_file="res://assets/combat/default/copyrightinfringement.webp"
+dest_files=["res://.godot/imported/copyrightinfringement.webp-94baece598a4292e4ccfdf0033df98c8.ctex"]
 
 [params]
 

@@ -1,8 +1,8 @@
 [gd_scene load_steps=35 format=3 uid="uid://due5uoqbj6lkm"]
 
-[ext_resource type="Texture2D" uid="uid://c6j2w0cpxbrtn" path="res://assets/flame_spritesheet.png" id="1_5xuvy"]
-[ext_resource type="Texture2D" uid="uid://bjr78lhhksc5f" path="res://assets/heal_spritesheet.png" id="2_3f6oe"]
-[ext_resource type="Texture2D" uid="uid://bmjw0x4pihk2v" path="res://assets/silence_spritesheet.png" id="3_pygcn"]
+[ext_resource type="Texture2D" uid="uid://c6j2w0cpxbrtn" path="res://assets/combat/effect/flame_spritesheet.png" id="1_5xuvy"]
+[ext_resource type="Texture2D" uid="uid://bjr78lhhksc5f" path="res://assets/combat/effect/heal_spritesheet.png" id="2_3f6oe"]
+[ext_resource type="Texture2D" uid="uid://bmjw0x4pihk2v" path="res://assets/combat/effect/silence_spritesheet.png" id="3_pygcn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dj6d8"]
 atlas = ExtResource("1_5xuvy")

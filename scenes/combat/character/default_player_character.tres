@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Character" load_steps=9 format=3 uid="uid://be21r4yr23qnh"]
 
-[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/defaultplayer.png" id="1_o1l40"]
-[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/defaultplayer-portrait.png" id="2_vhk83"]
+[ext_resource type="Texture2D" uid="uid://dc061h4ya5k2x" path="res://assets/combat/default/defaultplayer.png" id="1_o1l40"]
+[ext_resource type="Texture2D" uid="uid://buo7gfo2tt0k8" path="res://assets/combat/default/defaultplayer-portrait.png" id="2_vhk83"]
 [ext_resource type="Script" path="res://scenes/combat/character/character.gd" id="3_5twvl"]
 [ext_resource type="Script" path="res://scenes/combat/skills/skills_list/fire_t1.gd" id="4_hk2uq"]
 [ext_resource type="Script" path="res://scenes/combat/skills/skills_list/fire_t2.gd" id="5_r7q2x"]
