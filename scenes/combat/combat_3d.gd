@@ -23,7 +23,13 @@ var current_phase = BATTLING
 var is_phase_change = true
 var eventBuilder = {}
 var animation_locked = false
-var debug_add_event = false
+
+static func init(entities : Array[CombatEntity]) -> Combat3D:
+	var node : Combat3D = scene.instantiate()
+	for entity in entities:
+		node.get_node("combatants").add_child(entity)
+		print(entity)
+	return node
 
 func process_turn_queue() -> void:
 	if not turn_queue:
@@ -35,11 +41,7 @@ func process_turn_queue() -> void:
 		e.on_turn_start()
 		turn_queue_updated.emit(turn_queue)
 		if e.is_enemy:
-			if debug_add_event:
-				debug_add_event = false
-				event_queue.append({'entity': e, 'type': CombatDetail.ACTION_TYPE.SKILL, 'skillDetail': preload("res://scenes/combat/skills/skills_list/silence.gd").new(), 'targetEntity': get_players().front()})
-			else:
-				event_queue.append({'entity': e, 'action': preload("res://scenes/combat/skills/basic_actions_list/attack.gd").new(), 'targetEntity': get_players().front()})
+			event_queue.append({'entity': e, 'action': preload("res://scenes/combat/skills/basic_actions_list/attack.gd").new(), 'targetEntity': get_players().front()})
 			change_phase(BATTLING)
 		else:
 			# start player turn
@@ -54,10 +56,8 @@ func reset_turn_queue() -> void:
 func sort_entity_priority(a : CombatEntity, b: CombatEntity) -> bool:
 	return a.spd > b.spd
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:	
+func _process(delta: float) -> void:
 	if current_phase == BATTLING:
-		#print("event queue %s \nanim locked%s" % [event_queue, animation_locked])
 		if not animation_locked and event_queue:
 			eventBuilder = {}
 			$battlefield.refresh_selections()
@@ -166,7 +166,6 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				if skillDetail.targetRange:
 					$battlefield.targetRange = skillDetail.targetRange
 				change_phase(TARGET)
-				
 		CombatDetail.ACTION_TYPE.DEFEND:
 			change_phase(BATTLING)
 			event_queue.append(eventBuilder)
@@ -179,7 +178,6 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				if not getEntityAtPosition(eventBuilder['targetPosition'].x, eventBuilder['targetPosition'].y, eventBuilder['entity'].is_enemy):
 					event_queue.append(eventBuilder)
 					change_phase(BATTLING)
-				# invalid location
 				else:
 					eventBuilder.erase('targetPosition')
 			else:
@@ -187,7 +185,7 @@ func updateEventBuilder(properties: Dictionary) -> void:
 				change_phase(TARGET)
 
 func change_phase(new_phase : int):
-	#	show and hide UI elements depending on phase of control flow
+	# show and hide UI elements depending on phase of control flow
 	match new_phase:
 		PLANNING:
 			$combatUI.release_focus()
@@ -231,9 +229,7 @@ func get_players() -> Array[CombatEntity]:
 		if !c.is_enemy:
 			result.append(c)
 	return result
-	
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	print("Combat initiated with player characters: ")
 	$battlefield.onSelect.connect(_on_grid_selected)
@@ -244,7 +240,6 @@ func _ready() -> void:
 	for entity in $combatants.get_children():
 		entity.damage_taken.connect(_on_damage_taken)
 		entity.entity_death.connect(_on_entity_death)
-	
 	for entity in get_players():
 		print("\n" + entity.name + ' [' + str(entity.current_hp) + "/" + str(entity.hp) + "]")
 		$battlefield.add_entity(entity)
@@ -283,12 +278,5 @@ func check_combat_end() -> void:
 	if enemy_wipe:
 		current_phase = END
 		print("Victory!")
+	#TODO: add post-combat stuff here.
 	end_combat.emit()
-	
-
-static func init(entities : Array[CombatEntity]) -> Combat3D:
-	var node : Combat3D = scene.instantiate()
-	for entity in entities:
-		node.get_node("combatants").add_child(entity)
-		print(entity)
-	return node

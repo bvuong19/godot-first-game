@@ -19,7 +19,6 @@ var targetRange : SkillRange = null
 func _ready() -> void:
 	grab_focus()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if has_focus():
 		if Input.is_action_just_pressed("ui_cancel"):
@@ -43,7 +42,6 @@ func _process(delta: float) -> void:
 			var aoeTargetPositions : Array = get_tile_positions_from_range(cursor_tile[0], cursor_tile[2], targetRange) if targetRange else []
 			onSelect.emit(Vector2i(targetTile[0], targetTile[2]), targetPosition, aoeTargetPositions, is_select_enemy)
 
-#TODO implement this
 func get_tiles_from_range(x : int, y : int, range: SkillRange) -> Array[Vector3i]:
 	if is_invalid_coordinate(x, y):
 		return []
@@ -72,10 +70,8 @@ func get_tile_positions_from_range(x : int, y : int, range: SkillRange) -> Array
 		for i in range(len(mask)):
 			var col = []
 			for j in range(len(mask[0])):
-				#if mask[i][j] and not is_invalid_coordinate(x+j-orig_x,y+i-orig_y):
-					col.append(get_global_position_from_grid(x+j-orig_x, y+i-orig_y, is_select_enemy))
+				col.append(get_global_position_from_grid(x+j-orig_x, y+i-orig_y, is_select_enemy))
 			tilePositions.append(col)
-		#print(tilePositions)
 		return tilePositions
 		
 func is_invalid_coordinate(x : int, y : int):
@@ -119,7 +115,6 @@ func highlight_entity(entity: CombatEntity) -> void:
 func get_global_position_from_grid(x : int, z : int, is_enemy : bool) -> Vector3:
 	var grid : GridMap =  %enemygrid if is_enemy else %playergrid
 	return grid.map_to_local(Vector3i(x, 0, z)) + grid.position
-
 
 func set_active(active : bool) -> void:
 	is_active = active
